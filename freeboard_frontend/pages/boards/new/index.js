@@ -84,9 +84,8 @@
       }
 
       if(youtube.length < 5){
-        setYoutubeError("다섯글자 이상 입력해주세요")
+        setYoutubeError("URL을 입력해주세요")
       }
-
 
 
    }
@@ -158,6 +157,6 @@
       </Wrapper>
     );
     
-      }
+   }
   
   
