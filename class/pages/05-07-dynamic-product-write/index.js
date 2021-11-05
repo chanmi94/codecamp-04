@@ -30,7 +30,7 @@ export default function GraphqlMutationProductPage(){
                 }
             })
             console.log(result)
-            router.push('/05-08-dynamic-product-read/${result.data.createProduct._id}')      
+            router.push(`/05-08-dynamic-product-read/${result.data.createProduct._id}`)      
 
         }catch(err){
             console.log(error.message)

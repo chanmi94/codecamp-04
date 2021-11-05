@@ -24,11 +24,11 @@ export default function DynamicProductReadPage(){
 
     return(
         <>
-        <div>나의 상품 아이디: {router.query.myId}</div>
-        <div>판매자:{data ? data.fetchProduct.seller:"qqq"}</div>
-        <div>상품명:{data ?. data.fetchProduct.name}</div>
-        <div>상품상세:{data ?. data.fetchProduct.detail}</div>
-        <div>상품가격:{data && data.fetchProduct.price}</div>
+        <div>나의 상품 아이디: {data?.router.query.myId}</div>
+        <div>판매자:{data?.fetchProduct.seller}</div>
+        <div>상품명:{data?.fetchProduct.name}</div>
+        <div>상품상세:{data?.fetchProduct.detail}</div>
+        <div>상품가격:{data?.fetchProduct.price}</div>
         </>
 
     )
