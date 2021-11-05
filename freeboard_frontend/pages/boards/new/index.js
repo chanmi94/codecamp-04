@@ -79,18 +79,22 @@
 
         if(myWriter.length < 1){
           setWriterError("한글자 이상 입력해주세요")
+          return
         }
         
         if(myPassword.length < 4){
         setPasswordError("네글자 이상 입력해주세요")
+          return
         }
 
         if(myTitle.length < 5){
           setSubjectError("다섯글자 이상 입력해주세요")
+            return  
         }
 
         if(myContents.length < 5){
           setContentsError("다섯글자 이상 입력해주세요")
+           return
         }
 
 
