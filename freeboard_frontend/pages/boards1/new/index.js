@@ -23,7 +23,7 @@
   ZipcodeWrapper,
   Err,
   UploadButton
-} from "../../../../freeboard_frontend/styles/emotion";
+} from "../../../styles/emotion";
   import { useRouter } from 'next/router'
   import {useMutation,gql} from '@apollo/client'
   import { useState } from 'react'
