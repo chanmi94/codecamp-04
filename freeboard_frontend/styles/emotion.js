@@ -145,6 +145,13 @@ export const Video = styled.video`
  
 `; 
 
+export const Thumb = styled.div`
+   width: 486px;
+  height: 240px;
+  align-self: center;
+ 
+`; 
+
 export const UploadButton = styled.button`
   width: 110px;
   height: 110px;

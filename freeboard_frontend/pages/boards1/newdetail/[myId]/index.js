@@ -1,7 +1,7 @@
 import { useRouter } from "next/router" 
 import{ useQuery, gql }from '@apollo/client'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser,faLink,faMapMarkerAlt} from "@fortawesome/free-solid-svg-icons";
+import { faUser,faLink,faMapMarkerAlt,faThumbsUp,faThumbsDown} from "@fortawesome/free-solid-svg-icons";
 import {
   Address,
   ButtonWrapper,
@@ -25,7 +25,7 @@ import {
   ZipcodeWrapper,
   Err,
   UploadButton,
-  Image,ContentsDetail,Video
+  Image,ContentsDetail,Video,Thumb
   } from "../../../../styles/emotion";
 
 const FETCH_BOARD =gql`
@@ -71,41 +71,12 @@ export default function DynamicBoardReadPage(){
             </ContentsDetail>
         </InputWrapper>
         <Video></Video>
-
-
-    
-        {/*
         <InputWrapper>
-          <Label>유튜브</Label>
-          <Youtube placeholder="링크를 복사해주세요."/>
+          <Thumb>
+              <FontAwesomeIcon icon={faThumbsUp}/>
+              <FontAwesomeIcon icon={faThumbsDown}/>
+          </Thumb>    
         </InputWrapper>
-        <ImageWrapper>
-          <Label>사진첨부</Label>
-          <UploadButton>
-            <>+</>
-            <>Upload</>
-          </UploadButton>
-          <UploadButton>
-            <>+</>
-            <>Upload</>
-          </UploadButton>
-          <UploadButton>
-            <>+</>
-            <>Upload</>
-          </UploadButton>
-        </ImageWrapper>
-        <OptionWrapper>
-          <Label>메인설정</Label>
-          <RadioButton type="radio" id="youtube" name="radio-button" />
-          <RadioLabel htmlFor="youtube">유튜브</RadioLabel>
-          <RadioButton type="radio" id="image" name="radio-button" />
-          <RadioLabel htmlFor="image">사진</RadioLabel>
-        </OptionWrapper>
-        <ButtonWrapper>
-          <SubmitButton onClick={submit}>등록하기</SubmitButton>
-        </ButtonWrapper> */}
-  
- 
         </Wrapper>
     )
     
