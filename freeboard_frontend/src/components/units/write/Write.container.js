@@ -25,12 +25,17 @@
         setMyQqq(true) 
         setMyWriterError("");
       }
+      else {
+        setMyQqq(false)
+      }
     }
   
     function onChangeMyPassword(event) {
       setMyPassword(event.target.value);
       if (event.target.value !== "") {
         setMyPasswordError("");
+      }else {
+        setMyQqq(false)
       }
     }
   
@@ -38,6 +43,8 @@
       setMyTitle(event.target.value);
       if(myWriter !=="" && event.target.value !=="" && myContents!==""){
         setMyQqq(true)
+      }else {
+        setMyQqq(false)
       }
     }
   
@@ -45,6 +52,8 @@
       setMyContents(event.target.value);
       if(myWriter !=="" && myTitle !=="" && event.target.value!==""){
         setMyQqq(true)
+      }else {
+        setMyQqq(false)
       }
     }
   
