@@ -13,29 +13,28 @@ export default function BoardWrite(){
     const [myContents, setMyContents] =useState("")
     const [createBoard]= useMutation(CREATE_BOARD )
 
-
-
     function onChangeMyWriter(event){
         
         setMyWriter(event.target.value)
-        onChangeButton()
+        if(event.target.value !=="" && myTitle !=="" && myContents!==""){
+            setMyQqq(true) 
+        }
+      
     }
     function onChangeMyTitle(event){
         setMyTitle(event.target.value)
-        onChangeButton()
+        if(myWriter !=="" && event.target.value !=="" && myContents!==""){
+            setMyQqq(true)
+        }
     }
     function onChangeMyContents(event){
         setMyContents(event.target.value)
-        onChangeButton()
-    }
-    function onChangeButton(){
-        if(myWriter !=="" && myTitle !=="" && myContents!==""){
+        if(myWriter !=="" && myTitle !=="" && event.target.value!==""){
             setMyQqq(true)
-        }
-        
-        
-    }
-   
+      
+        }       
+    }   
+    
     async function zzz(){
         
         const result = await createBoard({
@@ -51,5 +50,5 @@ export default function BoardWrite(){
          qqq={myQqq}
          zzz={zzz}
          />
-    )
-}
+        )
+    }
