@@ -5,6 +5,7 @@
   import { CREATE_BOARD } from "./Write.queries"
   
   export default function BoardWrite() {
+    const [myQqq, setMyQqq] =useState(false)
     const router = useRouter()
     const [myWriter, setMyWriter] = useState("");
     const [myPassword, setMyPassword] = useState("");
@@ -20,7 +21,8 @@
   
     function onChangeMyWriter(event) {
       setMyWriter(event.target.value);
-      if (event.target.value !== "") {
+      if(event.target.value !=="" && myTitle !=="" && myContents!==""){
+        setMyQqq(true) 
         setMyWriterError("");
       }
     }
@@ -34,15 +36,15 @@
   
     function onChangeMyTitle(event) {
       setMyTitle(event.target.value);
-      if (event.target.value !== "") {
-        setMyTitleError("");
+      if(myWriter !=="" && event.target.value !=="" && myContents!==""){
+        setMyQqq(true)
       }
     }
   
     function onChangeMyContents(event) {
       setMyContents(event.target.value);
-      if (event.target.value !== "") {
-        setMyContentsError("");
+      if(myWriter !=="" && myTitle !=="" && event.target.value!==""){
+        setMyQqq(true)
       }
     }
   
@@ -82,7 +84,7 @@
        myPasswordError={myPasswordError}
        myTitleError={myTitleError}
        myContentsError={myContentsError}
-
+       qqq={myQqq}
        onClickSubmit={onClickSubmit}
        />
       )

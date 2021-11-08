@@ -1,4 +1,4 @@
-
+import {MyButton } from "./Write.styles"
 import {
   Address,
   ButtonWrapper,
@@ -37,7 +37,7 @@ export default function BoardWriteUI(props){
         </InputWrapper>
         <InputWrapper>
           <Label>비밀번호</Label>
-          <Password type="password" onChange={props.bbb} />
+          <Password type="password" placeholder="비밀번호를 적어주세요." onChange={props.bbb} />
           <Error>{props.myPasswordError}</Error>
         </InputWrapper>
       </WriterWrapper>
@@ -87,7 +87,7 @@ export default function BoardWriteUI(props){
         <RadioLabel htmlFor="image">사진</RadioLabel>
       </OptionWrapper>
       <ButtonWrapper>
-        <SubmitButton onClick={props.onClickSubmit}>등록하기</SubmitButton>
+        <MyButton onClick={props.onClickSubmit}qqq={props.qqq}>등록하기</MyButton>
       </ButtonWrapper>
     </Wrapper>
   );
