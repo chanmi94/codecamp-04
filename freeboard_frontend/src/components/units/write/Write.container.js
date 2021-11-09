@@ -5,7 +5,7 @@
   import { CREATE_BOARD } from "./Write.queries"
   
   export default function BoardWrite() {
-    const [myQqq, setMyQqq] =useState(false)
+    const [myQqq, setIsActive] =useState(false)
     const router = useRouter()
     const [myWriter, setMyWriter] = useState("");
     const [myPassword, setMyPassword] = useState("");
@@ -21,12 +21,14 @@
   
     function onChangeMyWriter(event) {
       setMyWriter(event.target.value);
-      if(event.target.value !=="" && myTitle !=="" && myContents!==""){
-        setMyQqq(true) 
+      if (event.target.value !== "") {
         setMyWriterError("");
       }
-      else {
-        setMyQqq(false)
+
+      if(event.target.value !== "" && myTitle !== "" && myContents !== "" && myPassword !== ""){
+        setIsActive(true)
+      } else {
+        setIsActive(false)
       }
     }
   
@@ -34,40 +36,52 @@
       setMyPassword(event.target.value);
       if (event.target.value !== "") {
         setMyPasswordError("");
-      }else {
-        setMyQqq(false)
+      }
+
+      if(myWriter !== "" && myTitle !== "" && myContents !== "" && event.target.value !== ""){
+        setIsActive(true)
+      } else {
+        setIsActive(false)
       }
     }
   
     function onChangeMyTitle(event) {
       setMyTitle(event.target.value);
-      if(myWriter !=="" && event.target.value !=="" && myContents!==""){
-        setMyQqq(true)
-      }else {
-        setMyQqq(false)
+      if (event.target.value !== "") {
+        setMyTitleError("");
+      }
+
+      if(myWriter !== "" && event.target.value !== "" && myContents !== "" && myPassword !== ""){
+        setIsActive(true)
+      } else {
+        setIsActive(false)
       }
     }
   
     function onChangeMyContents(event) {
       setMyContents(event.target.value);
-      if(myWriter !=="" && myTitle !=="" && event.target.value!==""){
-        setMyQqq(true)
-      }else {
-        setMyQqq(false)
+      if (event.target.value !== "") {
+        setMyContentsError("");
+      }
+
+      if(myWriter !== "" && myTitle !== "" && event.target.value !== "" && myPassword !== ""){
+        setIsActive(true)
+      } else {
+        setIsActive(false)
       }
     }
   
     async function onClickSubmit() {
-      if (myWriter === "") {
+      if (!myWriter) {
         setMyWriterError("작성자를 입력해주세요.");
       }
-      if (myPassword === "") {
+      if (!myPassword) {
         setMyPasswordError("비밀번호를 입력해주세요.");
       }
-      if (myTitle === "") {
+      if (!myTitle) {
         setMyTitleError("제목을 입력해주세요.");
       }
-      if (myContents === "") {
+      if (!myContents) {
         setMyContentsError("내용을 입력해주세요.");
       }
       if (myWriter !== "" && myPassword !== "" && myTitle !== "" && myContents !== "") {
