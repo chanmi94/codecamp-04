@@ -13,6 +13,11 @@ export default function BoardListUI(props){
 //     width: 20%;
 // `
     return(
+   
+
+        <table class="table table-bordered">
+
+
         <div> 
            {props.data?.fetchBoards.map((el,index)=>(
                <Row key={el.number}>
@@ -25,10 +30,9 @@ export default function BoardListUI(props){
                        <button id={el.number}onClick={onClickDelete}>삭제하기</button>
                    </span> */}
                </Row>
-               
+                 
            ))}  
-        </div>
-       
-        
+        </div> 
+        </table>   
     )
 }
