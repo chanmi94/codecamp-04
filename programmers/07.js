@@ -8,6 +8,7 @@ function solution(seoul) {
     let findKim=seoul.indexOf("Kim");
     return '김서방은 ' + findKim + '에 있다';
 }
+ // return `김서방은 ${x}에 있다`
 
 //문제2. 문자열다루기 기본
 //문자열 s의 길이가 4 혹은 6이고, 숫자로만 구성돼있는지 확인해주는 함수, solution을 완성하세요. 
