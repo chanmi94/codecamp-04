@@ -1,38 +1,44 @@
-
-import {Row, Column} from "./Boardlist.styles"
-
-
-export default function BoardListUI(props){
-
-// const Row=styled.div`
-//     display: flex;
-//     flex-direction: row; //:default 값
-
-// `
-// const Column =styled.div`
-//     width: 20%;
-// `
-    return(
-   
-
-        <table class="table table-bordered">
-
-
-        <div> 
-           {props.data?.fetchBoards.map((el,index)=>(
-               <Row key={el.number}>
-                   <Column> <input type="checkbox"/></Column>
-                   <Column>{index+1}</Column>
-                   <Column>{el.writer}</Column>
-                   <Column>{el.title}</Column>
-                   <Column>{el.createdAt}</Column>
-                   {/* <span>
-                       <button id={el.number}onClick={onClickDelete}>삭제하기</button>
-                   </span> */}
-               </Row>
-                 
-           ))}  
-        </div> 
-        </table>   
-    )
-}
+import {
+    Wrapper,
+    TableTop,
+    TableBottom,
+    Row,
+    ColumnHeaderBasic,
+    ColumnHeaderTitle,
+    ColumnBasic,
+    ColumnTitle,
+    Footer,
+    PencilIcon,
+    Button,
+  } from "./BoardList.styles";
+  
+  import { getDate } from "../../../commons/libraries/utils"
+  export default function BoardListUI(props) {
+    return (
+      <Wrapper>
+        <TableTop />
+        <Row>
+          <ColumnHeaderBasic>번호</ColumnHeaderBasic>
+          <ColumnHeaderTitle>제목</ColumnHeaderTitle>
+          <ColumnHeaderBasic>작성자</ColumnHeaderBasic>
+          <ColumnHeaderBasic>날짜</ColumnHeaderBasic>
+        </Row>
+        {props.data?.fetchBoards.map((el, index) => (
+          <Row key={el._id}>
+            <ColumnBasic>{index + 1}</ColumnBasic>
+            <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>{el.title}</ColumnTitle>
+            <ColumnBasic>{el.writer}</ColumnBasic>
+            <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
+          </Row>
+        ))}
+        <TableBottom />
+        <Footer>
+          <Button onClick={props.onClickMoveToBoardNew}>
+            <PencilIcon src="/images/board/list/write.png" />
+            게시물 등록하기
+          </Button>
+        </Footer>
+      </Wrapper>
+    );
+  }
+  
