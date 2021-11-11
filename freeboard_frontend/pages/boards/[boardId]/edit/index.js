@@ -1,11 +1,5 @@
-import BoardWrite from "../../../../src/components/units/write2/Write.container";
+import BoardWrite from "../../../../src/components/units/board/write/BoardWrite.container";
 
-
-
-export default function BoardsEditPage(){
-
-    return(
-        <BoardWrite isEdit={true}/>
-
-    )
+export default function BoardsEditPage() {
+  return <BoardWrite isEdit={true} />;
 }

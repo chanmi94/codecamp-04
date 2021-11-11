@@ -2,7 +2,6 @@ import * as S from "./BoardDetail.styles";
 
 export default function BoardDetailUI(props){
     return (
-     
       <S.Wrapper>
         <S.CardWrapper>
           <S.Header>
@@ -20,11 +19,10 @@ export default function BoardDetailUI(props){
           </S.Body>
         </S.CardWrapper>
         <S.BottomWrapper>
-          <S.Button onClick={props.GoList}>목록으로</S.Button>
-          <S.Button onClick={props.BoardEdit}>수정하기</S.Button>
+          <S.Button onClick={props.onClickMoveToList}>목록으로</S.Button>
+          <S.Button onClick={props.onClickMoveToUpdate}>수정하기</S.Button>
           <S.Button onClick={props.onClickDelete}>삭제하기</S.Button>
         </S.BottomWrapper>
       </S.Wrapper>
-     
     )
 }
