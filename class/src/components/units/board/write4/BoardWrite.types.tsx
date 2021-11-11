@@ -20,3 +20,9 @@ export interface IBoardWriteUIProps{
 export interface IBoardStyleProps{
     qqq:boolean
 }
+export interface IMyVAriables{
+    number: number,
+    writer?: string,
+    title?: string,
+    contents?: string
+}

@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client"
 import { ChangeEvent, useState } from "react"
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries"
 import { useRouter } from "next/router"
-import {IBoardWriteProps,IMyVariables} from '../write4/BoardWrite.types'
+import {IBoardWriteProps,IMyVAriables} from '../write4/BoardWrite.types'
 
 export default function BoardWrite(props:IBoardWriteProps){
     const router=useRouter()
@@ -51,7 +51,7 @@ export default function BoardWrite(props:IBoardWriteProps){
 
     async function xxx(){
      
-        const myVariables:IMyVariables = {
+        const myVariables:IMyVAriables = {
             number: Number(router.query.myNumber)
         }
 
