@@ -26,27 +26,27 @@ import {
 export default function BoardWriteUI(props){
     return (
         <Wrapper>
-            <Title>게시판 등록</Title>
+            <Title>게시판 {props.isEdit ? "수정" : "등록"}</Title>
             <WriterWrapper>
                 <InputWrapper>
                     <Label>작성자</Label>
-                    <Writer type="text" placeholder="이름을 적어주세요." onChange={props.onChangeMyWriter} />
+                    <Writer type="text" placeholder="이름을 적어주세요." onChange={props.onChangeMyWriter }defaultValue={props.data?.fetchBoard.writer} />
                     <Error>{props.myWriterError}</Error>
                 </InputWrapper>
                 <InputWrapper>
                     <Label>비밀번호</Label>
-                    <Password type="password" onChange={props.onChangeMyPassword} />
+                    <Password type="password" onChange={props.onChangeMyPassword} defaultValue={props.data?.fetchBoard.password} />
                     <Error>{props.myPasswordError}</Error>
                 </InputWrapper>
             </WriterWrapper>
             <InputWrapper>
                 <Label>제목</Label>
-                <Subject type="text" placeholder="제목을 작성해주세요." onChange={props.onChangeMyTitle} />
+                <Subject type="text" placeholder="제목을 작성해주세요." onChange={props.onChangeMyTitle} defaultValue={props.data?.fetchBoard.title} />
                 <Error>{props.myTitleError}</Error>
             </InputWrapper>
             <InputWrapper>
                 <Label>내용</Label>
-                <Contents placeholder="내용을 작성해주세요." onChange={props.onChangeMyContents} />
+                <Contents placeholder="내용을 작성해주세요." onChange={props.onChangeMyContents} defaultValue={props.data?.fetchBoard.contents} />
                 <Error>{props.myContentsError}</Error>
             </InputWrapper>
             <InputWrapper>
@@ -87,7 +87,7 @@ export default function BoardWriteUI(props){
             <ButtonWrapper>
                 <SubmitButton 
                     onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit} 
-                    disabled={!props.isActive}
+                    // disabled={!props.isActive}
                     isActive={props.isActive}
                 >
                     {props.isEdit ? "수정하기" : "등록하기"}
