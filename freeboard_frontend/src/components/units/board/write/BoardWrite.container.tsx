@@ -1,10 +1,11 @@
 import BoardWriteUI from './BoardWrite.presenter'
-import { CREATE_BOARD, UPDATE_BOARD,FETCH_BOARD } from './BoardWrite.queries'
-import { useState } from 'react'
-import { useQuery,useMutation } from "@apollo/client";
+import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
+import { ChangeEvent, useState } from 'react'
+import { useMutation } from "@apollo/client";
 import { useRouter } from 'next/router'
+import { IBoardWriteProps, IMyUpdateBoardInput } from './BoardWrite.types';
 
-export default function BoardWrite(props){
+export default function BoardWrite(props: IBoardWriteProps){
     const router = useRouter()
 
     const [myWriter, setMyWriter] = useState("");
@@ -21,12 +22,8 @@ export default function BoardWrite(props){
 
     const [createBoard] = useMutation(CREATE_BOARD);
     const [updateBoard] = useMutation(UPDATE_BOARD);
-    const {data} =useQuery(FETCH_BOARD,{
-      variables: {boardId: router.query.boardId}
-    })
-    
-    
-    function onChangeMyWriter(event) {
+  
+    function onChangeMyWriter(event: ChangeEvent<HTMLInputElement>) {
       setMyWriter(event.target.value);
       if (event.target.value !== "") {
         setMyWriterError("");
@@ -39,7 +36,7 @@ export default function BoardWrite(props){
       }
     }
   
-    function onChangeMyPassword(event) {
+    function onChangeMyPassword(event: ChangeEvent<HTMLInputElement>) {
       setMyPassword(event.target.value);
       if (event.target.value !== "") {
         setMyPasswordError("");
@@ -52,7 +49,7 @@ export default function BoardWrite(props){
       }
     }
   
-    function onChangeMyTitle(event) {
+    function onChangeMyTitle(event: ChangeEvent<HTMLInputElement>) {
       setMyTitle(event.target.value);
       if (event.target.value !== "") {
         setMyTitleError("");
@@ -65,7 +62,7 @@ export default function BoardWrite(props){
       }
     }
   
-    function onChangeMyContents(event) {
+    function onChangeMyContents(event: ChangeEvent<HTMLTextAreaElement>) {
       setMyContents(event.target.value);
       if (event.target.value !== "") {
         setMyContentsError("");
@@ -103,45 +100,32 @@ export default function BoardWrite(props){
           }
         });
         router.push(`/boards/${result.data.createBoard._id}`)
-        console.log(result)
       }
     }
 
     async function onClickUpdate() {
-      // if (!myWriter) {
-      //   setMyWriterError("작성자를 입력해주세요.");
-      // }
-      // if (!myPassword) {
-      //   setMyPasswordError("비밀번호를 입력해주세요.");
-      // }
-      // if (!myTitle) {
-      //   setMyTitleError("제목을 입력해주세요.");
-      // }
-      // if (!myContents) {
-      //   setMyContentsError("내용을 입력해주세요.");
-      // }
-      // if (myWriter && myPassword && myTitle && myContents) {
-        const myVariables = {
-          boardId: router.query.boardId,
-          updateBoardInput: {
-          },
-          password:myPassword
+      if (!myTitle && !myContents) {
+        alert("수정된 내용이 없습니다.");
+        return
       }
 
-      // if(myWriter !=="") myVariables.updateBoardInput.writer =myWriter
-      // if(myPassword !=="") myVariables.updateBoardInput.password =myPassword
-      if(myTitle !=="") myVariables.updateBoardInput.title =myTitle
-      if(myContents !=="") myVariables.updateBoardInput.contents =myContents
+      const myUpdateboardInput: IMyUpdateBoardInput = {};
+      if (myTitle) myUpdateboardInput.title = myTitle;
+      if (myContents) myUpdateboardInput.contents = myContents;
 
-       const result = await updateBoard({
-             variables:myVariables
-        })
-          
- 
-        console.log(result) 
+      try {
+        await updateBoard({ 
+          variables: { 
+            boardId: router.query.boardId,
+            password: myPassword,
+            updateBoardInput: myUpdateboardInput
+          }
+        });
         router.push(`/boards/${router.query.boardId}`)
+      } catch(error) {
+        alert(error.message)
       }
-    // }
+    }
 
     return (
         <BoardWriteUI
@@ -157,7 +141,7 @@ export default function BoardWrite(props){
           onClickUpdate={onClickUpdate}
           isActive={isActive}
           isEdit={props.isEdit}
-          data={data}
+          data={props.data}
         />
     )
 }

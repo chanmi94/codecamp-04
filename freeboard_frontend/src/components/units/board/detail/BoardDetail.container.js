@@ -1,15 +1,15 @@
-import { useRouter } from 'next/router'
-import BoardDetailUI from './BoardDetail.presenter'
-import { useQuery, useMutation } from '@apollo/client'
+import { useRouter } from "next/router";
+import BoardDetailUI from "./BoardDetail.presenter";
+import { useQuery, useMutation } from "@apollo/client";
 import { FETCH_BOARD, DELETE_BOARD } from "./BoardDetail.queries";
 
-export default function BoardDetail(){
-  const router = useRouter()
+export default function BoardDetail() {
+  const router = useRouter();
   const [deleteBoard] = useMutation(DELETE_BOARD);
 
   const { data } = useQuery(FETCH_BOARD, {
     variables: { boardId: router.query.boardId },
-  })
+  });
 
   function onClickMoveToList() {
     router.push("/boards");
@@ -17,6 +17,9 @@ export default function BoardDetail(){
 
   function onClickMoveToUpdate() {
     router.push(`/boards/${router.query.boardId}/edit`);
+  }
+  function onClickSubmit() {
+    router.push(`/boards/comment`);
   }
 
   async function onClickDelete() {
@@ -35,6 +38,7 @@ export default function BoardDetail(){
       onClickMoveToList={onClickMoveToList}
       onClickMoveToUpdate={onClickMoveToUpdate}
       onClickDelete={onClickDelete}
+      onClickSubmit={onClickSubmit}
     />
   );
 }

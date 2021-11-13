@@ -82,5 +82,51 @@ export const Button = styled.button`
   }
 `;
 
+export const WriterWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding-top: 50px;
+`;
 
+export const Password = styled.input`
+  width: 180px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
 
+export const InputWrapper = styled.div`
+  padding-top: 40px;
+`;
+
+export const CommentWriter = styled.input`
+  width: 180px;
+  height: 52px;
+  padding-left: 16px;
+  border: 1px solid #bdbdbd;
+`;
+
+export const CommentContents = styled.input`
+  width: 1200px;
+  height: 161px;
+  padding-left: 16px;
+  padding: 14px;
+  border: 1px solid #bdbdbd;
+`;
+export const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 80px;
+`;
+export const SubmitButton = styled.button`
+  width: 179px;
+  height: 52px;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  margin-left: 12px;
+  margin-right: 12px;
+`;
