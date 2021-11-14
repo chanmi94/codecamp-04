@@ -6,7 +6,7 @@ import {
   FETCH_BOARD,
   DELETE_BOARD,
   CREATE_BOARDCOMMENT,
-  FETCH_BOARDCOMMENTS,
+  // FETCH_BOARDCOMMENTS,
 } from "./BoardDetail.queries";
 
 export default function BoardDetail() {
@@ -14,13 +14,13 @@ export default function BoardDetail() {
   const [deleteBoard] = useMutation(DELETE_BOARD);
   const [createBoardComment] = useMutation(CREATE_BOARDCOMMENT);
 
-  const { data } = useQuery(FETCH_BOARDCOMMENTS, {
-    variables: {
-      fetchBoardComments: {
-        boardId: router.query.boardId,
-      },
-    },
-  });
+  // const { data } = useQuery(FETCH_BOARDCOMMENTS, {
+  //   variables: {
+  //     fetchBoardComments: {
+  //       boardId: router.query.boardId,
+  //     },
+  //   },
+  // });
   const [myWriter, setMyWriter] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [myTitle, setMyTitle] = useState("");
@@ -115,20 +115,17 @@ export default function BoardDetail() {
     if (!myPassword) {
       setMyPasswordError("비밀번호를 입력해주세요.");
     }
-    if (!myTitle) {
-      setMyTitleError("제목을 입력해주세요.");
-    }
+
     if (!myContents) {
       setMyContentsError("내용을 입력해주세요.");
     }
-    if (myWriter && myPassword && myTitle && myContents) {
+    if (myWriter && myPassword && myContents) {
       const result = await createBoardComment({
         variables: {
           createBoardCommentInput: {
             boardId: router.query.boardId,
             writer: myWriter,
             password: myPassword,
-            title: myTitle,
             contents: myContents,
           },
         },
@@ -137,26 +134,26 @@ export default function BoardDetail() {
     }
   }
 
-  async function onClickDelete() {
-    try {
-      await deleteBoard({ variables: { boardId: router.query.boardId } });
-      alert("게시물이 삭제되었습니다.");
-      router.push("/boards");
-    } catch (error) {
-      alert(error.message);
-    }
-  }
+  // async function onClickDelete() {
+  //   try {
+  //     await deleteBoard({ variables: { boardId: router.query.boardId } });
+  //     alert("게시물이 삭제되었습니다.");
+  //     router.push("/boards");
+  //   } catch (error) {
+  //     alert(error.message);
+  //   }
+  // }
 
   return (
     <BoardDetailUI
-      data={data}
-      onClickMoveToList={onClickMoveToList}
-      onClickMoveToUpdate={onClickMoveToUpdate}
-      onClickDelete={onClickDelete}
-      onChangeMyWriter={onChangeMyWriter}
-      onChangeMyPassword={onChangeMyPassword}
-      onChangeMyTitle={onChangeMyTitle}
-      onChangeMyContents={onChangeMyContents}
+      // data={data}
+      // onClickMoveToList={onClickMoveToList}
+      // onClickMoveToUpdate={onClickMoveToUpdate}
+      // onClickDelete={onClickDelete}
+      // onChangeMyWriter={onChangeMyWriter}
+      // onChangeMyPassword={onChangeMyPassword}
+      // onChangeMyTitle={onChangeMyTitle}
+      // onChangeMyContents={onChangeMyContents}
       onClickSubmit={onClickSubmit}
     />
   );
