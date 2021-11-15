@@ -1,4 +1,6 @@
 import { getDate } from "../../../../commons/libraries/utils";
+import { IBoardListUIProps } from "./BoardList.types";
+
 import {
   Wrapper,
   TableTop,
@@ -13,7 +15,7 @@ import {
   Button,
 } from "./BoardList.styles";
 
-export default function BoardListUI(props) {
+export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <Wrapper>
       <TableTop />
@@ -26,7 +28,9 @@ export default function BoardListUI(props) {
       {props.data?.fetchBoards.map((el, index) => (
         <Row key={el._id}>
           <ColumnBasic>{index + 1}</ColumnBasic>
-          <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>{el.title}</ColumnTitle>
+          <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
+            {el.title}
+          </ColumnTitle>
           <ColumnBasic>{el.writer}</ColumnBasic>
           <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
         </Row>

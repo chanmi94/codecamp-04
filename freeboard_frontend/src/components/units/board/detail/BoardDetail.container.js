@@ -18,9 +18,6 @@ export default function BoardDetail() {
   function onClickMoveToUpdate() {
     router.push(`/boards/${router.query.boardId}/edit`);
   }
-  function onClickSubmit() {
-    router.push(`/boards/comment`);
-  }
 
   async function onClickDelete() {
     try {
@@ -38,7 +35,6 @@ export default function BoardDetail() {
       onClickMoveToList={onClickMoveToList}
       onClickMoveToUpdate={onClickMoveToUpdate}
       onClickDelete={onClickDelete}
-      onClickSubmit={onClickSubmit}
     />
   );
 }
