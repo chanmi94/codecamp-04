@@ -1,4 +1,6 @@
+import ReactPlayer from "react-player";
 import styled from "@emotion/styled";
+import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -82,51 +84,43 @@ export const Button = styled.button`
   }
 `;
 
-export const WriterWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  padding-top: 50px;
+export const Youtube = styled(ReactPlayer)`
+  margin: auto;
 `;
 
-export const Password = styled.input`
-  width: 180px;
-  height: 52px;
-  padding-left: 16px;
-  border: 1px solid #bdbdbd;
-`;
-
-export const InputWrapper = styled.div`
-  padding-top: 40px;
-`;
-
-export const CommentWriter = styled.input`
-  width: 180px;
-  height: 52px;
-  padding-left: 16px;
-  border: 1px solid #bdbdbd;
-`;
-
-export const CommentContents = styled.input`
-  width: 1200px;
-  height: 161px;
-  padding-left: 16px;
-  padding: 14px;
-  border: 1px solid #bdbdbd;
-`;
-export const ButtonWrapper = styled.div`
+export const LikeWrapper = styled.div`
+  padding-top: 160px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 80px;
 `;
-export const SubmitButton = styled.button`
-  width: 179px;
-  height: 52px;
-  border: none;
-  font-size: 16px;
-  font-weight: 500;
-  margin-left: 12px;
-  margin-right: 12px;
+
+export const IconWrapper = styled.div`
+  text-align: center;
+`;
+
+export const LinkIcon = styled.img``;
+
+export const LocationIcon = styled.img``;
+
+export const LikeIcon = styled(LikeOutlined)`
+  font-size: 24px;
+  color: #ffd600;
+  margin: 0px 20px;
+  cursor: pointer;
+`;
+
+export const DislikeIcon = styled(DislikeOutlined)`
+  font-size: 24px;
+  color: #828282;
+  margin: 0px 20px;
+  cursor: pointer;
+`;
+
+export const LikeCount = styled.div`
+  color: #ffd600;
+`;
+
+export const DislikeCount = styled.div`
+  color: #828282;
 `;

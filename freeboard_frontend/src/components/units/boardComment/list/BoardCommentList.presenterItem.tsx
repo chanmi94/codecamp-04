@@ -24,7 +24,6 @@ import {
   Star,
   UpdateIcon,
   Writer,
-  PasswordInput,
 } from "./BoardCommentList.styles";
 import { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
 
@@ -33,11 +32,10 @@ export default function BoardCommentListUIItem(
 ) {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
-  const [deleteBoardComment] =
-    useMutation<
-      Pick<IMutation, "deleteBoardComment">,
-      IMutationDeleteBoardCommentArgs
-    >(DELETE_BOARD_COMMENT);
+  const [deleteBoardComment] = useMutation<
+    Pick<IMutation, "deleteBoardComment">,
+    IMutationDeleteBoardCommentArgs
+  >(DELETE_BOARD_COMMENT);
 
   function onClickUpdate() {
     setIsEdit(true);
@@ -72,6 +70,7 @@ export default function BoardCommentListUIItem(
             <MainWrapper>
               <WriterWrapper>
                 <Writer>{props.el?.writer}</Writer>
+                <Star value={props.el?.rating} disabled />
               </WriterWrapper>
               <Contents>{props.el?.contents}</Contents>
             </MainWrapper>
@@ -90,11 +89,7 @@ export default function BoardCommentListUIItem(
         </ItemWrapper>
       )}
       {isEdit && (
-        <BoardCommentWrite
-          isEdit={isEdit}
-          setIsEdit={setIsEdit}
-          el={props.el}
-        />
+        <BoardCommentWrite isEdit={true} setIsEdit={setIsEdit} el={props.el} />
       )}
     </>
   );
