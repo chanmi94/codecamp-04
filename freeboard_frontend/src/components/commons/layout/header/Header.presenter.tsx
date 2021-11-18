@@ -1,10 +1,16 @@
-import { Header, Img } from "./Header.styles";
+import { Header, Img, InnerWrapper, InnerButton } from "./Header.styles";
 
 export default function HeaderUI() {
   return (
     <>
       <Header>
-        <Img src="img/logo.png"></Img>
+        <InnerWrapper>
+          <Img src="img/logo.png"></Img>
+          <div>
+            <InnerButton>로그인</InnerButton>
+            <InnerButton>회원가입</InnerButton>
+          </div>
+        </InnerWrapper>
       </Header>
     </>
   );

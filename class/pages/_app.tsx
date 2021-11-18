@@ -10,7 +10,7 @@ import Layout from "../src/components/commons/layout";
 // eslint-disable-next-line react/prop-types
 function MyApp({ Component, pageProps }: AppProps) {
   const client = new ApolloClient({
-    uri: "http://example.codebootcamp.co.kr/graphql",
+    uri: "http://backend04.codebootcamp.co.kr/graphql",
     //apollo는 임시저장이 있음 inmemorycache 내컴퓨터에 저장
     cache: new InMemoryCache(),
   });

@@ -1,18 +1,21 @@
 import styled from "@emotion/styled";
 
-export const Navigation = styled.div``;
-
-export const Nav = styled.div`
-  font-size: xx-large;
-  -webkit-text-stroke-width: thick;
+export const Wrapper = styled.div`
+  height: 64px;
+  background-color: #5729ff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: white;
 `;
 
-export const Breadcrumbs = styled.div`
-  font-size: medium;
-  padding: 20px;
-`;
+export const MenuItem = styled.div`
+  margin: 0px 60px;
+  cursor: pointer;
 
-export const StyledBreadcrumb = styled.div`
-  font-size: medium;
-  padding: 20px;
+  :hover {
+    color: orange;
+  }
 `;
