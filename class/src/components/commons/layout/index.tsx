@@ -14,22 +14,23 @@ const BodyWrapper = styled.div`
   display: flex;
 `;
 
-const Siderbar = styled.div`
+const Sidebar = styled.div`
   width: 200px;
   height: 700px;
-  background-color: steelblue;
+  background-color: blue;
 `;
+
+const HIDDEN_HEADERS = [
+  "/12-05-modal-address-state-prev",
+  // ...
+];
 
 interface ILayoutProps {
   children: ReactChild;
 }
-const HIDDEN_HEADERS = ["/12-03-modal-address"]; //배열이니 다른 여러개 써도댐
-
 export default function Layout(props: ILayoutProps) {
   const router = useRouter();
   console.log(router);
-
-  router.asPath;
 
   const isHiddenHeader = HIDDEN_HEADERS.includes(router.asPath);
 
@@ -39,7 +40,7 @@ export default function Layout(props: ILayoutProps) {
       <Banner />
       <Navigation />
       <BodyWrapper>
-        <Siderbar>여기는 사이드바입니다.</Siderbar>
+        <Sidebar>sidebar!!!</Sidebar>
         <Body>{props.children}</Body>
       </BodyWrapper>
       <Footer />

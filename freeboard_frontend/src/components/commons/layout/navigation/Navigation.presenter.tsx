@@ -1,46 +1,66 @@
 import { Navigation } from "./Navigation.styles";
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import styled from "@emotion/styled";
+import React from "react";
+import {
+  Breadcrumbs,
+  Link,
+  StyledBreadcrumb,
+  HomeIcon,
+  ExpandMoreIcon,
+  handleClick,
+} from "@material-ui/core";
 
 export default function NavigationUI() {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Container>
-        {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-          <Nav>
-            <Nav.Link href="#deets">More deets</Nav.Link>
-            <Nav.Link eventKey={2} href="#memes">
-              Dank memes
-            </Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-    // <Navigation>
-    //   <Navbar bg="light" variant="light">
-    //     <Nav className="mr-auto">
-    //       <Nav.Link href="#home">Homg</Nav.Link>
-    //       <Nav.Link href="#features">Features</Nav.Link>
-    //       <Nav.Link href="#pricing">Pricing</Nav.Link>
-    //     </Nav>
-    //   </Navbar>
-    // </Navigation>
+    // <Breadcrumbs aria-label="breadcrumb">
+    //   <StyledBreadcrumb
+    //     component="a"
+    //     href="#"
+    //     label="Home"
+    //     icon={<HomeIcon fontSize="small" />}
+    //     onClick={handleClick}
+    //   />
+    //   <StyledBreadcrumb
+    //     component="a"
+    //     href="#"
+    //     label="Catalog"
+    //     onClick={handleClick}
+    //   />
+    //   <StyledBreadcrumb
+    //     label="Accessories"
+    //     deleteIcon={<ExpandMoreIcon />}
+    //     onClick={handleClick}
+    //     onDelete={handleClick}
+    //   />
+    // </Breadcrumbs>
+    <Breadcrumbs aria-label="breadcrumb">
+      <Link
+        color="inherit"
+        href="/boards/"
+        onClick={handleClick}
+        style={{ color: "black", fontSize: "29px" }}
+      >
+        자유게시판
+      </Link>
+      <Link
+        color="inherit"
+        href="/getting-started/installation/"
+        onClick={handleClick}
+        style={{ color: "black", fontSize: "29px" }}
+      >
+        중고마켓
+      </Link>
+      <Link
+        color="textPrimary"
+        href="/components/breadcrumbs/"
+        onClick={handleClick}
+        style={{ color: "black", fontSize: "29px" }}
+        aria-current="page"
+      >
+        마이페이지
+      </Link>
+    </Breadcrumbs>
   );
 }

@@ -1,5 +1,5 @@
-import { Banner } from "./Banner.styleds";
+import { Banner } from "./Banner.styles";
 
 export default function BannerUI() {
-  return <Banner>hello!!!.</Banner>;
+  return <Banner>asldfioqwrhasvjkbadbjk</Banner>;
 }
