@@ -60,10 +60,10 @@ export default function BoardListUI(props: any) {
     <Wrapper>
       {props.data2?.fetchBoardsOfTheBest.map((el, index) => (
         <WriterWrapper>
-          <Column>{index + 1}</Column>
+          {/* <Column>{index + 1}</Column> */}
           <Column>{el?.writer}</Column>
           <Column>{el?.title}</Column>
-          <Column>{el?.createdAt}</Column>
+          {/* <Column>{el?.createdAt}</Column> */}
         </WriterWrapper>
       ))}
       <TableTop />

@@ -1,6 +1,12 @@
 import styled from "@emotion/styled";
 import { Rate } from "antd";
 
+export const Wrapper = styled.div`
+  padding-top: 20px;
+  height: 200px;
+  overflow: auto;
+`;
+
 export const ItemWrapper = styled.div`
   width: 1200px;
   margin: 0px 100px;

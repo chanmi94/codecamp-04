@@ -22,7 +22,7 @@ export default function GraphqlMutationBoard3Page() {
   function onChangeMyInputs(event) {
     setMyInputs({
       ...myInputs,
-      [event.target.id]: event.target.value,
+      [event.target.name]: event.target.value,
     });
   }
 
