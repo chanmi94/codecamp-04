@@ -79,3 +79,16 @@ export const Button = styled.button`
     background-color: #f5f2fc;
   }
 `;
+export const PageNation = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+export const WriterWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+export const Column = styled.div`
+  display: flex;
+  justify-content: center;
+`;
