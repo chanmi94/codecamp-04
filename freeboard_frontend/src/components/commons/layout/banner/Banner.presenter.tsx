@@ -1,8 +1,7 @@
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+// import Slider from "react-slick";
 import React from "react";
-import { BannerSection, Img } from "./Banner.styles";
 import { Carousel, Nav } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 export default function BannerUI() {
