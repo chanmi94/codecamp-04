@@ -6,7 +6,7 @@ export default function BannerUI() {
     <Carousel fade>
       <Carousel.Item>
         <img
-          style={{ height: "400px" }}
+          style={{ height: "450px" }}
           className="d-block w-100"
           src="img/banner01.png"
           alt="First slide"
@@ -14,10 +14,18 @@ export default function BannerUI() {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          style={{ height: "400px" }}
+          style={{ height: "450px" }}
           className="d-block w-100"
           src="img/banner02.png"
           alt="Second slide"
+        />
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          style={{ height: "450px" }}
+          className="d-block w-100"
+          src="img/banner03.png"
+          alt="Third slide"
         />
       </Carousel.Item>
     </Carousel>

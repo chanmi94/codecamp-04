@@ -49,6 +49,9 @@ export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
   cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
   :hover {
     color: blue;
