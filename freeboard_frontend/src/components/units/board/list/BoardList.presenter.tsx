@@ -1,7 +1,7 @@
 import { getDate } from "../../../../commons/libraries/utils";
 import { gql, useQuery } from "@apollo/client";
 import { useState, MouseEvent } from "react";
-
+import { Card } from "antd";
 import {
   FETCH_BOARDS,
   FETCH_BOARDS_COUNT,
@@ -26,11 +26,14 @@ import {
   PageNation,
   WriterWrapper,
   Column,
+  TableToplist,
+  BestCard,
+  CardWrapper,
 } from "./BoardList.styles";
 
 export default function BoardListUI(props: any) {
   const [startPage, setStartPage] = useState(1);
-
+  const { Meta } = Card;
   const { data, refetch } = useQuery<
     Pick<IQuery, "fetchBoards">,
     IQueryFetchBoardsArgs
@@ -58,15 +61,14 @@ export default function BoardListUI(props: any) {
 
   return (
     <Wrapper>
-      {props.data2?.fetchBoardsOfTheBest.map((el, index) => (
-        <WriterWrapper>
-          {/* <Column>{index + 1}</Column> */}
-          <Column>{el?.writer}</Column>
-          <Column>{el?.title}</Column>
-          {/* <Column>{el?.createdAt}</Column> */}
-        </WriterWrapper>
-      ))}
-      <TableTop />
+      <CardWrapper>
+        {props.data2?.fetchBoardsOfTheBest.map((el, index) => (
+          <BestCard hoverable cover={<img alt="example" src="img/best.png" />}>
+            <Meta title={el.title} description={getDate(el.createdAt)} />
+          </BestCard>
+        ))}
+      </CardWrapper>
+      <TableToplist />
       <Row>
         <ColumnHeaderBasic>번호</ColumnHeaderBasic>
         <ColumnHeaderTitle>제목</ColumnHeaderTitle>

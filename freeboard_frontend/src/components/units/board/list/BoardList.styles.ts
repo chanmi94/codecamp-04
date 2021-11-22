@@ -1,8 +1,15 @@
+import { Row } from "./BoardList.styles";
+import { ContentsWrapper } from "./../../boardComment/write/BoardCommentWrite.styles";
+import { Card } from "antd";
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 1200px;
   margin: 100px;
+`;
+
+export const TableToplist = styled.div`
+  text-align: center;
 `;
 
 export const TableTop = styled.div`
@@ -83,15 +90,34 @@ export const Button = styled.button`
   }
 `;
 export const PageNation = styled.div`
+  padding: 20px;
   display: flex;
   justify-content: center;
 `;
 
 export const WriterWrapper = styled.div`
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 export const Column = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: row;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+`;
+
+export const BestCard = styled(Card)`
+  display: flex;
+  flex-direction: Column;
+`;
+
+export const CardWrapper = styled.div`
+  display: flex;
+
+  justify-content: space-between;
 `;

@@ -17,6 +17,10 @@ export default function NavigationUI(props: ILayoutNavigationUIProps) {
       <MenuItem id="/mypages" onClick={props.onClickMenu}>
         마이페이지
       </MenuItem>
+      <>|</>
+      <MenuItem id="/openapi" onClick={props.onClickMenu}>
+        강아쥐
+      </MenuItem>
     </Wrapper>
   );
 }
