@@ -3,4 +3,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "terminal.integrated.fontSize": 15,
   "terminal.integrated.letterSpacing": 3
+  // "workbench.colorCustomizations": {
+  //   "titleBar.activeBackground": "#F54133",
+  //   "titleBar.inactiveBackground": "#F54133"
+  // }
 }
