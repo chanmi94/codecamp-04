@@ -12,6 +12,8 @@ export default class Board extends BaseEntity {
   title!: string;
   @Column({ type: "integer" })
   age!: number;
+  @Column({ type: "timestamp", default: null, nullable: true })
+  deleteAt?: Date;
 }
 
 //내가 class를 만들었는데 이걸 table로 바꿔줘!Entity,Column import
