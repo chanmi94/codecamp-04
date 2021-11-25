@@ -35,6 +35,12 @@ export default function BoardDetailUI(props: IBoardDetailUIProps) {
             />
           )}
           <S.LikeWrapper>
+            <div>
+              <img
+                src={`https://storage.googleapis.com/${props.data?.fetchBoard.images}`}
+              />
+            </div>
+
             <S.IconWrapper>
               <S.LikeIcon onClick={props.onClickLike} />
               <S.LikeCount>{props.data?.fetchBoard.likeCount}</S.LikeCount>

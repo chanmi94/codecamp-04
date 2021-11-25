@@ -18,6 +18,7 @@ export interface IMyUpdateBoardInput {
 }
 
 export interface IBoardWriteUIProps {
+  fileRef: LegacyRef<HTMLInputElement> | undefined;
   myWriterError: string;
   myPasswordError: string;
   myTitleError: string;

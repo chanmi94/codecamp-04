@@ -6,23 +6,21 @@ import { useRouter } from "next/router";
 import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 
 export default function BoardWrite(props: IBoardWriteProps) {
-  // export default function ImageUpLoadPage() {
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [myImages, setMyImages] = useState<string[]>([]);
+  const [uploadFile] = useMutation(UPLOAD_FILE);
+  async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
+    const myFile = event.target.files?.[0];
+    console.log(myFile);
 
-  // const fileRef = useRef<HTMLInputElement>(null);
-  // const [myImages, setMyImages] = useState<string[]>([]);
-  // const [uploadFile] = useMutation(UPLOAD_FILE);
-  // async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
-  //   const myFile = event.target.files?.[0];
-  //   console.log(myFile);
+    const result = await uploadFile({ variables: { file: myFile } });
+    console.log(result.data.uploadFile.url);
+    setMyImages([result.data.uploadFile.url]);
+  }
 
-  //   const result = await uploadFile({ variables: { file: myFile } });
-  //   console.log(result.data.uploadFile.url);
-  //   setMyImages([result.data.uploadFile.url]);
-  // }
-
-  // function onClickMyImage() {
-  //   fileRef.current?.click();
-  // }
+  function onClickMyImage() {
+    fileRef.current?.click();
+  }
 
   const router = useRouter();
 
@@ -158,6 +156,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
             title: myTitle,
             contents: myContents,
             youtubeUrl: youtubeUrl,
+            images: myImages,
             boardAddress: {
               zipcode: zipcode,
               address: address,
@@ -232,6 +231,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
       zipcode={zipcode}
       address={address}
       addressDetail={addressDetail}
+      onChangeFile={onChangeFile}
+      onClickMyImage={onClickMyImage}
+      myImages={myImages}
+      fileRef={fileRef}
     />
   );
 }

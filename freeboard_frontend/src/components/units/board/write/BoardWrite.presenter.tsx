@@ -25,25 +25,25 @@ import {
 import { IBoardWriteUIProps } from "./BoardWrite.types";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
-import { gql, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { ChangeEvent, useState, useRef } from "react";
 import { UPLOAD_FILE } from "./BoardWrite.queries";
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
-  const fileRef = useRef<HTMLInputElement>(null);
-  const [myImages, setMyImages] = useState<string[]>([]);
-  const [uploadFile] = useMutation(UPLOAD_FILE);
-  async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
-    const myFile = event.target.files?.[0];
-    console.log(myFile);
+  // const fileRef = useRef<HTMLInputElement>(null);
+  // const [myImages, setMyImages] = useState<string[]>([]);
+  // const [uploadFile] = useMutation(UPLOAD_FILE);
+  // async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
+  //   const myFile = event.target.files?.[0];
+  //   console.log(myFile);
 
-    const result = await uploadFile({ variables: { file: myFile } });
-    console.log(result.data.uploadFile.url);
-    setMyImages([result.data.uploadFile.url]);
-  }
+  // const result = await uploadFile({ variables: { file: myFile } });
+  // console.log(result.data.uploadFile.url);
+  // setMyImages([result.data.uploadFile.url]);
+  // }
 
-  function onClickMyImage() {
-    fileRef.current?.click();
-  }
+  // function onClickMyImage() {
+  //   fileRef.current?.click();
+  // }
   return (
     <>
       {props.isOpen && (
@@ -131,18 +131,18 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </InputWrapper>
         <ImageWrapper>
           <Label>사진첨부</Label>
-          <div
+          <UploadButton
             style={{ width: "50px", height: "50px", background: "gray" }}
-            onClick={onClickMyImage}
+            onClick={props.onClickMyImage}
           >
-            이미지 선택
-          </div>{" "}
-          <img src={`https://storage.googleapis.com/${myImages[0]}`} />
+            이미지
+          </UploadButton>
+          <img src={`https://storage.googleapis.com/${props.myImages[0]}`} />
           <input
             style={{ display: "none" }}
             type="file"
-            ref={fileRef}
-            onChange={onChangeFile}
+            ref={props.fileRef}
+            onChange={props.onChangeFile}
           />
         </ImageWrapper>
         <OptionWrapper>
