@@ -96,8 +96,6 @@ export const PageNation = styled.div`
 `;
 
 export const WriterWrapper = styled.div`
-  /* display: flex;
-  justify-content: center; */
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
