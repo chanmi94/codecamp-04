@@ -1,11 +1,29 @@
 import BoardWriteUI from "./BoardWrite.presenter";
-import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
-import { ChangeEvent, useState } from "react";
+import { CREATE_BOARD, UPDATE_BOARD, UPLOAD_FILE } from "./BoardWrite.queries";
+import { ChangeEvent, useState, useRef } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { IBoardWriteProps, IMyUpdateBoardInput } from "./BoardWrite.types";
 
 export default function BoardWrite(props: IBoardWriteProps) {
+  // export default function ImageUpLoadPage() {
+
+  // const fileRef = useRef<HTMLInputElement>(null);
+  // const [myImages, setMyImages] = useState<string[]>([]);
+  // const [uploadFile] = useMutation(UPLOAD_FILE);
+  // async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
+  //   const myFile = event.target.files?.[0];
+  //   console.log(myFile);
+
+  //   const result = await uploadFile({ variables: { file: myFile } });
+  //   console.log(result.data.uploadFile.url);
+  //   setMyImages([result.data.uploadFile.url]);
+  // }
+
+  // function onClickMyImage() {
+  //   fileRef.current?.click();
+  // }
+
   const router = useRouter();
 
   const [myWriter, setMyWriter] = useState("");

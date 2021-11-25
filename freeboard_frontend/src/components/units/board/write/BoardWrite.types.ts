@@ -30,8 +30,12 @@ export interface IBoardWriteUIProps {
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
+  onClick: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  // onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickAddressSearch: () => void;
   onCompleteAddressSearch: (data: any) => void;
+
+  onClickMyImage: (event: ChangeEvent<HTMLInputElement>) => void;
   isActive: boolean;
   isEdit?: boolean;
   isOpen: boolean;
