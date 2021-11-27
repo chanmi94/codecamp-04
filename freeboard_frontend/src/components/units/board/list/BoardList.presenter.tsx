@@ -60,10 +60,10 @@ export default function BoardListUI(props: any) {
   }
 
   const [mySearch, setMysearch] = useState("");
-  const { data, refetch } = useQuery<
-    Pick<IQuery, "fetchBoards">,
-    IQueryFetchBoardArgs
-  >(FETCH_BOARDS);
+  // const { data, refetch } = useQuery<
+  //   Pick<IQuery, "fetchBoards">,
+  //   IQueryFetchBoardArgs
+  // >(FETCH_BOARDS);
   function onchangeSearch(event: ChangeEvent<HTMLInputElement>) {
     setMysearch(event.target.value);
   }
@@ -87,6 +87,13 @@ export default function BoardListUI(props: any) {
       <TableToplist />
       검색어 입력 : <input type="text" onChange={onchangeSearch} />
       <button onClick={onClickSearch}>검색</button>
+      {/* {data?.fetchBoards.map((el) => (
+        <div key={el._id}>
+          <span style={{ paddingRight: "50px" }}>{el.writer}</span>
+          <span style={{ paddingRight: "50px" }}>{el.title}</span>
+          <span style={{ paddingRight: "50px" }}>{el.createdAt}</span>
+        </div>
+      ))} */}
       <Row>
         <ColumnHeaderBasic>번호</ColumnHeaderBasic>
         <ColumnHeaderTitle>제목</ColumnHeaderTitle>

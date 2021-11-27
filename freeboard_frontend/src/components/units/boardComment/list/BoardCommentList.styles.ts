@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 
 export const ItemWrapper = styled.div`
   width: 1200px;
-  margin: 0px 100px;
+  margin: 30px auto;
   padding-top: 20px;
   height: 128px;
   border-bottom: 1px solid lightgray;

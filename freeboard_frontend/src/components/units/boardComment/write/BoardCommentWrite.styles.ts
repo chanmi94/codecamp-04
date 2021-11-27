@@ -3,7 +3,7 @@ import { Rate } from "antd";
 
 export const Wrapper = styled.div`
   width: 1200px;
-  margin: 0px 100px;
+  margin: 30px auto;
 `;
 
 export const PencilIcon = styled.img``;

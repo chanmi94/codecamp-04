@@ -11,7 +11,7 @@ const Wrapper = styled.div``;
 const Body = styled.div``;
 
 const BodyWrapper = styled.div`
-  display: flex;
+  /* display: flex; */
 `;
 
 const Sidebar = styled.div`

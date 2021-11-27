@@ -12,7 +12,7 @@ const Wrapper = styled.div``;
 const Body = styled.div``;
 
 const BodyWrapper = styled.div`
-  display: flex;
+  /* display: flex; */
 `;
 
 const HIDDEN_HEADERS = [
