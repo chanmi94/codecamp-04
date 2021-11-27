@@ -59,6 +59,22 @@ export default function BoardListUI(props: any) {
     setStartPage((prev) => prev - 10);
   }
 
+  const [mySearch, setMysearch] = useState("");
+  const { data, refetch } = useQuery<
+    Pick<IQuery, "fetchBoards">,
+    IQueryFetchBoardArgs
+  >(FETCH_BOARDS);
+  function onchangeSearch(event: ChangeEvent<HTMLInputElement>) {
+    setMysearch(event.target.value);
+  }
+
+  function onClickSearch() {
+    //이아이는 검색어 찾아주는거
+
+    //mySearch 키워드로 fetchBoards 요청하기!!
+    refetch({ search: mySearch });
+  }
+
   return (
     <Wrapper>
       <CardWrapper>
@@ -69,6 +85,8 @@ export default function BoardListUI(props: any) {
         ))}
       </CardWrapper>
       <TableToplist />
+      검색어 입력 : <input type="text" onChange={onchangeSearch} />
+      <button onClick={onClickSearch}>검색</button>
       <Row>
         <ColumnHeaderBasic>번호</ColumnHeaderBasic>
         <ColumnHeaderTitle>제목</ColumnHeaderTitle>
