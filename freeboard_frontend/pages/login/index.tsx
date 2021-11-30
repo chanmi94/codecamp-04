@@ -62,11 +62,13 @@ export default function Login() {
     <>
       <LoginForm>
         <Form>
+          {" "}
+          <label>로그인</label>
           <label>Email</label>
           <input type="text" onChange={onChangeMyEmail} />
           <label>Password</label>
           <input type="password" onChange={onChangeMyPassword} />
-          <button onClick={onCliCKLogin}>로그인하기</button>
+          <button onClick={onCliCKLogin}>로그인</button>
         </Form>
       </LoginForm>
     </>

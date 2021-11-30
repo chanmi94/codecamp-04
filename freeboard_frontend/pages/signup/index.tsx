@@ -1,98 +1,89 @@
-import React, { useState } from "react";
-// import AppLayout from "../components/AppLayout";
-import Head from "next/head";
-import { Form, Input, Checkbox, Button } from "antd";
+import { useMutation } from "@apollo/client";
+import { ChangeEvent, useContext, useState } from "react";
+import {
+  IMutation,
+  IMutationCreateUserArgs,
+  IMutationLoginUserArgs,
+} from "../../src/commons/types/generated/types";
+import { gql } from "@apollo/client";
+import { useRouter } from "next/router";
+import { GlobalContext } from "../_app";
+import styled from "@emotion/styled";
 
-const Signup = () => {
-  const [id, setId] = useState("");
-  const [nick, setNick] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordCheck, setPasswordCheck] = useState("");
-  const [term, setTerm] = useState(false);
+const SignupForm = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50vh;
+`;
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const CREATE_USER = gql`
+  mutation createUser($createUserInput: CreateUserInput!) {
+    createUser(createUserInput: $createUsesrInput) {
+      email
+      name
+    }
+  }
+`;
 
-  const onSubmit = () => {};
+export default function Login() {
+  // const { setMyAccesToken } = useContext(GlobalContext);
 
-  const onChangeId = (e) => {
-    setId(e.target.value);
-  };
+  const router = useRouter();
+  const [myName, setMyName] = useState("");
+  const [myEmail, setMyEmail] = useState("");
+  const [myPassword, setMyPassword] = useState("");
+  const [createUser] = useMutation<
+    Pick<IMutation, "createUser">,
+    IMutationCreateUserArgs
+  >(CREATE_USER);
 
-  const onChangeNick = (e) => {
-    setNick(e.target.value);
-  };
+  function onChangeMyEmail(event: ChangeEvent<HTMLInputElement>) {
+    setMyEmail(event.target.value);
+  }
 
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
+  function onChangeMyName(event: ChangeEvent<HTMLInputElement>) {
+    setMyName(event.target.value);
+  }
 
-  const onChangePasswordCheck = (e) => {
-    setPasswordCheck(e.target.value);
-  };
+  function onChangeMyPassword(event: ChangeEvent<HTMLInputElement>) {
+    setMyPassword(event.target.value);
+  }
 
-  const onChangeTerm = (e) => {
-    setTerm(e.target.value);
-  };
+  async function onCliCKSigUp() {
+    const result = await createUser({
+      variables: {
+        createUserInput: {
+          email: myEmail,
+          password: myPassword,
+          name: myName,
+        },
+      },
+    });
+    // result.data?.createUser;
+    // router.push("/boards");
+    router.push(`/boards/${result.data?.createUser}`);
+  }
 
   return (
     <>
-      <Head>
-        <title>NodeBird</title>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/antd/3.25.3/antd.min.css"
-        />
-      </Head>
-      {/* <AppLayout> */}
-      <Form onSubmit={onSubmit} style={{ padding: 10 }}>
-        <div>
-          <label htmlFor="user-id">아이디</label>
-          <br />
-          <Input name="user-id" value={id} required onChange={onChangeId} />
-        </div>
-        <div>
-          <label htmlFor="user-nick">닉네임</label>
-          <br />
-          <Input
-            name="user-nick"
-            value={nick}
-            required
-            onChange={onChangeNick}
-          />
-        </div>
-        <div>
-          <label htmlFor="user-password">비밀번호</label>
-          <br />
-          <Input
-            name="user-password"
-            type="password"
-            value={password}
-            required
-            onChange={onChangePassword}
-          />
-        </div>
-        <div>
-          <label htmlFor="user-password-check">비밀번호체크</label>
-          <br />
-          <Input
-            name="user-password-check"
-            type="password"
-            value={passwordCheck}
-            required
-            onChange={onChangePasswordCheck}
-          />
-        </div>
-        <div>
-          <Checkbox name="user-term" value={term} onChange={onChangeTerm}>
-            성공을 향해 한발자씩 걸어나갈것을 동의합니다.
-          </Checkbox>
-        </div>
-        <div>
-          <Button type="primary">가입하기</Button>{" "}
-          {/* // button type="submit"하려면 htmlType="submit"라고해야함 */}
-        </div>
-      </Form>
-      {/* </AppLayout> */}
+      <SignupForm>
+        <Form>
+          {" "}
+          <label>회원가입</label>
+          <label>Email</label>
+          <input type="text" onChange={onChangeMyEmail} />
+          <label>Password</label>
+          <input type="password" onChange={onChangeMyPassword} />
+          <label>이름</label>
+          <input type="text" onChange={onChangeMyName} />
+          <button onClick={onCliCKSigUp}>회원가입</button>
+        </Form>
+      </SignupForm>
     </>
   );
-};
-
-export default Signup;
+}
