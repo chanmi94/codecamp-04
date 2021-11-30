@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
 
-// export const BannerSection = styled.section`
-//   width: auto;
-//   background-color: #2b2453;
-//   height: 500px;
-// `;
+export const Wrapper = styled.div`
+  height: 400px;
+`;
 
-// export const Img = styled.img`
-//   height: 400px;
-//   position: fixed;
-// `;
+export const SliderItem = styled.img`
+  width: 1200px;
+  height: 350px;
+  margin: auto;
+`;

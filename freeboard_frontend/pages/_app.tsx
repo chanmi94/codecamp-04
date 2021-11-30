@@ -14,6 +14,7 @@ import { globalStyles } from "../src/commons/styles/globalStyles";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { createContext, useState } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -31,9 +32,23 @@ const firebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 //apollo docs home에 가면 여러개있음..
 //react docs도 있음..
+export const GlobalContext = createContext(null); //로그인관련
 function MyApp({ Component, pageProps }: AppProps) {
+  const [myAccesToken, setMyAccesToken] = useState(""); //로그인관련
+  const [myUserInfo, setMyUserInfo] = useState({}); //로그인관련
+  const myValue = {
+    //로그인관련
+    accessToken: myAccesToken,
+    setMyAccesToken: setMyAccesToken,
+    userInfo: myUserInfo,
+    setMyUserInfo: setMyUserInfo,
+  };
+
   const uploadLink = createUploadLink({
     uri: "http://backend04.codebootcamp.co.kr/graphql",
+    headers: {
+      authorization: `Bearer ${myAccesToken}`, //로그인관련
+    },
   });
 
   const client = new ApolloClient({
@@ -43,12 +58,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <ApolloProvider client={client}>
-      <Global styles={globalStyles} />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ApolloProvider>
+    <GlobalContext.Provider value={myValue}>
+      <ApolloProvider client={client}>
+        <Global styles={globalStyles} />
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ApolloProvider>
+    </GlobalContext.Provider>
   );
 }
 

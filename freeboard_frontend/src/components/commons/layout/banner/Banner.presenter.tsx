@@ -1,33 +1,30 @@
-import React from "react";
-import { Carousel } from "react-bootstrap";
+import { SliderItem, Wrapper } from "./Banner.styles";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function BannerUI() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
   return (
-    <Carousel fade>
-      <Carousel.Item>
-        <img
-          style={{ height: "450px" }}
-          className="d-block w-100"
-          src="img/banner01.png"
-          alt="First slide"
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          style={{ height: "450px" }}
-          className="d-block w-100"
-          src="img/banner02.png"
-          alt="Second slide"
-        />
-      </Carousel.Item>
-      <Carousel.Item>
-        <img
-          style={{ height: "450px" }}
-          className="d-block w-100"
-          src="img/banner03.png"
-          alt="Third slide"
-        />
-      </Carousel.Item>
-    </Carousel>
+    <Wrapper>
+      <Slider {...settings}>
+        <div>
+          <SliderItem src="/img/banner01.png" />
+        </div>
+        <div>
+          <SliderItem src="/img/banner02.png" />
+        </div>
+        <div>
+          <SliderItem src="/img/banner03.png" />
+        </div>
+      </Slider>
+    </Wrapper>
   );
 }
