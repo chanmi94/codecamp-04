@@ -1,11 +1,11 @@
-import { useMutation } from "@apollo/client";
+import { useMutation, gql } from "@apollo/client";
 import { ChangeEvent, useContext, useState } from "react";
 import {
   IMutation,
   IMutationCreateUserArgs,
   IMutationLoginUserArgs,
 } from "../../src/commons/types/generated/types";
-import { gql } from "@apollo/client";
+
 import { useRouter } from "next/router";
 import { GlobalContext } from "../_app";
 import styled from "@emotion/styled";
@@ -23,7 +23,8 @@ const Form = styled.div`
 `;
 const CREATE_USER = gql`
   mutation createUser($createUserInput: CreateUserInput!) {
-    createUser(createUserInput: $createUsesrInput) {
+    createUser(createUserInput: $createUserInput) {
+      _id
       email
       name
     }
@@ -33,14 +34,11 @@ const CREATE_USER = gql`
 export default function Login() {
   // const { setMyAccesToken } = useContext(GlobalContext);
 
-  const router = useRouter();
+  // const router = useRouter();
   const [myName, setMyName] = useState("");
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
-  const [createUser] = useMutation<
-    Pick<IMutation, "createUser">,
-    IMutationCreateUserArgs
-  >(CREATE_USER);
+  const [createUser] = useMutation(CREATE_USER);
 
   function onChangeMyEmail(event: ChangeEvent<HTMLInputElement>) {
     setMyEmail(event.target.value);
@@ -54,19 +52,23 @@ export default function Login() {
     setMyPassword(event.target.value);
   }
 
-  async function onCliCKSigUp() {
-    const result = await createUser({
-      variables: {
-        createUserInput: {
-          email: myEmail,
-          password: myPassword,
-          name: myName,
+  async function onClickSignUp() {
+    try {
+      const result = await createUser({
+        variables: {
+          createUserInput: {
+            email: myEmail,
+            password: myPassword,
+            name: myName,
+          },
         },
-      },
-    });
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
     // result.data?.createUser;
     // router.push("/boards");
-    router.push(`/boards/${result.data?.createUser}`);
+    // router.push(`/boards/${result.data?.createUser}`);
   }
 
   return (
@@ -81,7 +83,7 @@ export default function Login() {
           <input type="password" onChange={onChangeMyPassword} />
           <label>이름</label>
           <input type="text" onChange={onChangeMyName} />
-          <button onClick={onCliCKSigUp}>회원가입</button>
+          <button onClick={onClickSignUp}>회원가입</button>
         </Form>
       </SignupForm>
     </>
