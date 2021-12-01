@@ -14,7 +14,7 @@ import { globalStyles } from "../src/commons/styles/globalStyles";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -43,6 +43,16 @@ function MyApp({ Component, pageProps }: AppProps) {
     userInfo: myUserInfo,
     setMyUserInfo: setMyUserInfo,
   };
+
+  if (typeof window !== "undefined") {
+    //브라우져라면 !== 쓰기
+  }
+  if (process.browser) {
+  }
+  useEffect(() => {
+    const accessToken = localStorage.getItem("accessToken") || "";
+    if (accessToken) setMyAccesToken(accessToken);
+  }, []);
 
   const uploadLink = createUploadLink({
     uri: "http://backend04.codebootcamp.co.kr/graphql",
