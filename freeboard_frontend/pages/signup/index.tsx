@@ -38,7 +38,10 @@ export default function Login() {
   const [myName, setMyName] = useState("");
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
-  const [createUser] = useMutation(CREATE_USER);
+  const [createUser] = useMutation<
+    Pick<IMutation, "createUser">,
+    IMutationCreateUserArgs
+  >(CREATE_USER);
 
   function onChangeMyEmail(event: ChangeEvent<HTMLInputElement>) {
     setMyEmail(event.target.value);

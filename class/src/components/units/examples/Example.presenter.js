@@ -1,3 +1,7 @@
+
+import {withAuth} from '../../../commons/hocs/withAuth'
+
+
 export default function ExampleUI(props){
 
     
@@ -11,3 +15,5 @@ export default function ExampleUI(props){
         
     )
 }
+
+export default withAuth(ExampleUI);
