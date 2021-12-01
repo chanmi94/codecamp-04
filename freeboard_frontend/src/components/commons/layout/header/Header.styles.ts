@@ -1,8 +1,8 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  height: 152px;
-  background-color: #f5f2fc;
+  height: 60px;
+  background-color: white;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -29,6 +29,6 @@ export const InnerLogo = styled.div`
 
 export const InnerButton = styled.span`
   margin: 10px;
-  color: #5729ff;
+  color: black;
   cursor: pointer;
 `;

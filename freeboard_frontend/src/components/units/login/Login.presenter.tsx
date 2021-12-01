@@ -1,4 +1,4 @@
-import { LoginForm, Form } from "./Login.styles";
+import { LoginForm, Form, FormInput } from "./Login.styles";
 
 export default function LoginPageUI(props) {
   return (
@@ -8,9 +8,9 @@ export default function LoginPageUI(props) {
           {" "}
           <label>로그인</label>
           <label>Email</label>
-          <input type="text" onChange={props.onChangeMyEmail} />
+          <FormInput type="text" onChange={props.onChangeMyEmail} />
           <label>Password</label>
-          <input type="password" onChange={props.onChangeMyPassword} />
+          <FormInput type="password" onChange={props.onChangeMyPassword} />
           <button onClick={props.onCliCKLogin}>로그인</button>
         </Form>
       </LoginForm>
