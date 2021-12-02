@@ -31,7 +31,7 @@ import {
   CardWrapper,
 } from "./BoardList.styles";
 
-export default function BoardListUI(props: any) {
+export default function ProductListUI(props: any) {
   const [startPage, setStartPage] = useState(1);
   const { Meta } = Card;
   const { data, refetch } = useQuery<
