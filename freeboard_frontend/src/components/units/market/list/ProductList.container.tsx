@@ -1,6 +1,6 @@
 import { useMutation } from "@apollo/client";
 import ProductWriteUI from "./ProductList.presenter";
-import { CREATE_USED_ITEM } from "./ProductList.queries";
+import { FETCH_USED_ITEMS } from "./ProductList.queries";
 import { useState, ChangeEvent } from "react";
 import {
   IMutation,
@@ -14,7 +14,7 @@ export default function ProductList(props) {
   const [myContents, setMyContents] = useState("");
   const [myPrice, setMyPrice] = useState("");
 
-  const [createUseditem] = useMutation(CREATE_USED_ITEM);
+  const [fetchUseditems] = useMutation(FETCH_USED_ITEMS);
 
   function onChangeMyName(event: ChangeEvent<HTMLInputElement>) {
     setMyName(event.target.value);
@@ -30,20 +30,6 @@ export default function ProductList(props) {
 
   function onChangeMyPrice(event: ChangeEvent<HTMLInputElement>) {
     setMyPrice(event.target.value);
-  }
-
-  async function onClickSubmit() {
-    const result = await createUseditem({
-      variables: {
-        createUseditemInput: {
-          name: myName,
-          remarks: myRemarks,
-          contents: myContents,
-          price: Number(myPrice),
-        },
-      },
-    });
-    console.log(result);
   }
 
   return (

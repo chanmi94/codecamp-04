@@ -19,31 +19,15 @@ import {
   Youtube,
   Zipcode,
   ZipcodeWrapper,
-  UploadButton,
   Error,
 } from "./BoardWrite.styles";
 import { IBoardWriteUIProps } from "./BoardWrite.types";
 import { Modal } from "antd";
 import DaumPostcode from "react-daum-postcode";
-import { useMutation } from "@apollo/client";
-import { ChangeEvent, useState, useRef } from "react";
-import { UPLOAD_FILE } from "./BoardWrite.queries";
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
+import { v4 as uuidv4 } from "uuid";
+
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
-  // const fileRef = useRef<HTMLInputElement>(null);
-  // const [myImages, setMyImages] = useState<string[]>([]);
-  // const [uploadFile] = useMutation(UPLOAD_FILE);
-  // async function onChangeFile(event: ChangeEvent<HTMLInputElement>) {
-  //   const myFile = event.target.files?.[0];
-  //   console.log(myFile);
-
-  // const result = await uploadFile({ variables: { file: myFile } });
-  // console.log(result.data.uploadFile.url);
-  // setMyImages([result.data.uploadFile.url]);
-  // }
-
-  // function onClickMyImage() {
-  //   fileRef.current?.click();
-  // }
   return (
     <>
       {props.isOpen && (
@@ -131,19 +115,15 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         </InputWrapper>
         <ImageWrapper>
           <Label>사진첨부</Label>
-          <UploadButton
-            style={{ width: "50px", height: "50px", background: "gray" }}
-            onClick={props.onClickMyImage}
-          >
-            이미지
-          </UploadButton>
-          <img src={`https://storage.googleapis.com/${props.myImages[0]}`} />
-          <input
-            style={{ display: "none" }}
-            type="file"
-            ref={props.fileRef}
-            onChange={props.onChangeFile}
-          />
+          {props.fileUrls.map((el, index) => (
+            <Uploads01
+              key={uuidv4()}
+              index={index}
+              fileUrl={el}
+              defaultFileUrl={props.data?.fetchBoard.images?.[index]}
+              onChangeFileUrls={props.onChangeFileUrls}
+            />
+          ))}
         </ImageWrapper>
         <OptionWrapper>
           <Label>메인설정</Label>

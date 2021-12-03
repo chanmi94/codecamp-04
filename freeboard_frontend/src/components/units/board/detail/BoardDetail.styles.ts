@@ -4,7 +4,7 @@ import { LikeOutlined, DislikeOutlined } from "@ant-design/icons";
 
 export const Wrapper = styled.div`
   width: 1200px;
-  margin: 30px auto;
+  margin: 100px;
 `;
 
 export const CardWrapper = styled.div`
@@ -123,4 +123,15 @@ export const LikeCount = styled.div`
 
 export const DislikeCount = styled.div`
   color: #828282;
+`;
+
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Image = styled.img`
+  width: 996px;
+  height: 480px;
+  margin-bottom: 30px;
 `;

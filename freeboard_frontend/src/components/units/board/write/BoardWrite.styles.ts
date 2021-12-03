@@ -1,12 +1,11 @@
 import styled from "@emotion/styled";
-import { ISubmitButtonProps } from "./BoardWrite.types";
+import { ISubmitButtonProps } from './BoardWrite.types'
 
 export const Wrapper = styled.div`
-  width: 100%;
-  max-width: 1200px;
+  width: 1200px;
   /* height: 1847px; */
   border: 1px solid black;
-  margin: 30px auto;
+  margin: 100px;
   padding-top: 80px;
   padding-bottom: 100px;
   padding-left: 102px;
@@ -165,12 +164,10 @@ export const SubmitButton = styled.button`
   font-weight: 500;
   margin-left: 12px;
   margin-right: 12px;
-  background-color: ${(props: ISubmitButtonProps) =>
-    props.isActive ? "yellow" : "none"};
-
+  background-color: ${(props: ISubmitButtonProps) => props.isActive ? 'yellow' : 'none'};
+  
   :hover {
-    cursor: ${(props: ISubmitButtonProps) =>
-      props.isActive ? "pointer" : "default"};
+    cursor: ${(props: ISubmitButtonProps) => props.isActive ? 'pointer' : 'default'};
   }
 `;
 

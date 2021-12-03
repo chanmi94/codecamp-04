@@ -1,16 +1,9 @@
-import { Row } from "./BoardList.styles";
-import { ContentsWrapper } from "./../../boardComment/write/BoardCommentWrite.styles";
-import { Card } from "antd";
 import styled from "@emotion/styled";
+import { ITextTokenProps } from "./BoardList.types";
 
 export const Wrapper = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-`;
-
-export const TableToplist = styled.div`
-  text-align: center;
+  width: 1200px;
+  margin: 100px;
 `;
 
 export const TableTop = styled.div`
@@ -35,7 +28,7 @@ export const Row = styled.div`
 `;
 
 export const TextToken = styled.span`
-  color: ${(props) => (props.isMatched ? "red" : "black")};
+  color: ${(props: ITextTokenProps) => (props.isMatched ? "red" : "black")};
 `;
 
 export const ColumnHeaderBasic = styled.div`
@@ -57,9 +50,6 @@ export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
   cursor: pointer;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
 
   :hover {
     color: blue;
@@ -69,7 +59,7 @@ export const ColumnTitle = styled.div`
 export const Footer = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding-top: 50px;
 `;
 
@@ -89,34 +79,4 @@ export const Button = styled.button`
   :hover {
     background-color: #f5f2fc;
   }
-`;
-export const PageNation = styled.div`
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-`;
-
-export const WriterWrapper = styled.div`
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
-export const Column = styled.div`
-  display: flex;
-  justify-content: row;
-
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
-
-export const BestCard = styled(Card)`
-  display: flex;
-  flex-direction: Column;
-`;
-
-export const CardWrapper = styled.div`
-  display: flex;
-
-  justify-content: space-between;
 `;

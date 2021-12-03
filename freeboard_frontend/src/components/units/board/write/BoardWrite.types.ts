@@ -15,10 +15,10 @@ export interface IMyUpdateBoardInput {
     address?: string;
     addressDetail?: string;
   };
+  images?: string[];
 }
 
 export interface IBoardWriteUIProps {
-  fileRef: LegacyRef<HTMLInputElement> | undefined;
   myWriterError: string;
   myPasswordError: string;
   myTitleError: string;
@@ -31,12 +31,9 @@ export interface IBoardWriteUIProps {
   onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
-  onClick: (event: ChangeEvent<HTMLTextAreaElement>) => void;
-  // onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onClickAddressSearch: () => void;
   onCompleteAddressSearch: (data: any) => void;
-
-  onClickMyImage: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeFileUrls: (fileUrls: string, index: number) => void;
   isActive: boolean;
   isEdit?: boolean;
   isOpen: boolean;
@@ -44,6 +41,7 @@ export interface IBoardWriteUIProps {
   zipcode: string;
   address: string;
   addressDetail: string;
+  fileUrls: string[];
 }
 
 export interface ISubmitButtonProps {

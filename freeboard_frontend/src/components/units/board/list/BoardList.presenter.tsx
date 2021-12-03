@@ -1,16 +1,4 @@
 import { getDate } from "../../../../commons/libraries/utils";
-import { gql, useQuery } from "@apollo/client";
-import { useState, MouseEvent } from "react";
-import { Card } from "antd";
-import {
-  FETCH_BOARDS,
-  FETCH_BOARDS_COUNT,
-} from "../../board/list/BoardList.queries";
-
-import {
-  IQuery,
-  IQueryFetchBoardsArgs,
-} from "../../../../commons/types/generated/types";
 import {
   Wrapper,
   TableTop,
@@ -23,112 +11,53 @@ import {
   Footer,
   PencilIcon,
   Button,
-  PageNation,
-  WriterWrapper,
-  Column,
-  TableToplist,
-  BestCard,
-  CardWrapper,
+  TextToken,
 } from "./BoardList.styles";
+import Paginations01 from "../../../commons/paginations/01/Paginations01.container";
+import Searchbars01 from "../../../commons/searchbars/01/Searchbars01.container";
+import { v4 as uuidv4 } from "uuid";
+import { IBoardListUIProps } from "./BoardList.types";
 
-export default function ProductListUI(props: any) {
-  const [startPage, setStartPage] = useState(1);
-  const { Meta } = Card;
-  const { data, refetch } = useQuery<
-    Pick<IQuery, "fetchBoards">,
-    IQueryFetchBoardsArgs
-  >(FETCH_BOARDS, {
-    variables: { page: startPage },
-  });
-  const { data: dataBoardsCount } =
-    useQuery<Pick<IQuery, "fetchBoardsCount">>(FETCH_BOARDS_COUNT);
-  //있을 때만 나오게~
-  const lastPage =
-    (dataBoardsCount && Math.ceil(dataBoardsCount?.fetchBoardsCount / 10)) || 0;
-  function onClickPage(event: MouseEvent<HTMLSpanElement>) {
-    if (event.target instanceof Element)
-      refetch({ page: Number(event.target.id) });
-  }
-
-  function onClickNextPage() {
-    if (startPage + 10 > lastPage) return;
-    setStartPage((prev) => prev + 10);
-  }
-  function onClickPrevPage() {
-    if (startPage === 1) return;
-    setStartPage((prev) => prev - 10);
-  }
-
-  const [mySearch, setMysearch] = useState("");
-  // const { data, refetch } = useQuery<
-  //   Pick<IQuery, "fetchBoards">,
-  //   IQueryFetchBoardArgs
-  // >(FETCH_BOARDS);
-  function onchangeSearch(event: ChangeEvent<HTMLInputElement>) {
-    setMysearch(event.target.value);
-  }
-
-  function onClickSearch() {
-    //이아이는 검색어 찾아주는거
-
-    //mySearch 키워드로 fetchBoards 요청하기!!
-    refetch({ search: mySearch });
-  }
-
+export default function BoardListUI(props: IBoardListUIProps) {
   return (
     <Wrapper>
-      <CardWrapper>
-        {props.data2?.fetchBoardsOfTheBest.map((el, index) => (
-          <BestCard hoverable cover={<img alt="example" src="img/best.png" />}>
-            <Meta title={el.title} description={getDate(el.createdAt)} />
-          </BestCard>
-        ))}
-      </CardWrapper>
-      <TableToplist />
-      검색어 입력 : <input type="text" onChange={onchangeSearch} />
-      <button onClick={onClickSearch}>검색</button>
-      {/* {data?.fetchBoards.map((el) => (
-        <div key={el._id}>
-          <span style={{ paddingRight: "50px" }}>{el.writer}</span>
-          <span style={{ paddingRight: "50px" }}>{el.title}</span>
-          <span style={{ paddingRight: "50px" }}>{el.createdAt}</span>
-        </div>
-      ))} */}
+      <Searchbars01
+        refetch={props.refetch}
+        refetchBoardsCount={props.refetchBoardsCount}
+        onChangeKeyword={props.onChangeKeyword}
+      />
+      <TableTop />
       <Row>
         <ColumnHeaderBasic>번호</ColumnHeaderBasic>
         <ColumnHeaderTitle>제목</ColumnHeaderTitle>
         <ColumnHeaderBasic>작성자</ColumnHeaderBasic>
         <ColumnHeaderBasic>날짜</ColumnHeaderBasic>
       </Row>
-      <TableBottom />
-      {data?.fetchBoards?.map((el, index) => (
+      {props.data?.fetchBoards.map((el, index) => (
         <Row key={el._id}>
           <ColumnBasic>{index + 1}</ColumnBasic>
           <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
-            {el.title}
+            {el.title
+              .replaceAll(props.keyword, `@#$%${props.keyword}@#$%`)
+              .split("@#$%")
+              .map((el) => (
+                <TextToken key={uuidv4()} isMatched={props.keyword === el}>
+                  {el}
+                </TextToken>
+              ))}
           </ColumnTitle>
           <ColumnBasic>{el.writer}</ColumnBasic>
           <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
         </Row>
       ))}
-      <PageNation>
-        <span onClick={onClickPrevPage}>이전</span>
-        {new Array(10).fill(1).map(
-          (_, index) =>
-            startPage + index <= lastPage && (
-              <span
-                key={startPage + index}
-                onClick={onClickPage}
-                id={String(startPage + index)}
-                style={{ margin: "10px", cursor: "pointer" }}
-              >
-                {startPage + index}
-              </span>
-            )
-        )}
-        <span onClick={onClickNextPage}>다음</span>
-      </PageNation>
+      <TableBottom />
       <Footer>
+        <Paginations01
+          refetch={props.refetch}
+          count={props.count}
+          startPage={props.startPage}
+          setStartPage={props.setStartPage}
+        />
         <Button onClick={props.onClickMoveToBoardNew}>
           <PencilIcon src="/images/board/list/write.png" />
           게시물 등록하기
