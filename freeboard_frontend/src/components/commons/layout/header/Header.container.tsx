@@ -12,10 +12,14 @@ export default function Header() {
     router.push("/login");
   }
 
+  function onClickMoveToSignUp() {
+    router.push("/signup");
+  }
   return (
     <HeaderUI
       onClickLogo={onClickLogo}
       onClickMoveToLogin={onClickMoveToLogin}
+      onClickMoveToSignUp={onClickMoveToSignUp}
     />
   );
 }

@@ -1,13 +1,14 @@
 import { useMutation } from "@apollo/client";
 import ProductWriteUI from "./ProductWrite.presenter";
 import { CREATE_USED_ITEM } from "./ProductWrite.queries";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useEffect } from "react";
 import {
   IMutation,
   IMutationCreateUseditemArgs,
 } from "../../../../commons/types/generated/types";
 
 export default function ProductWrite(props) {
+  const [fileUrls, setFileUrls] = useState(["", "", ""]);
   // const router = useRouter();
   const [myName, setMyName] = useState("");
   const [myRemarks, setMyRemarks] = useState("");
@@ -32,6 +33,18 @@ export default function ProductWrite(props) {
     setMyPrice(event.target.value);
   }
 
+  function onChangeFileUrls(fileUrl: string, index: number) {
+    const newFileUrls = [...fileUrls];
+    newFileUrls[index] = fileUrl;
+    setFileUrls(newFileUrls);
+  }
+
+  useEffect(() => {
+    if (props.data?.fetchBoard.images?.length) {
+      setFileUrls([...props.data?.fetchBoard.images]);
+    }
+  }, [props.data]);
+
   async function onClickSubmit() {
     const result = await createUseditem({
       variables: {
@@ -40,6 +53,7 @@ export default function ProductWrite(props) {
           remarks: myRemarks,
           contents: myContents,
           price: Number(myPrice),
+          images: fileUrls,
         },
       },
     });
@@ -52,6 +66,8 @@ export default function ProductWrite(props) {
       onChangeMyRemarks={onChangeMyRemarks}
       onChangeMyContents={onChangeMyContents}
       onChangeMyPrice={onChangeMyPrice}
+      onChangeFileUrls={onChangeFileUrls}
+      fileUrls={fileUrls}
       onClickSubmit={onClickSubmit}
     />
   );

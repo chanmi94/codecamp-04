@@ -24,6 +24,8 @@ import {
   UploadButton,
   Error,
 } from "./ProductWrite.styles";
+import { v4 as uuidv4 } from "uuid";
+import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 
 export default function ProductWriteUI(props) {
   return (
@@ -63,6 +65,25 @@ export default function ProductWriteUI(props) {
             onChange={props.onChangeMyPrice}
           />
         </InputWrapper>
+        <ImageWrapper>
+          <Label>사진첨부</Label>
+          {props.fileUrls.map((el, index) => (
+            <Uploads01
+              key={uuidv4()}
+              index={index}
+              fileUrl={el}
+              defaultFileUrl={props.data?.fetchBoard.images?.[index]}
+              onChangeFileUrls={props.onChangeFileUrls}
+            />
+          ))}
+        </ImageWrapper>
+        <OptionWrapper>
+          <Label>메인설정</Label>
+          <RadioButton type="radio" id="youtube" name="radio-button" />
+          <RadioLabel htmlFor="youtube">유튜브</RadioLabel>
+          <RadioButton type="radio" id="image" name="radio-button" />
+          <RadioLabel htmlFor="image">사진</RadioLabel>
+        </OptionWrapper>
         <SubmitButton onClick={props.onClickSubmit}>등록하기</SubmitButton>
       </Wrapper>
     </>

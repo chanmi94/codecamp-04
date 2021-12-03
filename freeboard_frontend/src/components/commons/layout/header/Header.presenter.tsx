@@ -33,7 +33,9 @@ export default function HeaderUI(props: IProps) {
         <div>
           {data?.fetchUserLoggedIn.name}님
           <InnerButton onClick={props.onClickMoveToLogin}>로그인</InnerButton>
-          <InnerButton>회원가입</InnerButton>
+          <InnerButton onClick={props.onClickMoveToSignUp}>
+            회원가입
+          </InnerButton>
         </div>
       </InnerWrapper>
     </Wrapper>
