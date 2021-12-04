@@ -84,7 +84,14 @@ export default function ProductWriteUI(props) {
           <RadioButton type="radio" id="image" name="radio-button" />
           <RadioLabel htmlFor="image">사진</RadioLabel>
         </OptionWrapper>
-        <SubmitButton onClick={props.onClickSubmit}>등록하기</SubmitButton>
+        <ButtonWrapper>
+          <SubmitButton
+            onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
+            isActive={props.isEdit ? true : !props.isActive}
+          >
+            {props.isEdit ? "수정하기" : "등록하기"}
+          </SubmitButton>
+        </ButtonWrapper>
       </Wrapper>
     </>
   );

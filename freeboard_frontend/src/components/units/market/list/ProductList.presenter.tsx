@@ -12,6 +12,8 @@ import {
   PencilIcon,
   Button,
   TextToken,
+  ImageWrapper,
+  Image,
 } from "./ProductList.styles";
 import Paginations01 from "../../../commons/paginations/01/Paginations01.container";
 import Searchbars01 from "../../../commons/searchbars/01/Searchbars01.container";
@@ -30,7 +32,7 @@ export default function BoardListUI(props) {
       {props.data?.fetchUseditems.map((el, index) => (
         <Row key={el._id}>
           <ColumnBasic>{index + 1}</ColumnBasic>
-          <ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
+          <ColumnTitle id={el._id} onClick={props.onClickMoveToProductDetail}>
             {el.name
               .replaceAll(props.keyword, `@#$%${props.keyword}@#$%`)
               .split("@#$%")
@@ -40,8 +42,11 @@ export default function BoardListUI(props) {
                 </TextToken>
               ))}
           </ColumnTitle>
+          <ColumnBasic>{el.writer}</ColumnBasic>
+          <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
         </Row>
       ))}
+
       <TableBottom />
       <Footer>
         <Paginations01

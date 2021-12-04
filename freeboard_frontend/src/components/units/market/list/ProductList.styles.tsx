@@ -79,3 +79,13 @@ export const Button = styled.button`
     background-color: #f5f2fc;
   }
 `;
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const Image = styled.img`
+  width: 996px;
+  height: 480px;
+  margin-bottom: 30px;
+`;
