@@ -1,28 +1,18 @@
 import {
-  Address,
-  ButtonWrapper,
   Contents,
-  ImageWrapper,
   InputWrapper,
   Label,
   OptionWrapper,
-  Password,
   RadioButton,
   RadioLabel,
-  SearchButton,
-  Subject,
-  SubmitButton,
   Title,
   Price,
   Wrapper,
   Product,
   WriterWrapper,
   Summary,
-  Youtube,
-  Zipcode,
-  ZipcodeWrapper,
-  UploadButton,
   Error,
+  ImageWrapper,
 } from "./ProductWrite.styles";
 import { v4 as uuidv4 } from "uuid";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
@@ -70,18 +60,18 @@ export default function ProductWriteUI(props) {
             defaultValue={Number(props.data?.fetchUseditem?.price)}
           />
         </InputWrapper>
-        {/* <ImageWrapper>
+        <ImageWrapper>
           <Label>사진첨부</Label>
           {props.fileUrls.map((el, index) => (
             <Uploads01
               key={uuidv4()}
               index={index}
               fileUrl={el}
-              defaultFileUrl={props.data?.fetchBoard.images?.[index]}
+              defaultFileUrl={props.data?.fetchUseditem.images?.[index]}
               onChangeFileUrls={props.onChangeFileUrls}
             />
           ))}
-        </ImageWrapper> */}
+        </ImageWrapper>
         <OptionWrapper>
           <Label>메인설정</Label>
           <RadioButton type="radio" id="youtube" name="radio-button" />

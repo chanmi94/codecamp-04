@@ -91,11 +91,11 @@ export default function ProductWrite(props) {
     setFileUrls(newFileUrls);
   }
 
-  // useEffect(() => {
-  //   if (props.data?.fetchBoard.images?.length) {
-  //     setFileUrls([...props.data?.fetchBoard.images]);
-  //   }
-  // }, [props.data]);
+  useEffect(() => {
+    if (props.data?.fetchUseditem.images?.length) {
+      setFileUrls([...props.data?.fetchUseditem.images]);
+    }
+  }, [props.data]);
 
   async function onClickSubmit(event) {
     const result = await createUseditem({

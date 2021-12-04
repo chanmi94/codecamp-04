@@ -77,18 +77,6 @@ export const Contents = styled.input`
   border: 1px solid #bdbdbd;
 `;
 
-export const ZipcodeWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
-
-export const Zipcode = styled.input`
-  width: 77px;
-  height: 52px;
-  padding-left: 16px;
-  border: 1px solid #bdbdbd;
-`;
-
 export const SearchButton = styled.button`
   width: 124px;
   height: 52px;
@@ -96,14 +84,6 @@ export const SearchButton = styled.button`
   background-color: black;
   cursor: pointer;
   color: white;
-`;
-
-export const Address = styled.input`
-  width: 996px;
-  height: 52px;
-  margin-top: 16px;
-  padding-left: 16px;
-  border: 1px solid #bdbdbd;
 `;
 
 export const Youtube = styled.input`
