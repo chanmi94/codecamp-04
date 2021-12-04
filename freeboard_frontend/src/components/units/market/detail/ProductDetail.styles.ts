@@ -70,11 +70,12 @@ export const Price = styled.div`
   padding-left: 16px;
 `;
 
-export const Contents = styled.textarea`
+export const Contents = styled.div`
   width: 996px;
   height: 480px;
   padding-left: 16px;
   padding: 14px;
+  border: 1px solid #bdbdbd;
 `;
 
 export const ZipcodeWrapper = styled.div`

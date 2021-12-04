@@ -44,7 +44,7 @@ const ProductDetail = () => {
       data={data}
       onClickDelete={onClickDelete}
       onClickMoveToList={onClickMoveToList}
-      onClickMoveToUpdat={onClickMoveToUpdate}
+      onClickMoveToUpdate={onClickMoveToUpdate}
     />
   );
 };

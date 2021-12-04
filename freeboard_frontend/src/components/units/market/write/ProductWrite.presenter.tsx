@@ -31,6 +31,7 @@ export default function ProductWriteUI(props) {
   return (
     <>
       <Wrapper>
+        <Title>{props.isEdit ? "상품 수정" : "상품 등록"}</Title>
         <WriterWrapper>
           <InputWrapper>
             <Label>상품명</Label>
@@ -38,6 +39,7 @@ export default function ProductWriteUI(props) {
               type="text"
               placeholder="상품명을 적어주세요."
               onChange={props.onChangeMyName}
+              defaultValue={props.data?.fetchUseditem?.name}
             />
           </InputWrapper>
         </WriterWrapper>
@@ -47,6 +49,7 @@ export default function ProductWriteUI(props) {
             type="text"
             placeholder="상품을 한줄요약해주세요."
             onChange={props.onChangeMyRemarks}
+            defaultValue={props.data?.fetchUseditem?.remarks}
           />
         </InputWrapper>
         <InputWrapper>
@@ -54,18 +57,20 @@ export default function ProductWriteUI(props) {
           <Contents
             placeholder="상품을 설명해주세요."
             onChange={props.onChangeMyContents}
+            defaultValue={props.data?.fetchUseditem?.contents}
           />
         </InputWrapper>
         <InputWrapper>
           <Label>판매가격</Label>
           <Price
-            type="text"
+            type="number"
             placeholder="판매가격을 입력해주세요."
             name="price"
             onChange={props.onChangeMyPrice}
+            defaultValue={Number(props.data?.fetchUseditem?.price)}
           />
         </InputWrapper>
-        <ImageWrapper>
+        {/* <ImageWrapper>
           <Label>사진첨부</Label>
           {props.fileUrls.map((el, index) => (
             <Uploads01
@@ -76,7 +81,7 @@ export default function ProductWriteUI(props) {
               onChangeFileUrls={props.onChangeFileUrls}
             />
           ))}
-        </ImageWrapper>
+        </ImageWrapper> */}
         <OptionWrapper>
           <Label>메인설정</Label>
           <RadioButton type="radio" id="youtube" name="radio-button" />
@@ -84,14 +89,18 @@ export default function ProductWriteUI(props) {
           <RadioButton type="radio" id="image" name="radio-button" />
           <RadioLabel htmlFor="image">사진</RadioLabel>
         </OptionWrapper>
-        <ButtonWrapper>
-          <SubmitButton
-            onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
-            isActive={props.isEdit ? true : !props.isActive}
-          >
-            {props.isEdit ? "수정하기" : "등록하기"}
-          </SubmitButton>
-        </ButtonWrapper>
+        {/* <ButtonWrapper>
+          <SubmitButton> */}
+        <div>
+          {props.isEdit && (
+            <button onClick={props.onClickUpdate}>수정하기</button>
+          )}
+          {!props.isEdit && (
+            <button onClick={props.onClickSubmit}>등록하기</button>
+          )}
+        </div>
+        {/* </SubmitButton>
+        </ButtonWrapper> */}
       </Wrapper>
     </>
   );

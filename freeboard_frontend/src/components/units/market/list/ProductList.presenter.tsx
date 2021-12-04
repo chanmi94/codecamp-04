@@ -43,7 +43,7 @@ export default function BoardListUI(props) {
               ))}
           </ColumnTitle>
           <ColumnBasic>{el.writer}</ColumnBasic>
-          <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic>
+          {/* <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic> */}
         </Row>
       ))}
 

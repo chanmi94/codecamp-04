@@ -91,11 +91,11 @@ export default function ProductWrite(props) {
     setFileUrls(newFileUrls);
   }
 
-  useEffect(() => {
-    if (props.data?.fetchBoard.images?.length) {
-      setFileUrls([...props.data?.fetchBoard.images]);
-    }
-  }, [props.data]);
+  // useEffect(() => {
+  //   if (props.data?.fetchBoard.images?.length) {
+  //     setFileUrls([...props.data?.fetchBoard.images]);
+  //   }
+  // }, [props.data]);
 
   async function onClickSubmit(event) {
     const result = await createUseditem({
@@ -112,6 +112,28 @@ export default function ProductWrite(props) {
     router.push(`/market`);
   }
 
+  async function onClickUpdate() {
+    const myUpdateUseditemInput = {
+      name: myName,
+      remarks: myRemarks,
+      contents: myContents,
+      price: Number(myPrice),
+      images: fileUrls,
+    };
+
+    try {
+      await updateUseditem({
+        variables: {
+          useditemId: router.query.useditemId,
+
+          updateUseditemInput: myUpdateUseditemInput,
+        },
+      });
+      router.push(`/market/${router.query.useditemId}`);
+    } catch (error) {
+      alert("오류다");
+    }
+  }
   return (
     <ProductWriteUI
       onChangeMyName={onChangeMyName}
@@ -121,7 +143,6 @@ export default function ProductWrite(props) {
       onChangeFileUrls={onChangeFileUrls}
       fileUrls={fileUrls}
       onClickSubmit={onClickSubmit}
-      isActive={isActive}
       data={props.data}
       isEdit={props.isEdit}
       isOpen={isOpen}

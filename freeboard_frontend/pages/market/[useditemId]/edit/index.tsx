@@ -6,7 +6,7 @@ import {
   IQueryFetchUseditemArgs,
 } from "../../../../src/commons/types/generated/types";
 
-const FETCH_USED_ITEM = gql`
+export const FETCH_USED_ITEM = gql`
   query fetchUseditem($useditemId: ID!) {
     fetchUseditem(useditemId: $useditemId) {
       _id
@@ -21,11 +21,8 @@ const FETCH_USED_ITEM = gql`
 
 export default function ProductEditPage() {
   const router = useRouter();
-  const { data } = useQuery<
-    Pick<IQuery, "fetchUseditem">,
-    IQueryFetchUseditemArgs
-  >(FETCH_USED_ITEM, {
-    variables: { useditemId: String(router.query.useditemId) },
+  const { data } = useQuery(FETCH_USED_ITEM, {
+    variables: { useditemId: router.query.useditemId },
   });
 
   return <ProductWrite isEdit={true} data={data} />;
