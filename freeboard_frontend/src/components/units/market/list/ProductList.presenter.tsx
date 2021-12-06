@@ -42,7 +42,14 @@ export default function BoardListUI(props) {
                 </TextToken>
               ))}
           </ColumnTitle>
-          <ColumnBasic>{el.writer}</ColumnBasic>
+          <ColumnBasic>
+            {props.data?.fetchUseditems.images
+              ?.filter((el: string) => el)
+              .map((el: string) => (
+                <Image key={el} src={`https://storage.googleapis.com/${el}`} />
+              ))}
+          </ColumnBasic>
+          <ColumnBasic> {el.price}</ColumnBasic>
           {/* <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic> */}
         </Row>
       ))}

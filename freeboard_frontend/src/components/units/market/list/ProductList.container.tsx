@@ -28,6 +28,7 @@ export default function ProductList() {
   function onClickMoveToProductDetail(event) {
     router.push(`/market/${event.currentTarget.id}`);
   }
+
   return (
     <ProductWriteUI
       data={data}
