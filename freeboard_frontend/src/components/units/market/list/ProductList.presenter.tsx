@@ -52,6 +52,7 @@ export default function BoardListUI(props) {
               <Image src={`https://storage.googleapis.com/${el.images?.[0]}`} />
             </ColumnBasic>
             <ColumnBasic> {el.price}</ColumnBasic>
+            <button onClick={props.onclickBasket(el)}>장바구니담기</button>
             {/* <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic> */}
           </Row>
         ))}

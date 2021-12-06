@@ -28,7 +28,7 @@ const ProductDetail = () => {
       alert("게시물이 삭제되었습니다.");
       router.push("/market");
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) alert(error.message);
     }
   }
 

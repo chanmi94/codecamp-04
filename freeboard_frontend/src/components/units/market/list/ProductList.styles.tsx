@@ -17,7 +17,7 @@ export const TableBottom = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  height: 100px;
+  height: 60px;
   line-height: 52px;
   border-bottom: 1px solid gray;
 

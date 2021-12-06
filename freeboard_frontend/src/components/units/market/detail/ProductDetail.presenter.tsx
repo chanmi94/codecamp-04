@@ -26,6 +26,7 @@ import {
 } from "./ProductDetail.styles";
 import { v4 as uuidv4 } from "uuid";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
+import { IUseditem } from "../../../../commons/types/generated/types";
 
 const ProductDetailUI = (props) => {
   return (
