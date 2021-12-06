@@ -19,6 +19,8 @@ const ProductDetail = () => {
   >(DELETE_USEDITEM);
 
   async function onClickDelete() {
+    confirm("정말로 삭제하시겠습니까?");
+
     try {
       await deleteUseditem({
         variables: { useditemId: String(router.query.useditemId) },

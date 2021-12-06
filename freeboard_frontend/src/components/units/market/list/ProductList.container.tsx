@@ -1,10 +1,8 @@
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import ProductWriteUI from "./ProductList.presenter";
 import { FETCH_USED_ITEMS } from "./ProductList.queries";
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 import {
-  IMutation,
-  IMutationCreateUseditemArgs,
   IQuery,
   IQueryFetchUseditemsArgs,
 } from "../../../../commons/types/generated/types";
@@ -12,11 +10,10 @@ import { useRouter } from "next/router";
 
 export default function ProductList() {
   const router = useRouter();
-  // const { data, refetch } = useQuery(FETCH_USED_ITEMS);
 
   const [startPage, setStartPage] = useState(1);
 
-  const { data, refetch } = useQuery<
+  const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemsArgs
   >(FETCH_USED_ITEMS, { variables: { page: startPage } });
@@ -29,14 +26,34 @@ export default function ProductList() {
     router.push(`/market/${event.currentTarget.id}`);
   }
 
+  const onLoadMore = () => {
+    if (!data) return;
+
+    fetchMore({
+      variables: { page: Math.ceil(data?.fetchUseditems.length / 10) + 1 },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult?.fetchUseditems)
+          return {
+            fetchUseditems: [...prev.fetchUseditems],
+          };
+        return {
+          fetchUseditems: [
+            ...prev.fetchUseditems,
+            ...fetchMoreResult?.fetchUseditems,
+          ],
+        };
+      },
+    });
+  };
+
   return (
     <ProductWriteUI
       data={data}
       startPage={startPage}
-      refetch={refetch}
       setStartPage={setStartPage}
       onClickMoveToBProductNew={onClickMoveToBProductNew}
       onClickMoveToProductDetail={onClickMoveToProductDetail}
+      onLoadMore={onLoadMore}
     />
   );
 }

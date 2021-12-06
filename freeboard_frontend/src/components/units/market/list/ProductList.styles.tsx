@@ -17,7 +17,7 @@ export const TableBottom = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-  height: 52px;
+  height: 100px;
   line-height: 52px;
   border-bottom: 1px solid gray;
 
@@ -85,7 +85,6 @@ export const ImageWrapper = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 996px;
-  height: 480px;
+  height: 50px;
   margin-bottom: 30px;
 `;
