@@ -40,7 +40,7 @@ export default function Layout(props: ILayoutProps) {
       <Banner />
       <Navigation />
       <BodyWrapper>
-        <Sidebar>sidebar!!!</Sidebar>
+        {/* <Sidebar>sidebar!!!</Sidebar> */}
         <Body>{props.children}</Body>
       </BodyWrapper>
       <Footer />
