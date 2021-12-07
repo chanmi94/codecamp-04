@@ -30,14 +30,21 @@ export default function WebEditorDetailPage() {
 
   return (
     <>
-      <div>작성자 : {data?.fetchBoard.writer}</div>
-      <div>제목 : {data?.fetchBoard.title}</div>
-      {process.browser && (
+      <div style={{ color: "red" }}>작성자 : {data?.fetchBoard.writer}</div>
+      {/* {process.browser ? (
+        <div style={{ color: "green" }}>제목 : {data?.fetchBoard.title}</div>
+      ) : (
+        <div style={{ color: "green" }} />
+      )} */}
+      <div style={{ color: "blue" }}>내용: 반갑습니다.</div>
+      {process.browser ? (
         <div
           dangerouslySetInnerHTML={{
             __html: Dompurify.sanitize(String(data?.fetchBoard.contents)),
           }}
         />
+      ) : (
+        <div />
       )}
     </>
   );
