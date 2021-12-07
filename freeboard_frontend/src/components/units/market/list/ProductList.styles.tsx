@@ -17,10 +17,10 @@ export const TableBottom = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
+
   height: 60px;
   line-height: 52px;
   border-bottom: 1px solid gray;
-
   :hover {
     color: blue;
   }
@@ -49,7 +49,6 @@ export const ColumnTitle = styled.div`
   width: 70%;
   text-align: center;
   cursor: pointer;
-
   :hover {
     color: blue;
   }
@@ -74,7 +73,6 @@ export const Button = styled.button`
   justify-content: space-evenly;
   align-items: center;
   cursor: pointer;
-
   :hover {
     background-color: #f5f2fc;
   }
