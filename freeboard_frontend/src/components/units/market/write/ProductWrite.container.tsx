@@ -4,7 +4,9 @@ import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./ProductWrite.queries";
 import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import { IMyUpdateUseditemInput } from "./ProductWrite.types";
-
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function ProductWrite(props) {
   const router = useRouter();
 
@@ -134,6 +136,10 @@ export default function ProductWrite(props) {
       alert("오류다");
     }
   }
+
+  function handleChange(value: string) {
+    console.log(value);
+  }
   return (
     <ProductWriteUI
       onChangeMyName={onChangeMyName}
@@ -147,6 +153,7 @@ export default function ProductWrite(props) {
       isEdit={props.isEdit}
       isOpen={isOpen}
       onClickUpdate={onClickUpdate}
+      handleChange={handleChange}
     />
   );
 }

@@ -15,7 +15,7 @@ const SignupForm = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 50vh;
+  height: 60vh;
 `;
 const Form = styled.div`
   display: flex;
@@ -34,7 +34,7 @@ const CREATE_USER = gql`
 export default function Login() {
   // const { setMyAccesToken } = useContext(GlobalContext);
 
-  // const router = useRouter();
+  const router = useRouter();
   const [myName, setMyName] = useState("");
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
@@ -69,9 +69,8 @@ export default function Login() {
     } catch (error) {
       console.log(error.message);
     }
-    // result.data?.createUser;
-    // router.push("/boards");
-    // router.push(`/boards/${result.data?.createUser}`);
+    confirm("회원가입을 축하드립니다.");
+    router.push("/login");
   }
 
   return (

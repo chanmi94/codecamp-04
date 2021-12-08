@@ -15,8 +15,11 @@ import {
   ImageWrapper,
 } from "./ProductWrite.styles";
 import { v4 as uuidv4 } from "uuid";
+import Dompurify from "dompurify";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
+import dynamic from "next/dynamic";
 
+const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function ProductWriteUI(props) {
   return (
     <>
@@ -49,6 +52,12 @@ export default function ProductWriteUI(props) {
             onChange={props.onChangeMyContents}
             defaultValue={props.data?.fetchUseditem?.contents}
           />
+          {/* <Contents>
+            <ReactQuill
+              onChange={props.handleChange}
+              defaultValue={props.data?.fetchUseditem?.contents}
+            />
+          </Contents> */}
         </InputWrapper>
         <InputWrapper>
           <Label>판매가격</Label>

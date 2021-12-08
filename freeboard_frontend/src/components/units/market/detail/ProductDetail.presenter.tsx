@@ -24,6 +24,7 @@ import { v4 as uuidv4 } from "uuid";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import { IUseditem } from "../../../../commons/types/generated/types";
 
+import Dompurify from "dompurify";
 const ProductDetailUI = (props) => {
   return (
     <Wrapper>
@@ -39,7 +40,18 @@ const ProductDetailUI = (props) => {
       </InputWrapper>
       <InputWrapper>
         <Label>상품설명</Label>
-        <Contents>{props.data?.fetchUseditem.contents}</Contents>
+        {process.browser ? (
+          <Contents
+            dangerouslySetInnerHTML={{
+              __html: Dompurify.sanitize(
+                String(props.data?.fetchUseditem.contents)
+              ),
+            }}
+          />
+        ) : (
+          <Contents />
+        )}
+        {/* <Contents>{props.data?.fetchUseditem.contents}</Contents> */}
       </InputWrapper>
       <InputWrapper>
         <Label>판매가격</Label>

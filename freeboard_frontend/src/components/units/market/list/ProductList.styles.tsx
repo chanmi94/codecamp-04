@@ -18,7 +18,7 @@ export const Row = styled.div`
   display: flex;
   flex-direction: row;
 
-  height: 60px;
+  height: 100px;
   line-height: 52px;
   border-bottom: 1px solid gray;
   :hover {
@@ -83,6 +83,7 @@ export const ImageWrapper = styled.div`
 `;
 
 export const Image = styled.img`
-  height: 50px;
+  height: 90px;
+  width: 90px;
   margin-bottom: 30px;
 `;

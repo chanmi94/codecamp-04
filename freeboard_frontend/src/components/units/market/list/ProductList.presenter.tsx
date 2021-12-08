@@ -22,13 +22,17 @@ import InfiniteScroll from "react-infinite-scroller";
 export default function BoardListUI(props) {
   return (
     <Wrapper>
-      <TableTop />
-      <Row>
+      {/* <Row>
         <ColumnHeaderBasic>번호</ColumnHeaderBasic>
         <ColumnHeaderTitle>제품</ColumnHeaderTitle>
         <ColumnHeaderBasic>사진</ColumnHeaderBasic>
         <ColumnHeaderBasic>가격</ColumnHeaderBasic>
-      </Row>
+      </Row> */}
+      <Button onClick={props.onClickMoveToBProductNew}>
+        <PencilIcon src="/images/board/list/write.png" />
+        상품 등록하기
+      </Button>
+      <TableTop />
       <InfiniteScroll
         pageStart={0}
         loadMore={props.onLoadMore}
@@ -52,18 +56,13 @@ export default function BoardListUI(props) {
               <Image src={`https://storage.googleapis.com/${el.images?.[0]}`} />
             </ColumnBasic>
             <ColumnBasic> {el.price}</ColumnBasic>
-            <button onClick={props.onclickBasket(el)}>장바구니담기</button>
+            <Button onClick={props.onclickBasket(el)}>장바구니담기</Button>
             {/* <ColumnBasic>{getDate(el.createdAt)}</ColumnBasic> */}
           </Row>
         ))}
       </InfiniteScroll>
       <TableBottom />
-      <Footer>
-        <Button onClick={props.onClickMoveToBProductNew}>
-          <PencilIcon src="/images/board/list/write.png" />
-          상품 등록하기
-        </Button>
-      </Footer>
+      <Footer></Footer>
     </Wrapper>
   );
 }
