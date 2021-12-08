@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import CardGroup from "react-bootstrap/Card";
+import Card from "react-bootstrap/Card";
 
 export const Wrapper = styled.div`
   width: 1200px;
@@ -86,4 +88,12 @@ export const Image = styled.img`
   height: 90px;
   width: 90px;
   margin-bottom: 30px;
+`;
+
+export const CardWrapper = styled(Card)`
+  display: flex;
+
+  width: 240px;
+  height: 400px;
+  margin: 30px auto;
 `;
