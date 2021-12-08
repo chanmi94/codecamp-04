@@ -3,7 +3,7 @@ import Head from "next/head"; //head를 사용하기위하여 해줘야함
 export default function PaymentPage() {
   function onClickPayment() {
     const IMP = window.IMP; // 생략 가능
-    IMP.init("imp92591067"); // Example: imp00000000
+    IMP.init("imp49910675"); // Example: imp00000000
     IMP.request_pay(
       {
         // param
