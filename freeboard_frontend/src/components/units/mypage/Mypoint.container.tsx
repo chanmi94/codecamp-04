@@ -1,12 +1,12 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
-import MypageUI from "./Mypage.presenter";
+import MypageUI from "./Mypoint.presenter";
 import {
   CREATE_POINT_TRANSACTION_OF_LOADING,
   FETCH_USER_LOGGEDIN,
-} from "./Mypage.queries";
+} from "./Mypoint.queries";
 
-export default function Mypage() {
+export default function Mypoint() {
   const router = useRouter();
   const [createPointTransactionOfLoading] = useMutation(
     CREATE_POINT_TRANSACTION_OF_LOADING

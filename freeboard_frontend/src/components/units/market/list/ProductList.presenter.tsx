@@ -22,12 +22,6 @@ import InfiniteScroll from "react-infinite-scroller";
 export default function BoardListUI(props) {
   return (
     <Wrapper>
-      {/* <Row>
-        <ColumnHeaderBasic>번호</ColumnHeaderBasic>
-        <ColumnHeaderTitle>제품</ColumnHeaderTitle>
-        <ColumnHeaderBasic>사진</ColumnHeaderBasic>
-        <ColumnHeaderBasic>가격</ColumnHeaderBasic>
-      </Row> */}
       <Button onClick={props.onClickMoveToBProductNew}>
         <PencilIcon src="/images/board/list/write.png" />
         상품 등록하기

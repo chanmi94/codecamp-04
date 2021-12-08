@@ -1,7 +1,11 @@
 import { useRouter } from "next/router";
 import ProductDetailUI from "./ProductDetail.presenter";
 import { useQuery, useMutation } from "@apollo/client";
-import { FETCH_USEDITEM, DELETE_USEDITEM } from "./ProductDetail.queries";
+import {
+  FETCH_USEDITEM,
+  DELETE_USEDITEM,
+  CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+} from "./ProductDetail.queries";
 import {
   IMutation,
   IMutationDeleteUseditemArgs,
@@ -10,6 +14,9 @@ import {
 
 const ProductDetail = () => {
   const router = useRouter();
+  const [createPointTransactionOfBuyingAndSelling] = useMutation(
+    CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
+  );
   const { data } = useQuery<Pick<IQuery, "fetchUseditem">>(FETCH_USEDITEM, {
     variables: { useditemId: String(router.query.useditemId) },
   });
@@ -40,6 +47,20 @@ const ProductDetail = () => {
     router.push(`/market/${router.query.useditemId}/edit`);
   }
 
+  async function onClickMoveBuy() {
+    try {
+      const result = await createPointTransactionOfBuyingAndSelling({
+        variables: {
+          useritemId: router.query.useditemId,
+        },
+      });
+      alert("구매완료");
+      console.log(result);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
   console.log(data);
   return (
     <ProductDetailUI
@@ -47,6 +68,7 @@ const ProductDetail = () => {
       onClickDelete={onClickDelete}
       onClickMoveToList={onClickMoveToList}
       onClickMoveToUpdate={onClickMoveToUpdate}
+      onClickMoveBuy={onClickMoveBuy}
     />
   );
 };

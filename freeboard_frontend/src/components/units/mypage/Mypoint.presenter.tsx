@@ -1,7 +1,7 @@
 import Head from "next/head"; //head를 사용하기위하여 해줘야함
-import { Wrapper } from "./Mypage.styles";
+import { Wrapper } from "./Mypoint.styles";
 
-export default function MypageUI(props) {
+export default function MypointUI(props) {
   return (
     <>
       <Head>

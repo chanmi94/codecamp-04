@@ -73,6 +73,7 @@ const ProductDetailUI = (props) => {
         <RadioLabel htmlFor="image">사진2</RadioLabel>
       </OptionWrapper>
       <BottomWrapper>
+        <Button onClick={props.onClickMoveBuy}>구매하기</Button>
         <Button onClick={props.onClickMoveToList}>목록으로</Button>
         <Button onClick={props.onClickMoveToUpdate}>수정하기</Button>
         <Button onClick={props.onClickDelete}>삭제하기</Button>
