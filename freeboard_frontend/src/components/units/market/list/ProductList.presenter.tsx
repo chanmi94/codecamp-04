@@ -15,7 +15,6 @@ import {
   ImageWrapper,
   Image,
 } from "./ProductList.styles";
-import Paginations01 from "../../../commons/paginations/01/Paginations01.container";
 import Searchbars01 from "../../../commons/searchbars/01/Searchbars01.container";
 import { v4 as uuidv4 } from "uuid";
 import InfiniteScroll from "react-infinite-scroller";
@@ -24,9 +23,9 @@ export default function BoardListUI(props) {
     <Wrapper>
       {/* <Searchbars01
         refetch={props.refetch}
-        refetchItemsCount={props.refetchItemsCount}
+        // refetchItemsCount={props.refetchItemsCount}
         onChangeKeyword={props.onChangeKeyword}
-      /> */}
+      />   */}
       <Button onClick={props.onClickMoveToBProductNew}>
         <PencilIcon src="/images/board/list/write.png" />
         상품 등록하기
