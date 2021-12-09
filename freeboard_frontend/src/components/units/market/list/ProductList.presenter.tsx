@@ -22,6 +22,11 @@ import InfiniteScroll from "react-infinite-scroller";
 export default function BoardListUI(props) {
   return (
     <Wrapper>
+      {/* <Searchbars01
+        refetch={props.refetch}
+        refetchItemsCount={props.refetchItemsCount}
+        onChangeKeyword={props.onChangeKeyword}
+      /> */}
       <Button onClick={props.onClickMoveToBProductNew}>
         <PencilIcon src="/images/board/list/write.png" />
         상품 등록하기

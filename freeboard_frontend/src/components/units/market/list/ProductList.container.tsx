@@ -1,6 +1,9 @@
 import { useQuery } from "@apollo/client";
 import ProductWriteUI from "./ProductList.presenter";
-import { FETCH_USED_ITEMS } from "./ProductList.queries";
+import {
+  FETCH_USED_ITEMS,
+  FETCH_USED_ITEMS_SEARCH,
+} from "./ProductList.queries";
 import { useState } from "react";
 import {
   IQuery,
@@ -11,9 +14,11 @@ import { useRouter } from "next/router";
 
 export default function ProductList() {
   const router = useRouter();
+  const [keyword, setKeyword] = useState("");
 
-  const [startPage, setStartPage] = useState(1);
+  //   const { data: dataITemsCount, refetch: refetchItemsCount } = useQuery<
 
+  // (FETCH_USED_ITEMS_SEARCH);
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemsArgs
@@ -69,11 +74,15 @@ export default function ProductList() {
 
     localStorage.setItem("basket", JSON.stringify(baskets));
   };
+
+  // function onChangeKeyword(value: string) {
+  //   setKeyword(value);
+  // }
   return (
     <ProductWriteUI
       data={data}
-      // startPage={startPage}
-      // setStartPage={setStartPage}
+      // keyword={keyword}
+      // onChangeKeyword={onChangeKeyword}
       onClickMoveToBProductNew={onClickMoveToBProductNew}
       onClickMoveToProductDetail={onClickMoveToProductDetail}
       onLoadMore={onLoadMore}
