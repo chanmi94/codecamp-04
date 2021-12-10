@@ -5,7 +5,7 @@ import {
   IMutationLoginUserArgs,
 } from "../../src/commons/types/generated/types";
 import { GlobalContext } from "../_app";
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 const LOGIN_USER = gql`
   mutation loginUser($email: String!, $password: String!) {

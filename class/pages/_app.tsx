@@ -5,6 +5,7 @@ import {
   InMemoryCache,
   ApolloLink,
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globerlStyles";
 import "antd/dist/antd.css";
@@ -15,6 +16,7 @@ import { createUploadLink } from "apollo-upload-client";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { createContext, useEffect, useState } from "react";
+import { getAccesToken } from "../src/commons/libraries/getAccessToken";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -54,31 +56,45 @@ function MyApp({ Component, pageProps }: AppProps) {
   if (process.browser) {
   }
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken") || "";
-    if (accessToken) setMyAccesToken(accessToken);
+    if (localStorage.getItem("refreshToken")) getAccesToken(setMyAccesToken);
   }, []);
 
   const uploadLink = createUploadLink({
-    uri: "http://backend04.codebootcamp.co.kr/graphql",
+    uri: "https://backend04.codebootcamp.co.kr/graphql", //1. 12/10 로그인 관련 https로 변경!
     headers: {
       authorization: `Bearer ${myAccesToken}`, //로그인관련
     },
+    credentials: "include",
+  });
+
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      //1.토큰만료 에러캐치
+      for (const err of graphQLErrors) {
+        //2.refreshToken으로 accessToken 재발급 받기 => restoreAccessToken
+        if (err.extensions?.code === "UNAUTHENTICATED") {
+          const newAccessToken = getAccesToken(setMyAccesToken);
+
+          //3. 기존에 실패한 요청 다시 재요청하기
+          operation.setContext({
+            headers: {
+              ...operation.getContext().headers,
+              authorization: `Bearer ${getAccesToken(setMyAccesToken)}`,
+            },
+          });
+          return forward(operation);
+        }
+      }
+    }
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as any]),
-    //apollo는 임시저장이 있음 inmemorycache 내컴퓨터에 저장
+    link: ApolloLink.from([errorLink, uploadLink as any]),
     cache: new InMemoryCache(),
   });
 
   return (
     <>
-      {/* <Head> 모든페이지에서 카카오맵을 다운받아서 비효율적임.
-        <script
-          type="text/javascript"
-          src="//dapi.kakao.com/v2/maps/sdk.js?appkey=24fb8341979c5189c9b0cafe2eb7e586"
-        ></script>
-      </Head> */}
       <GlobalContext.Provider value={myValue}>
         <ApolloProvider client={client}>
           <Global styles={globalStyles} />
