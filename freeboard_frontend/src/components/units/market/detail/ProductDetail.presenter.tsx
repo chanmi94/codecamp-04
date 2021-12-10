@@ -57,6 +57,10 @@ const ProductDetailUI = (props) => {
         <Label>판매가격</Label>
         <Price>{props.data?.fetchUseditem.price}</Price>
       </InputWrapper>
+      <InputWrapper>
+        <Label>거래위치</Label>
+        <div id="map" style={{ width: "500px", height: "400px" }}></div>
+      </InputWrapper>
       <ImageWrapper>
         <Label>사진첨부</Label>
         {props.data?.fetchUseditem.images

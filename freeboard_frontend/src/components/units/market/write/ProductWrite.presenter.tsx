@@ -69,6 +69,10 @@ export default function ProductWriteUI(props) {
             defaultValue={Number(props.data?.fetchUseditem?.price)}
           />
         </InputWrapper>
+        <InputWrapper>
+          <Label>거래위치</Label>
+          <div id="map" style={{ width: "500px", height: "400px" }}></div>
+        </InputWrapper>
         <ImageWrapper>
           <Label>사진첨부</Label>
           {props.fileUrls.map((el, index) => (
