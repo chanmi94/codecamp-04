@@ -19,7 +19,6 @@ export const TableBottom = styled.div`
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
-
   height: 100px;
   line-height: 52px;
   border-bottom: 1px solid gray;
@@ -92,7 +91,6 @@ export const Image = styled.img`
 
 export const CardWrapper = styled(Card)`
   display: flex;
-
   width: 240px;
   height: 400px;
   margin: 30px auto;

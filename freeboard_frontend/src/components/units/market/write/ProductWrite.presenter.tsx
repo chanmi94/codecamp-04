@@ -14,10 +14,19 @@ import {
   Error,
   ImageWrapper,
 } from "./ProductWrite.styles";
+import { Modal, Radio, Upload } from "antd";
+import { useEffect, useState } from "react";
+import DaumPostcode from "react-daum-postcode";
 import { v4 as uuidv4 } from "uuid";
 import Dompurify from "dompurify";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import dynamic from "next/dynamic";
+import Head from "next/head";
+import Address from "../../../commons/address/address.container";
+
+declare const window: typeof globalThis & {
+  kakao: any;
+};
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 export default function ProductWriteUI(props) {
@@ -70,8 +79,8 @@ export default function ProductWriteUI(props) {
           />
         </InputWrapper>
         <InputWrapper>
-          <Label>거래위치</Label>
-          <div id="map" style={{ width: "500px", height: "400px" }}></div>
+          {/* <Label>거래위치</Label>
+          <div id="map" style={{ width: "500px", height: "400px" }}></div> */}
         </InputWrapper>
         <ImageWrapper>
           <Label>사진첨부</Label>

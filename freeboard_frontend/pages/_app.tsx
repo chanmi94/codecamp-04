@@ -1,20 +1,23 @@
-import { Global } from "@emotion/react";
+//emotion으로 글로벌 스타일주기.....
 import {
   ApolloClient,
   ApolloProvider,
   InMemoryCache,
   ApolloLink,
 } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
+import { Global } from "@emotion/react";
+import { globalStyles } from "../src/commons/styles/globalStyles";
 import "antd/dist/antd.css";
+import { AppProps } from "next/dist/shared/lib/router/router";
 import Layout from "../src/components/commons/layout";
 import { createUploadLink } from "apollo-upload-client";
-import { AppProps } from "next/dist/shared/lib/router/router";
-import { globalStyles } from "../src/commons/styles/globalStyles";
-// import "bootstrap/dist/css/bootstrap.min.css";
-
+// import Head from "next/head";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useEffect, useState } from "react";
+import { getAccesToken } from "../src/components/commons/libraries/getAccessToken";
+
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -30,8 +33,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);
+
 //apollo docs home에 가면 여러개있음..
 //react docs도 있음..
+// eslint-disable-next-line react/prop-types
+
 export const GlobalContext = createContext(null); //로그인관련
 function MyApp({ Component, pageProps }: AppProps) {
   const [myAccesToken, setMyAccesToken] = useState(""); //로그인관련
@@ -44,38 +50,61 @@ function MyApp({ Component, pageProps }: AppProps) {
     setMyUserInfo: setMyUserInfo,
   };
 
+  //12/1
   if (typeof window !== "undefined") {
     //브라우져라면 !== 쓰기
   }
   if (process.browser) {
   }
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken") || "";
-    if (accessToken) setMyAccesToken(accessToken);
+    if (localStorage.getItem("refreshToken")) getAccesToken(setMyAccesToken);
   }, []);
 
   const uploadLink = createUploadLink({
-    uri: "http://backend04.codebootcamp.co.kr/graphql",
+    uri: "https://backend04.codebootcamp.co.kr/graphql", //1. 12/10 로그인 관련 https로 변경!
     headers: {
       authorization: `Bearer ${myAccesToken}`, //로그인관련
     },
+    credentials: "include",
+  });
+
+  const errorLink = onError(({ graphQLErrors, operation, forward }) => {
+    if (graphQLErrors) {
+      //1.토큰만료 에러캐치
+      for (const err of graphQLErrors) {
+        //2.refreshToken으로 accessToken 재발급 받기 => restoreAccessToken
+        if (err.extensions?.code === "UNAUTHENTICATED") {
+          const newAccessToken = getAccesToken(setMyAccesToken);
+
+          //3. 기존에 실패한 요청 다시 재요청하기
+          operation.setContext({
+            headers: {
+              ...operation.getContext().headers,
+              authorization: `Bearer ${getAccesToken(setMyAccesToken)}`,
+            },
+          });
+          return forward(operation);
+        }
+      }
+    }
   });
 
   const client = new ApolloClient({
-    link: ApolloLink.from([uploadLink as any]),
-    //apollo는 임시저장이 있음 inmemorycache 내컴퓨터에 저장
+    link: ApolloLink.from([errorLink, uploadLink as any]),
     cache: new InMemoryCache(),
   });
 
   return (
-    <GlobalContext.Provider value={myValue}>
-      <ApolloProvider client={client}>
-        <Global styles={globalStyles} />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ApolloProvider>
-    </GlobalContext.Provider>
+    <>
+      <GlobalContext.Provider value={myValue}>
+        <ApolloProvider client={client}>
+          <Global styles={globalStyles} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ApolloProvider>
+      </GlobalContext.Provider>
+    </>
   );
 }
 
