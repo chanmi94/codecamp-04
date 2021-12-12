@@ -25,6 +25,7 @@ import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import { IUseditem } from "../../../../commons/types/generated/types";
 
 import Dompurify from "dompurify";
+import KakaoMap from "../../../commons/kakaomap/map.container";
 const ProductDetailUI = (props) => {
   return (
     <Wrapper>
@@ -59,7 +60,8 @@ const ProductDetailUI = (props) => {
       </InputWrapper>
       <InputWrapper>
         <Label>거래위치</Label>
-        <div id="map" style={{ width: "500px", height: "400px" }}></div>
+        <KakaoMap />
+        {/* <div id="map" style={{ width: "500px", height: "400px" }}></div> */}
       </InputWrapper>
       <ImageWrapper>
         <Label>사진첨부</Label>

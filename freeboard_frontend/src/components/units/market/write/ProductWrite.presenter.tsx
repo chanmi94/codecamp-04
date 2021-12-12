@@ -21,8 +21,9 @@ import { v4 as uuidv4 } from "uuid";
 import Dompurify from "dompurify";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import dynamic from "next/dynamic";
-import Head from "next/head";
-import Address from "../../../commons/address/address.container";
+
+import SearchAddr from "../../../commons/address/SearchAddr.container";
+import KakaoMap from "../../../commons/kakaomap/map.container";
 
 declare const window: typeof globalThis & {
   kakao: any;
@@ -79,6 +80,10 @@ export default function ProductWriteUI(props) {
           />
         </InputWrapper>
         <InputWrapper>
+          <KakaoMap />
+          <span>Address1</span>
+          <span>Address2</span>
+          {/* <SearchAddr setUseditemAddress={props.setUseditemAddress} /> */}
           {/* <Label>거래위치</Label>
           <div id="map" style={{ width: "500px", height: "400px" }}></div> */}
         </InputWrapper>
