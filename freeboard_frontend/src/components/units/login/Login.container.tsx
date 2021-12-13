@@ -34,10 +34,10 @@ export default function LoginPage(props) {
         password: myPassword,
       },
     });
-    localStorage.setItem(
-      "accessToken",
-      result.data?.loginUserExample.accessToken || ""
-    );
+    // localStorage.setItem(
+    //   "accessToken",
+    //   result.data?.loginUserExample.accessToken || ""
+    // );
     localStorage.setItem("refreshToken", "true");
     setMyAccesToken?.(result.data?.loginUserExample.accessToken || "");
     router.push("/boards");

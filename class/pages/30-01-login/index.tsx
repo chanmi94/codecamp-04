@@ -10,6 +10,8 @@ const LOGIN_USER = gql`
     }
   }
 `;
+
+//app 볼것
 export default function LoginPage() {
   const router = useRouter();
   const { setMyAccesToken } = useContext(GlobalContext);
