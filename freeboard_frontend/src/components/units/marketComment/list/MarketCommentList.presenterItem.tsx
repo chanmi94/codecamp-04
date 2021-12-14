@@ -5,12 +5,13 @@ import { Modal } from "antd";
 import {
   IMutation,
   IMutationDeleteBoardCommentArgs,
+  IMutationDeleteUseditemQuestionArgs,
 } from "../../../../commons/types/generated/types";
-import BoardCommentWrite from "../write/BoardCommentWrite.container";
+import MarketCommentWrite from "../write/MarketCommentWrite.container";
 import {
-  DELETE_BOARD_COMMENT,
-  FETCH_BOARD_COMMENTS,
-} from "./BoardCommentList.queries";
+  FETCH_USED_ITEM_QUESTIONS,
+  DELETE_USED_ITEM_QUESTIONS,
+} from "./MarketCommentList.queries";
 import {
   Avatar,
   Contents,
@@ -25,21 +26,19 @@ import {
   UpdateIcon,
   Writer,
   PasswordInput,
-} from "./BoardCommentList.styles";
-import { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
+} from "./MarketCommentList.styles";
+// import { IBoardCommentListUIItemProps } from "./BoardCommentList.types";
 
-export default function BoardCommentListUIItem(
-  props: IBoardCommentListUIItemProps
-) {
+export default function MarketCommentListUIItem(props) {
   const router = useRouter();
   const [isEdit, setIsEdit] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [myPassword, setMyPassword] = useState("");
 
-  const [deleteBoardComment] = useMutation<
-    Pick<IMutation, "deleteBoardComment">,
-    IMutationDeleteBoardCommentArgs
-  >(DELETE_BOARD_COMMENT);
+  const [deleteUseditemQuestion] = useMutation<
+    Pick<IMutation, "deleteUseditemQuestion">,
+    IMutationDeleteUseditemQuestionArgs
+  >(DELETE_USED_ITEM_QUESTIONS);
 
   function onClickUpdate() {
     setIsEdit(true);
@@ -47,39 +46,45 @@ export default function BoardCommentListUIItem(
 
   async function onClickDelete() {
     try {
-      await deleteBoardComment({
+      await deleteUseditemQuestion({
         variables: {
-          password: myPassword,
-          boardCommentId: props.el?._id,
+          useditemQuestionId: props.el?._id,
         },
         refetchQueries: [
           {
-            query: FETCH_BOARD_COMMENTS,
-            variables: { boardId: router.query.boardId },
+            query: FETCH_USED_ITEM_QUESTIONS,
+            variables: { useditemQuestionId: router.query.useditemQuestionId },
           },
         ],
       });
+      alert("게시물이 삭제되었습니다.");
     } catch (error) {
       alert(error.message);
     }
   }
+  //   try {
+  //     await deleteUseditemQuestion({
+  //       variables: {
+  //         useditemQuestionId: props.el?._id,
+  //       },
+  //       refetchQueries: [
+  //         {
+  //           query: FETCH_USED_ITEM_QUESTIONS,
+  //           variables: { useditemQuestionId: router.query.useditemQuestionId },
+  //         },
+  //       ],
+  //     });
+  //   } catch (error) {
+  //     alert(error.message);
+  //   }
+  // }
 
-  function onClickOpenDeleteModal() {
-    setIsOpenDeleteModal(true);
-  }
-
-  function onChangeDeletePassword(event: ChangeEvent<HTMLInputElement>) {
-    setMyPassword(event.target.value);
-  }
+  // function onClickOpenDeleteModal() {
+  //   setIsOpenDeleteModal(true);
+  // }
 
   return (
     <>
-      {isOpenDeleteModal && (
-        <Modal visible={true} onOk={onClickDelete}>
-          <div>비밀번호 입력: </div>
-          <PasswordInput type="password" onChange={onChangeDeletePassword} />
-        </Modal>
-      )}
       {!isEdit && (
         <ItemWrapper>
           <FlexWrapper>
@@ -91,7 +96,7 @@ export default function BoardCommentListUIItem(
               </WriterWrapper>
               <Contents>{props.el?.contents}</Contents>
             </MainWrapper>
-            <OptionWrapper>
+            {/* <OptionWrapper>
               <UpdateIcon
                 src="/images/boardComment/list/option_update_icon.png/"
                 onClick={onClickUpdate}
@@ -100,13 +105,14 @@ export default function BoardCommentListUIItem(
                 src="/images/boardComment/list/option_delete_icon.png/"
                 onClick={onClickOpenDeleteModal}
               />
-            </OptionWrapper>
+            </OptionWrapper> */}
+            <button onClick={onClickDelete}>삭제하기</button>
           </FlexWrapper>
           <DateString>{props.el?.createdAt}</DateString>
         </ItemWrapper>
       )}
       {isEdit && (
-        <BoardCommentWrite isEdit={true} setIsEdit={setIsEdit} el={props.el} />
+        <MarketCommentWrite isEdit={true} setIsEdit={setIsEdit} el={props.el} />
       )}
     </>
   );

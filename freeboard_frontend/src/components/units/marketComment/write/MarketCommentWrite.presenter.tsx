@@ -9,13 +9,12 @@ import {
   PencilIcon,
   Star,
   Wrapper,
-} from "./BoardCommentWrite.styles";
-import { IBoardCommentWriteUIProps } from "./BoardCommentWrite.types";
+} from "./MarketCommentWrite.styles";
 
-export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
+export default function MarketCommentWriteUI(props) {
   return (
     <Wrapper>
-      {!props.isEdit && (
+      {/* {!props.isEdit && (
         <>
           <PencilIcon src="/images/boardComment/write/pencil.png" />
           <span>댓글</span>
@@ -26,7 +25,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
           placeholder="작성자"
           readOnly={Boolean(props.el?.writer)}
           defaultValue={props.el?.writer || ""}
-          onChange={props.onChangeMyWriter}
+          onChange={props.onChangeMyUser}
         />
         <Input
           type="password"
@@ -34,7 +33,7 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
           onChange={props.onChangeMyPassword}
         />
         <Star onChange={props.onChangeStar} />
-      </InputWrapper>
+      </InputWrapper> */}
       <ContentsWrapper>
         <Contents
           maxLength={100}
@@ -44,11 +43,12 @@ export default function BoardCommentWriteUI(props: IBoardCommentWriteUIProps) {
         />
         <BottomWrapper>
           <ContentsLength>{props.myContents.length}/100</ContentsLength>
-          <Button
+          <Button onClick={props.onClickWrite}>등록하기</Button>
+          {/* <Button
             onClick={props.isEdit ? props.onClickUpdate : props.onClickWrite}
           >
             {props.isEdit ? "수정하기" : "등록하기"}
-          </Button>
+          </Button> */}
         </BottomWrapper>
       </ContentsWrapper>
     </Wrapper>
