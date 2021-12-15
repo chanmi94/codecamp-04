@@ -44,13 +44,11 @@ const ProductDetailUI = (props) => {
         {process.browser ? (
           <Contents
             dangerouslySetInnerHTML={{
-              __html: Dompurify.sanitize(
-                String(props.data?.fetchUseditem.contents)
-              ),
+              __html: String(props.data?.fetchUseditem.contents),
             }}
           />
         ) : (
-          <Contents />
+          <div />
         )}
         {/* <Contents>{props.data?.fetchUseditem.contents}</Contents> */}
       </InputWrapper>

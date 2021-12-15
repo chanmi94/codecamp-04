@@ -79,3 +79,30 @@ export const Image = styled.img`
   margin-bottom: 30px;
   border: 0.5px solid #c9c6c6;
 `;
+export const SearchWrapper = styled.div`
+  display: flex;
+`;
+export const SearchBox = styled.input`
+  /* width: 282px; */
+  /* width: 1200px;
+  display: flex; */
+  width: 564px;
+  height: 52px;
+  background: #f2f2f2;
+  border: none;
+  /* padding-left: 20px;
+  margin-right: 20px; */
+  margin: 30px auto;
+`;
+
+export const HeaderWrapper = styled.div`
+  width: 1200px;
+  /* display: flex; */
+  margin: 30px auto;
+`;
+
+// export const SearchButton = styled.div`
+//   width: 1200px;
+//   display: flex;
+//   margin: 30px auto;
+// `;

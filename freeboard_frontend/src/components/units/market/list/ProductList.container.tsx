@@ -14,12 +14,13 @@ import { useRouter } from "next/router";
 
 export default function ProductList() {
   const router = useRouter();
-  const [keyword, setKeyword] = useState("");
 
+  const [myKeyword, setMyKeyword] = useState("");
+  const [mySearch, setMySearch] = useState("");
   //   const { data: dataITemsCount, refetch: refetchItemsCount } = useQuery<
 
   // (FETCH_USED_ITEMS_SEARCH);
-  const { data, fetchMore } = useQuery<
+  const { data, fetchMore, refetch } = useQuery<
     Pick<IQuery, "fetchUseditems">,
     IQueryFetchUseditemsArgs
   >(FETCH_USED_ITEMS, { variables: { page: 0 } });
@@ -32,25 +33,22 @@ export default function ProductList() {
     router.push(`/market/${event.currentTarget.id}`);
   }
 
-  const onLoadMore = () => {
+  function onLoadMore() {
     if (!data) return;
-
     fetchMore({
-      variables: { page: Math.ceil(data?.fetchUseditems.length / 10) + 1 },
+      variables: {
+        page: Math.ceil(data?.fetchUseditems.length / 10) + 1,
+      },
       updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult?.fetchUseditems)
-          return {
-            fetchUseditems: [...prev.fetchUseditems],
-          };
         return {
           fetchUseditems: [
             ...prev.fetchUseditems,
-            ...fetchMoreResult?.fetchUseditems,
+            ...fetchMoreResult.fetchUseditems,
           ],
         };
       },
     });
-  };
+  }
 
   const onclickBasket = (el: IUseditem) => () => {
     console.log(el);
@@ -74,6 +72,14 @@ export default function ProductList() {
 
     localStorage.setItem("basket", JSON.stringify(baskets));
   };
+  function onChangeSearch(event) {
+    setMySearch(event.target.value);
+  }
+
+  function onClickSearch() {
+    refetch({ search: myKeyword });
+    setMyKeyword(mySearch);
+  }
 
   // function onChangeKeyword(value: string) {
   //   setKeyword(value);
@@ -87,6 +93,8 @@ export default function ProductList() {
       onClickMoveToProductDetail={onClickMoveToProductDetail}
       onLoadMore={onLoadMore}
       onclickBasket={onclickBasket}
+      onChangeSearch={onChangeSearch}
+      onClickSearch={onClickSearch}
     />
   );
 }

@@ -92,7 +92,7 @@ export default function MarketCommentListUIItem(props) {
             <MainWrapper>
               <WriterWrapper>
                 <Writer>{props.el?.writer}</Writer>
-                <Star value={props.el?.rating} disabled />
+                {/* <Star value={props.el?.rating} disabled /> */}
               </WriterWrapper>
               <Contents>{props.el?.contents}</Contents>
             </MainWrapper>
@@ -106,7 +106,7 @@ export default function MarketCommentListUIItem(props) {
                 onClick={onClickOpenDeleteModal}
               />
             </OptionWrapper> */}
-            <button onClick={onClickDelete}>삭제하기</button>
+            <button onClick={onClickDelete}>삭제</button>
           </FlexWrapper>
           <DateString>{props.el?.createdAt}</DateString>
         </ItemWrapper>
