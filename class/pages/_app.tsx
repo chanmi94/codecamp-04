@@ -1,4 +1,5 @@
 //emotion으로 글로벌 스타일주기.....
+import * as Sentry from "@sentry/nextjs";
 import {
   ApolloClient,
   ApolloProvider,
@@ -29,6 +30,10 @@ const firebaseConfig = {
   messagingSenderId: "1026243356333",
   appId: "1:1026243356333:web:b727add9f6871b814c8824",
 };
+
+Sentry.init({
+  dsn: "https://ac103acafd5e4777ba2938b466913727@o1091873.ingest.sentry.io/6109516",
+});
 
 // Initialize Firebase
 export const firebaseApp = initializeApp(firebaseConfig);

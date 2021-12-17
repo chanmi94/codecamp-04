@@ -2,7 +2,7 @@ import { useMutation } from "@apollo/client";
 import { ChangeEvent, useContext, useState } from "react";
 import { useRouter } from "next/router";
 import { GlobalContext } from "../../../../pages/_app";
-import { LOGIN_USER } from "./Login.queries";
+import { LOGIN_USER, LOGOUT_USER } from "./Login.queries";
 
 import LoginPageUI from "./Login.presenter";
 import {
@@ -16,6 +16,7 @@ export default function LoginPage(props) {
 
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
+  const [logoutUser] = useMutation(LOGOUT_USER);
   const [loginUserExample] =
     useMutation<Pick<IMutation, "loginUserExample">>(LOGIN_USER);
 
@@ -34,6 +35,14 @@ export default function LoginPage(props) {
         password: myPassword,
       },
     });
+
+    const onCliCKLogout = async () => {
+      await logoutUser;
+      localStorage.removeItem("isLoggesIn");
+      setMyAccesToken("");
+      alert("로그아웃하였습니다.");
+    };
+
     // localStorage.setItem(
     //   "accessToken",
     //   result.data?.loginUserExample.accessToken || ""
@@ -48,6 +57,7 @@ export default function LoginPage(props) {
       onChangeMyEmail={onChangeMyEmail}
       onChangeMyPassword={onChangeMyPassword}
       onCliCKLogin={onCliCKLogin}
+      // onCliCKLogout={onCliCKLogout}
     />
   );
 }

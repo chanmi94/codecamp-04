@@ -1,11 +1,9 @@
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import ProductWriteUI from "./ProductList.presenter";
-import {
-  FETCH_USED_ITEMS,
-  FETCH_USED_ITEMS_SEARCH,
-} from "./ProductList.queries";
+import { FETCH_USED_ITEMS, TOGGLE_USED_ITEM_PICK } from "./ProductList.queries";
 import { useState } from "react";
 import {
+  IMutation,
   IQuery,
   IQueryFetchUseditemsArgs,
   IUseditem,
@@ -14,7 +12,7 @@ import { useRouter } from "next/router";
 
 export default function ProductList() {
   const router = useRouter();
-
+  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
   const [myKeyword, setMyKeyword] = useState("");
   const [mySearch, setMySearch] = useState("");
   //   const { data: dataITemsCount, refetch: refetchItemsCount } = useQuery<
@@ -81,9 +79,11 @@ export default function ProductList() {
     setMyKeyword(mySearch);
   }
 
-  // function onChangeKeyword(value: string) {
-  //   setKeyword(value);
-  // }
+  async function onClickWishList() {
+    await toggleUseditemPick({
+      variables: { useditemId: String(router.query.myId) },
+    });
+  }
   return (
     <ProductWriteUI
       data={data}
@@ -95,6 +95,7 @@ export default function ProductList() {
       onclickBasket={onclickBasket}
       onChangeSearch={onChangeSearch}
       onClickSearch={onClickSearch}
+      // onClickWishList={onClickWishList}
     />
   );
 }

@@ -55,6 +55,7 @@ export default function BoardListUI(props) {
               <div>가격: {el.price}원</div>
             </Product>
             <Button onClick={props.onclickBasket(el)}>장바구니담기</Button>
+            {/* <Button onClick={props.onClickWishList}>찜하기</Button> */}
           </Card>
         ))}
       </Wrapper>

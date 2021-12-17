@@ -1,4 +1,5 @@
 //emotion으로 글로벌 스타일주기.....
+import * as Sentry from "@sentry/nextjs";
 import {
   ApolloClient,
   ApolloProvider,
@@ -17,6 +18,7 @@ import { createUploadLink } from "apollo-upload-client";
 import { initializeApp } from "firebase/app";
 import { createContext, useEffect, useState } from "react";
 import { getAccesToken } from "../src/components/commons/libraries/getAccessToken";
+import ProductList from "../src/components/units/market/list/ProductList.container";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -37,7 +39,9 @@ export const firebaseApp = initializeApp(firebaseConfig);
 //apollo docs home에 가면 여러개있음..
 //react docs도 있음..
 // eslint-disable-next-line react/prop-types
-
+Sentry.init({
+  dsn: "https://ac103acafd5e4777ba2938b466913727@o1091873.ingest.sentry.io/6109516",
+});
 export const GlobalContext = createContext(null); //로그인관련
 function MyApp({ Component, pageProps }: AppProps) {
   const [myAccesToken, setMyAccesToken] = useState(""); //로그인관련
