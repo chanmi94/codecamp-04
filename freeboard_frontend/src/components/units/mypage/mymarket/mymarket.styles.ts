@@ -18,20 +18,20 @@ export const ProductMenu = styled.div<{ isPickList: boolean }>`
   font-family: myfont;
   font-style: normal;
   font-weight: ${(props) => (props.isPickList === true ? "normal" : 800)};
-  font-size: ${(props) => (props.isPickList === true ? "18px" : "25px")};
+  font-size: ${(props) => (props.isPickList === true ? "25px" : "40px")};
   line-height: 24px;
   margin-right: 25px;
-  color: ${(props) => (props.isPickList === true ? "#4f4f4f" : "#00bfa5")};
+  color: ${(props) => (props.isPickList === true ? "black" : "#4f4f4f")};
   cursor: pointer;
 `;
 
-export const PickMenu = styled.div<{ isPickList: boolean }>`
+export const BuyMenu = styled.div<{ isPickList: boolean }>`
   font-family: myfont;
   font-style: normal;
   font-weight: ${(props) => (props.isPickList === true ? 800 : "normal")};
-  font-size: ${(props) => (props.isPickList === true ? "25px" : "18px")};
+  font-size: ${(props) => (props.isPickList === true ? "40px" : "25px")};
   line-height: 24px;
-  color: ${(props) => (props.isPickList === true ? "#00bfa5" : "#4f4f4f")};
+  color: ${(props) => (props.isPickList === true ? "#4f4f4f" : "black")};
   cursor: pointer;
 `;
 
@@ -57,7 +57,7 @@ export const RowName = styled.div`
 `;
 
 export const ColumnName = styled.div`
-  width: 10%;
+  width: 15%;
 `;
 
 export const Row = styled.div`
@@ -75,7 +75,7 @@ export const Row = styled.div`
   color: #4f4f4f;
 `;
 export const Column = styled.div`
-  width: 10%;
+  width: 15%;
 `;
 
 export const ColumnSoldOut = styled.div`
@@ -93,7 +93,7 @@ export const ColumnTitle = styled.div`
   width: 50%;
 `;
 
-export const PickColumnTitle = styled.div`
+export const BuyColumnTitle = styled.div`
   width: 40%;
 `;
 export const SearchWrapper = styled.div`
@@ -110,4 +110,11 @@ export const SearchInput = styled.input`
 export const WrapperBody = styled.div`
   display: flex;
   flex-direction: column;
+`;
+export const WishList = styled.div`
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: blueviolet;
 `;

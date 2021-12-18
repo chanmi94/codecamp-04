@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.div`
-  font-family: Noto Sans CJK KR;
+  font-family: sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
@@ -25,36 +25,27 @@ export const InputWrapper = styled.div`
   margin-top: 10px;
 `;
 export const Label = styled.div`
-  font-family: Noto Sans CJK KR;
+  /* font-family: sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
-  line-height: 24px;
+  line-height: 24px; */
 `;
 
 export const Input = styled.input`
-  width: 660px;
+  width: 400px;
   height: 52px;
   background: #e0e0e0;
-  border: none;
+  border: 1px;
   margin-right: 30px;
   padding-left: 15px;
 `;
 
-export const Button2 = styled.button`
-  width: 660px;
-  height: 52px;
-  background: #e0e0e0;
-  border: none;
-  margin-right: 30px;
-  padding-left: 15px;
-`;
-
-export const ButtonWrapper = styled.div`
-  /* margin-top: 40px; */
-  display: flex;
-  justify-content: flex-end;
-`;
+// export const ButtonWrapper = styled.div`
+//   /* margin-top: 40px; */
+//   display: flex;
+//   justify-content: flex-end;
+// `;
 
 export const NameWrapper = styled.div`
   /* margin-top: 80px; */

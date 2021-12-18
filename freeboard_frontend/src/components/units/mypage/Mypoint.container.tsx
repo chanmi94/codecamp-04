@@ -25,7 +25,7 @@ export default function Mypoint() {
         name: "포인트충전",
         amount: 100,
         buyer_email: "cksal4897@gmail.com",
-        buyer_name: "홍길동",
+        buyer_name: "밍마켓",
         buyer_tel: "010-0000-0000",
         buyer_addr: "서울특별시 강남구 신사동",
         buyer_postcode: "01181",

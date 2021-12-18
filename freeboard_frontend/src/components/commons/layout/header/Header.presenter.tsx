@@ -5,7 +5,6 @@ interface IProps {
   onClickLogo: () => void;
   onClickMoveToLogin: () => void;
   onClickToLogout: () => void;
-  onClickMoveToSignUp: () => void;
 }
 
 export const FETCH_USER_LOGGED_IN = gql`
@@ -34,7 +33,7 @@ export default function HeaderUI(props: IProps) {
         ) : (
           <div>
             <InnerButton onClick={props.onClickMoveToLogin}>로그인</InnerButton>
-            <InnerButton onClick={props.onClickMoveToSignup}>
+            <InnerButton onClick={props.onClickMoveToSignUp}>
               회원가입
             </InnerButton>
           </div>

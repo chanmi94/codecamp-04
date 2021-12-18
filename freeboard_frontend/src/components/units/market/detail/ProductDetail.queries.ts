@@ -25,17 +25,11 @@ export const DELETE_USEDITEM = gql`
   }
 `;
 
-// export const LIKE_BOARD = gql`
-//   mutation likeBoard($boardId: ID!) {
-//     likeBoard(boardId: $boardId)
-//   }
-// `;
-
-// export const DISLIKE_BOARD = gql`
-//   mutation dislikeBoard($boardId: ID!) {
-//     dislikeBoard(boardId: $boardId)
-//   }
-// `;
+export const TOGGLE_USED_ITEM_PICK = gql`
+  mutation toggleUseditemPick($useditemId: ID!) {
+    toggleUseditemPick(useditemId: $useditemId)
+  }
+`;
 
 export const CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING = gql`
   mutation createPointTransactionOfBuyingAndSelling($useritemId: ID!) {

@@ -29,6 +29,8 @@ import KakaoMap from "../../../commons/kakaomap/map.container";
 const ProductDetailUI = (props) => {
   return (
     <Wrapper>
+      <Button onClick={props.onClickMoveBuy}>구매하기</Button>
+      <Button onClick={props.onClickWishList}>찜하기</Button>
       <WriterWrapper>
         <InputWrapper>
           <Label>상품명</Label>
@@ -78,6 +80,7 @@ const ProductDetailUI = (props) => {
       </OptionWrapper>
       <BottomWrapper>
         <Button onClick={props.onClickMoveBuy}>구매하기</Button>
+        <Button onClick={props.onClickWishList}>찜하기</Button>
         <Button onClick={props.onClickMoveToList}>목록으로</Button>
         <Button onClick={props.onClickMoveToUpdate}>수정하기</Button>
         <Button onClick={props.onClickDelete}>삭제하기</Button>

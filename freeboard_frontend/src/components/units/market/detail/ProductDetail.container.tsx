@@ -5,6 +5,7 @@ import {
   FETCH_USEDITEM,
   DELETE_USEDITEM,
   CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING,
+  TOGGLE_USED_ITEM_PICK,
 } from "./ProductDetail.queries";
 import {
   IMutation,
@@ -14,6 +15,7 @@ import {
 
 const ProductDetail = () => {
   const router = useRouter();
+  const [toggleUseditemPick] = useMutation(TOGGLE_USED_ITEM_PICK);
   const [createPointTransactionOfBuyingAndSelling] = useMutation(
     CREATE_POINT_TRANSACTION_OF_BUYING_AND_SELLING
   );
@@ -61,7 +63,19 @@ const ProductDetail = () => {
     }
   }
 
-  console.log(data);
+  async function onClickWishList() {
+    try {
+      const result = await toggleUseditemPick({
+        variables: { useditemId: String(router.query.useditemId) },
+      });
+      alert("찜완료");
+      console.log(result);
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  // console.log(data);
   return (
     <ProductDetailUI
       data={data}
@@ -69,6 +83,7 @@ const ProductDetail = () => {
       onClickMoveToList={onClickMoveToList}
       onClickMoveToUpdate={onClickMoveToUpdate}
       onClickMoveBuy={onClickMoveBuy}
+      onClickWishList={onClickWishList}
     />
   );
 };

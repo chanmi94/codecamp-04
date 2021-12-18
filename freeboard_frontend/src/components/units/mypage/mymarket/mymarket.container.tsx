@@ -8,6 +8,7 @@ import {
 
 export default function MyMarket() {
   const [isPickList, setIsPickList] = useState(false);
+
   const { data } = useQuery(FETCH_USEDITEM_ISOLD, {
     variables: { page: 1 },
   });

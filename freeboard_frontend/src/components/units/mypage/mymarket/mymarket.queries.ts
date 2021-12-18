@@ -30,3 +30,19 @@ export const FETCH_USEDITEM_IPICKED = gql`
     }
   }
 `;
+
+export const FETCH_USED_ITEMS_I_BOUGHT = gql`
+  query fetchUseditemsIBought {
+    fetchUseditemsIBought {
+      _id
+      name
+      price
+      images
+      soldAt
+      createdAt
+      seller {
+        name
+      }
+    }
+  }
+`;

@@ -1,3 +1,4 @@
+import { Button } from "antd";
 import Head from "next/head"; //head를 사용하기위하여 해줘야함
 import { Wrapper } from "./Mypoint.styles";
 
@@ -16,9 +17,9 @@ export default function MypointUI(props) {
       </Head>
       <Wrapper>
         <div>
-          나의 포인트 : {props.data?.fetchUserLoggedIn.userPoint.amount}
+          나의 포인트 : {props.data?.fetchUserLoggedIn.userPoint.amount}원{" "}
+          <Button onClick={props.onClickPayment}>충전하기</Button>
         </div>
-        <button onClick={props.onClickPayment}>충전하기</button>
       </Wrapper>
     </>
   );
