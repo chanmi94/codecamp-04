@@ -1,9 +1,14 @@
 import { useRouter } from "next/router";
-import HeaderUI from "./Header.presenter";
-import { LOGOUT_USER } from "../../../units/login/Login.queries";
-import { useMutation } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 import { useContext } from "react";
 import { GlobalContext } from "../../../../../pages/_app";
+import HeaderUI from "./Header.presenter";
+
+const LOGOUT_USER = gql`
+  mutation logoutUser {
+    logoutUser
+  }
+`;
 
 export default function Header() {
   const router = useRouter();
