@@ -24,7 +24,7 @@ export default function HeaderUI(props: IProps) {
   return (
     <Wrapper>
       <InnerWrapper>
-        <InnerLogo onClick={props.onClickLogo}>🎁 Ming</InnerLogo>
+        <InnerLogo onClick={props.onClickLogo}>🎁 MING MARKET</InnerLogo>
         {data?.fetchUserLoggedIn._id ? (
           <div>
             <span> {data?.fetchUserLoggedIn.name}님 환영합니다!</span>
