@@ -1,22 +1,21 @@
 import Head from "next/head";
-import { request, gql } from "graphql-request";
+import { gql, request } from "graphql-request";
 
-export default function MarketsPage(props) {
+export default function BoardsPage(props) {
   return (
     <>
       <Head>
         <meta property="og:title" content={props.fetchUseditem.name} />
-        {/* <meta property="og:url" content="http://mingmarket.shop" /> */}
-
-        <meta property="og:description" content={props.fetchUseditem.remarks} />
+        {/* <meta property="og:url" content="http://nanana.shop" /> */}
         <meta property="og:image" content={props.fetchUseditem.images[0]} />
+        <meta property="og:description" content={props.fetchUseditem.remarks} />
       </Head>
-      <div>안녕하세요!! 상품입니다!!</div>;
+      <div>안녕하세요 게시판입니당</div>
     </>
   );
 }
 
-const FETCH_USEDTIEM = gql`
+const FETCH_USEDITEM = gql`
   query fetchUseditem($useditemId: ID!) {
     fetchUseditem(useditemId: $useditemId) {
       name
@@ -25,11 +24,11 @@ const FETCH_USEDTIEM = gql`
     }
   }
 `;
-//사이드렌더링
+
 export const getServerSideProps = async (context) => {
   const result = await request(
-    "https://backend04.codecamp.co.kr/graphql",
-    FETCH_USEDTIEM,
+    "http://backend04.codebootcamp.co.kr/graphql",
+    FETCH_USEDITEM,
     { useditemId: context.query.useditemId }
   );
 
