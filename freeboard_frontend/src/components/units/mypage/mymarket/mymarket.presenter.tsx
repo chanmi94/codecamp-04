@@ -47,7 +47,7 @@ export default function MyMarketUI(props: any) {
               <ColumnName>판매가격</ColumnName>
               <ColumnName>날짜</ColumnName>
             </RowName>
-            {props.data?.fetchUseditemsISold.map((el, index) => (
+            {props.data?.fetchUseditemsISold.map((el) => (
               <Row key={el._id}>
                 <ColumnTitle>{el.name}</ColumnTitle>
                 <ColumnSoldOut>{el?.buyer?.name && "판매완료"}</ColumnSoldOut>
@@ -64,10 +64,10 @@ export default function MyMarketUI(props: any) {
               <ColumnName>판매자</ColumnName>
               <ColumnName>구매일자</ColumnName>
             </RowName>
-            {buyData?.fetchUseditemsIBought?.map((el, index) => (
+            {buyData?.fetchUseditemsIBought?.map((el) => (
               <Row key={el._id}>
                 <BuyColumnTitle>{el.name}</BuyColumnTitle>
-                <Column>￦ {el.price.toLocaleString("ko-KR")}원</Column>
+                <Column> {el.price.toLocaleString("ko-KR")}원</Column>
                 <Column>{el.seller.name}</Column>
                 <Column>{el.soldAt.slice(0, 10)}</Column>
               </Row>

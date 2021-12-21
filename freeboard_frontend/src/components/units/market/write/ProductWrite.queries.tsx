@@ -34,6 +34,14 @@ export const UPDATE_USED_ITEM = gql`
       remarks
       contents
       price
+      useditemAddress {
+        _id
+        zipcode
+        address
+        addressDetail
+        lat
+        lng
+      }
     }
   }
 `;

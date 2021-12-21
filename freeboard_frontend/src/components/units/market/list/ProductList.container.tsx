@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import ProductWriteUI from "./ProductList.presenter";
 import { FETCH_USED_ITEMS } from "./ProductList.queries";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import {
   IMutation,
   IQuery,
@@ -70,7 +70,7 @@ export default function ProductList() {
 
     localStorage.setItem("basket", JSON.stringify(baskets));
   };
-  function onChangeSearch(event) {
+  function onChangeSearch(event: ChangeEvent<HTMLInputElement>) {
     setMySearch(event.target.value);
   }
 
@@ -79,17 +79,9 @@ export default function ProductList() {
     setMyKeyword(mySearch);
   }
 
-  async function onClickWishList() {
-    await toggleUseditemPick({
-      variables: { useditemId: String(router.query.myId) },
-    });
-  }
-
   return (
     <ProductWriteUI
       data={data}
-      // keyword={keyword}
-      // onChangeKeyword={onChangeKeyword}
       onClickMoveToBProductNew={onClickMoveToBProductNew}
       onClickMoveToProductDetail={onClickMoveToProductDetail}
       onLoadMore={onLoadMore}

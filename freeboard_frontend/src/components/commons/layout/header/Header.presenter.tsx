@@ -5,6 +5,7 @@ interface IProps {
   onClickLogo: () => void;
   onClickMoveToLogin: () => void;
   onClickToLogout: () => void;
+  onClickMoveToSignUp: () => void;
 }
 
 export const FETCH_USER_LOGGED_IN = gql`

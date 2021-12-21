@@ -59,7 +59,7 @@ const ProductDetail = () => {
       alert("구매완료");
       console.log(result);
     } catch (error) {
-      alert(error.message);
+      error instanceof Error && error.message;
     }
   }
 
@@ -71,7 +71,7 @@ const ProductDetail = () => {
       alert("찜완료");
       console.log(result);
     } catch (error) {
-      alert(error.message);
+      error instanceof Error && error.message;
     }
   }
 

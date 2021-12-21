@@ -17,8 +17,7 @@ export default function LoginPage(props) {
   const [myEmail, setMyEmail] = useState("");
   const [myPassword, setMyPassword] = useState("");
   const [logoutUser] = useMutation(LOGOUT_USER);
-  const [loginUserExample] =
-    useMutation<Pick<IMutation, "loginUserExample">>(LOGIN_USER);
+  const [loginUser] = useMutation<Pick<IMutation, "loginUser">>(LOGIN_USER);
 
   function onChangeMyEmail(event: ChangeEvent<HTMLInputElement>) {
     setMyEmail(event.target.value);
@@ -29,7 +28,7 @@ export default function LoginPage(props) {
   }
 
   async function onCliCKLogin() {
-    const result = await loginUserExample({
+    const result = await loginUser({
       variables: {
         email: myEmail,
         password: myPassword,
@@ -45,10 +44,10 @@ export default function LoginPage(props) {
 
     // localStorage.setItem(
     //   "accessToken",
-    //   result.data?.loginUserExample.accessToken || ""
+    //   result.data?.loginUser.accessToken || ""
     // );
     localStorage.setItem("refreshToken", "true");
-    setMyAccesToken?.(result.data?.loginUserExample.accessToken || "");
+    setMyAccesToken?.(result.data?.loginUser.accessToken || "");
     router.push("/boards");
   }
 

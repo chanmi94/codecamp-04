@@ -1,13 +1,13 @@
 import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from "react";
 import { IBoardComment } from "../../../../commons/types/generated/types";
 
-export interface IBoardCommentWriteProps {
+export interface IMarketCommentWriteProps {
   isEdit?: boolean;
   setIsEdit?: Dispatch<SetStateAction<boolean>>;
   el?: IBoardComment;
 }
 
-export interface IBoardCommentWriteUIProps {
+export interface IMarketCommentWriteUIProps {
   onChangeMyWriter: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeMyPassword: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeMyContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;

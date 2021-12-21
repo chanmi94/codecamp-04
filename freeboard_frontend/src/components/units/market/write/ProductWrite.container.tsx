@@ -3,9 +3,9 @@ import ProductWriteUI from "./ProductWrite.presenter";
 import { CREATE_USED_ITEM, UPDATE_USED_ITEM } from "./ProductWrite.queries";
 import { useState, ChangeEvent, useEffect } from "react";
 import { useRouter } from "next/router";
-import { IMyUpdateUseditemInput } from "./ProductWrite.types";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
+import { IProductWriteProps } from "./ProductWrite.types";
 
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 
@@ -13,7 +13,7 @@ declare const window: typeof globalThis & {
   kakao: any;
 };
 
-export default function ProductWrite(props) {
+export default function ProductWrite(props: IProductWriteProps) {
   const router = useRouter();
 
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
@@ -23,6 +23,8 @@ export default function ProductWrite(props) {
   const [myContents, setMyContents] = useState("");
   const [myPrice, setMyPrice] = useState("");
   const [myAddress, setMyAddress] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
   const [isActive, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -105,7 +107,7 @@ export default function ProductWrite(props) {
     }
   }, [props.data]);
 
-  async function onClickSubmit(event) {
+  async function onClickSubmit() {
     const result = await createUseditem({
       variables: {
         createUseditemInput: {
@@ -114,6 +116,11 @@ export default function ProductWrite(props) {
           contents: myContents,
           price: Number(myPrice),
           images: fileUrls,
+          useditemAddress: {
+            zipcode: zipcode,
+            address: myAddress,
+            addressDetail: addressDetail,
+          },
         },
       },
     });
@@ -128,7 +135,9 @@ export default function ProductWrite(props) {
       price: Number(myPrice),
       images: fileUrls,
       useditemAddress: {
+        zipcode: zipcode,
         address: myAddress,
+        addressDetail: addressDetail,
       },
     };
 
@@ -136,7 +145,6 @@ export default function ProductWrite(props) {
       await updateUseditem({
         variables: {
           useditemId: router.query.useditemId,
-
           updateUseditemInput: myUpdateUseditemInput,
         },
       });
@@ -152,12 +160,15 @@ export default function ProductWrite(props) {
 
   const handleComplete = (data: any) => {
     setMyAddress(data.address);
-    // setMyZonecode(data.zonecode);
     setIsOpen((prev) => !prev);
   };
   const onToggleModal = () => {
     setIsOpen((prev) => !prev);
   };
+
+  function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
+    setAddressDetail(event.target.value);
+  }
 
   return (
     <ProductWriteUI
@@ -176,6 +187,7 @@ export default function ProductWrite(props) {
       onToggleModal={onToggleModal}
       myAddress={myAddress}
       handleComplete={handleComplete}
+      onChangeAddressDetail={onChangeAddressDetail}
     />
   );
 }

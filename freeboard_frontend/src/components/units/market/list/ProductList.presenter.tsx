@@ -14,6 +14,7 @@ import {
 import Searchbars01 from "../../../commons/searchbars/01/Searchbars01.container";
 import { v4 as uuidv4 } from "uuid";
 import InfiniteScroll from "react-infinite-scroller";
+import { IProductListUIProps } from "./ProductList.types";
 export default function BoardListUI(props) {
   return (
     <InfiniteScroll

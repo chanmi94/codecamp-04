@@ -155,7 +155,7 @@ export default function ProductWriteUI(props) {
         </InputWrapper>
         <ImageWrapper>
           <Label>사진첨부</Label>
-          {props.fileUrls.map((el, index) => (
+          {props.fileUrls.map((el: string, index: number) => (
             <Uploads01
               key={uuidv4()}
               index={index}

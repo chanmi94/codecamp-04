@@ -6,6 +6,11 @@ import {
   FETCH_USER_LOGGEDIN,
 } from "./Mypoint.queries";
 
+declare const window: Window &
+  typeof globalThis & {
+    IMP: any;
+  };
+
 export default function Mypoint() {
   const router = useRouter();
   const [createPointTransactionOfLoading] = useMutation(
@@ -31,7 +36,7 @@ export default function Mypoint() {
         buyer_postcode: "01181",
         m_redirect_url: "", //모바일 결제후 리다이렉트될 주소!
       },
-      async (rsp) => {
+      async (rsp: any) => {
         // callback
         if (rsp.success) {
           // 결제 성공 시 로직,
@@ -47,7 +52,7 @@ export default function Mypoint() {
             });
             console.log(result);
           } catch (error) {
-            alert(error.message);
+            if (error instanceof Error) alert(error.message);
           }
         } else {
           // fail

@@ -10,6 +10,7 @@ import {
   Star,
   Wrapper,
 } from "./MarketCommentWrite.styles";
+import { IMarketCommentWriteUIProps } from "./MarketCommentWrite.types";
 
 export default function MarketCommentWriteUI(props) {
   return (

@@ -1,5 +1,9 @@
 import Head from "next/head"; //head를 사용하기위하여 해줘야함
 
+declare const window: Window & typeof globalThis & {
+  IMP : any;
+}
+
 export default function PaymentPage() {
   function onClickPayment() {
     const IMP = window.IMP; // 생략 가능
@@ -18,7 +22,7 @@ export default function PaymentPage() {
         buyer_postcode: "01181",
         m_redirect_url: "", //모바일 결제후 리다이렉트될 주소!
       },
-      (rsp) => {
+      (rsp:any) => {
         // callback
         if (rsp.success) {
           // 결제 성공 시 로직,

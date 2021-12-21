@@ -189,7 +189,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       });
       router.push(`/boards/${router.query.boardId}`);
     } catch (error) {
-      alert(error.message);
+      error instanceof Error && error.message;
     }
   }
 

@@ -22,11 +22,13 @@ import {
 } from "./ProductDetail.styles";
 import { v4 as uuidv4 } from "uuid";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
-import { IUseditem } from "../../../../commons/types/generated/types";
+import { IQuery, IUseditem } from "../../../../commons/types/generated/types";
 
 import Dompurify from "dompurify";
 import KakaoMap from "../../../commons/kakaomap/map.container";
-const ProductDetailUI = (props) => {
+import { IProductDetailUIProps } from "./ProductDetail.types";
+
+const ProductDetailUI = (props: IProductDetailUIProps) => {
   return (
     <Wrapper>
       <Button onClick={props.onClickMoveBuy}>구매하기</Button>
@@ -60,8 +62,18 @@ const ProductDetailUI = (props) => {
       </InputWrapper>
       <InputWrapper>
         <Label>거래위치</Label>
-        <KakaoMap />
-        {/* <div id="map" style={{ width: "500px", height: "400px" }}></div> */}
+        <div id="map" style={{ width: "500px", height: "400px" }}></div>
+
+        <div>
+          {props.data?.fetchUseditem.useditemAddress?.zipcode} <br />
+          {props.data?.fetchUseditem.useditemAddress?.address}
+          {props.data?.fetchUseditem.useditemAddress?.addressDetail}
+        </div>
+
+        {/* <KakaoMap /> */}
+        {/* 
+        {props.data?.fetchUseditem.address}
+        <div id="map" style={{ width: "500px", height: "400px" }}></div> */}
       </InputWrapper>
       <ImageWrapper>
         <Label>사진첨부</Label>
