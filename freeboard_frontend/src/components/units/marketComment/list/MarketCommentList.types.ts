@@ -3,7 +3,7 @@ import {
   IQuery,
 } from "../../../../commons/types/generated/types";
 
-export interface IBoardCommentListUIProps {
+export interface IProductCommentListUIProps {
   data?: Pick<IQuery, "fetchBoardComments">;
 }
 

@@ -13,9 +13,9 @@ export default function MyMarket() {
     variables: { page: 1 },
   });
 
-  const { data: pickData } = useQuery(FETCH_USEDITEM_IPICKED, {
-    variables: { search: "" },
-  });
+  // const { data: pickData } = useQuery(FETCH_USEDITEM_IPICKED, {
+  //   variables: { search: "" },
+  // });
 
   function onClickMyPickList() {
     setIsPickList(true);
@@ -28,7 +28,7 @@ export default function MyMarket() {
   return (
     <MyMarketUI
       data={data}
-      pickData={pickData}
+      // pickData={pickData}
       isPickList={isPickList}
       onClickMyProductList={onClickMyProductList}
       onClickMyPickList={onClickMyPickList}

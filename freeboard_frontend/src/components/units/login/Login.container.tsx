@@ -10,7 +10,7 @@ import {
   IMutationLoginUserArgs,
 } from "../../../commons/types/generated/types";
 
-export default function LoginPage(props) {
+export default function LoginPage() {
   const { setMyAccesToken } = useContext(GlobalContext);
   const router = useRouter();
 
@@ -35,12 +35,12 @@ export default function LoginPage(props) {
       },
     });
 
-    const onCliCKLogout = async () => {
-      await logoutUser;
-      localStorage.removeItem("isLoggesIn");
-      setMyAccesToken("");
-      alert("로그아웃하였습니다.");
-    };
+    // const onCliCKLogout = async () => {
+    //   await logoutUser;
+    //   localStorage.removeItem("isLoggesIn");
+    //   setMyAccesToken("");
+    //   alert("로그아웃하였습니다.");
+    // };
 
     // localStorage.setItem(
     //   "accessToken",

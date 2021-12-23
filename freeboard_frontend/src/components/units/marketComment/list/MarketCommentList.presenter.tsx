@@ -9,7 +9,8 @@ import {
 } from "../../../../commons/types/generated/types";
 import { FETCH_USED_ITEM_QUESTIONS } from "./MarketCommentList.queries";
 import MarketCommentListUIItem from "./MarketCommentList.presenterItem";
-export default function MarketCommentListUI(props) {
+import { IProductCommentListUIProps } from "./MarketCommentList.types";
+export default function MarketCommentListUI(props: IProductCommentListUIProps) {
   const { data, fetchMore } = useQuery<
     Pick<IQuery, "fetchUseditemQuestions">,
     IQueryFetchUseditemQuestionsArgs

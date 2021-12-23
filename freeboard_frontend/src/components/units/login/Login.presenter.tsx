@@ -1,6 +1,7 @@
 import { LoginForm, Form, FormInput } from "./Login.styles";
+import { ILoginPageUI } from "./Login.types";
 
-export default function LoginPageUI(props) {
+export default function LoginPageUI(props: ILoginPageUI) {
   return (
     <>
       <LoginForm>

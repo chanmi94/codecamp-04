@@ -16,7 +16,13 @@ import { createUploadLink } from "apollo-upload-client";
 // import Head from "next/head";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { createContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import { getAccesToken } from "../src/components/commons/libraries/getAccessToken";
 import ProductList from "../src/components/units/market/list/ProductList.container";
 
@@ -42,7 +48,15 @@ export const firebaseApp = initializeApp(firebaseConfig);
 Sentry.init({
   dsn: "https://ac103acafd5e4777ba2938b466913727@o1091873.ingest.sentry.io/6109516",
 });
-export const GlobalContext = createContext(null); //로그인관련
+
+interface IGlobalContext {
+  accessToken?: string;
+  setMyAccesToken?: Dispatch<SetStateAction<string>>;
+  userInfo?: {};
+  setMyUserInfo?: Dispatch<SetStateAction<{}>>;
+}
+
+export const GlobalContext = createContext<IGlobalContext>({}); //로그인관련
 function MyApp({ Component, pageProps }: AppProps) {
   const [myAccesToken, setMyAccesToken] = useState(""); //로그인관련
   const [myUserInfo, setMyUserInfo] = useState({}); //로그인관련

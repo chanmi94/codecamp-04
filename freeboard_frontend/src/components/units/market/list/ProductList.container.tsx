@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import ProductWriteUI from "./ProductList.presenter";
 import { FETCH_USED_ITEMS } from "./ProductList.queries";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState, MouseEvent } from "react";
 import {
   IMutation,
   IQuery,
@@ -9,6 +9,7 @@ import {
   IUseditem,
 } from "../../../../commons/types/generated/types";
 import { useRouter } from "next/router";
+import ProductListUI from "./ProductList.presenter";
 
 export default function ProductList() {
   const router = useRouter();
@@ -27,7 +28,7 @@ export default function ProductList() {
     router.push(`/market/new `);
   }
 
-  function onClickMoveToProductDetail(event) {
+  function onClickMoveToProductDetail(event: MouseEvent<HTMLDivElement>) {
     router.push(`/market/${event.currentTarget.id}`);
   }
 
@@ -41,14 +42,14 @@ export default function ProductList() {
         return {
           fetchUseditems: [
             ...prev.fetchUseditems,
-            ...fetchMoreResult.fetchUseditems,
+            ...(fetchMoreResult?.fetchUseditems || []),
           ],
         };
       },
     });
   }
 
-  const onclickBasket = (el: IUseditem) => () => {
+  const onClickBasket = (el: IUseditem) => () => {
     console.log(el);
 
     //배열로 담아주자
@@ -80,12 +81,12 @@ export default function ProductList() {
   }
 
   return (
-    <ProductWriteUI
+    <ProductListUI
       data={data}
       onClickMoveToBProductNew={onClickMoveToBProductNew}
       onClickMoveToProductDetail={onClickMoveToProductDetail}
       onLoadMore={onLoadMore}
-      onclickBasket={onclickBasket}
+      onClickBasket={onClickBasket}
       onChangeSearch={onChangeSearch}
       onClickSearch={onClickSearch}
     />

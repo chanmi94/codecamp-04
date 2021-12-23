@@ -15,7 +15,7 @@ import Searchbars01 from "../../../commons/searchbars/01/Searchbars01.container"
 import { v4 as uuidv4 } from "uuid";
 import InfiniteScroll from "react-infinite-scroller";
 import { IProductListUIProps } from "./ProductList.types";
-export default function BoardListUI(props) {
+export default function ProductListUI(props: IProductListUIProps) {
   return (
     <InfiniteScroll
       pageStart={0}
@@ -54,7 +54,7 @@ export default function BoardListUI(props) {
                 ))}{" "}
               <div>가격: {el.price}원</div>
             </Product>
-            <Button onClick={props.onclickBasket(el)}>장바구니담기</Button>
+            <Button onClick={props.onClickBasket(el)}>장바구니담기</Button>
           </Card>
         ))}
       </Wrapper>

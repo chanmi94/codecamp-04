@@ -24,12 +24,13 @@ import dynamic from "next/dynamic";
 
 import SearchAddr from "../../../commons/address/SearchAddr.container";
 import KakaoMap from "../../../commons/kakaomap/map.container";
+import { IProductWriteUIProps } from "./ProductWrite.types";
 
 declare const window: typeof globalThis & {
   kakao: any;
 };
 
-export default function ProductWriteUI(props) {
+export default function ProductWriteUI(props: IProductWriteUIProps) {
   useEffect(() => {
     const script = document.createElement("script"); // <script></script>
     script.src =
