@@ -7,18 +7,12 @@ import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import { IProductWriteProps } from "./ProductWrite.types";
 
-const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-
-declare const window: typeof globalThis & {
-  kakao: any;
-};
-
 export default function ProductWrite(props: IProductWriteProps) {
   const router = useRouter();
 
   const [fileUrls, setFileUrls] = useState(["", "", ""]);
-  // const router = useRouter();
   const [myName, setMyName] = useState("");
+  const [propsAddress, setPropsAddress] = useState("");
   const [myRemarks, setMyRemarks] = useState("");
   const [myContents, setMyContents] = useState("");
   const [myPrice, setMyPrice] = useState("");
@@ -118,7 +112,7 @@ export default function ProductWrite(props: IProductWriteProps) {
           images: fileUrls,
           useditemAddress: {
             zipcode: zipcode,
-            address: myAddress,
+            address: propsAddress,
             addressDetail: addressDetail,
           },
         },
@@ -154,22 +148,6 @@ export default function ProductWrite(props: IProductWriteProps) {
     }
   }
 
-  function handleChange(value: string) {
-    console.log(value);
-  }
-
-  const handleComplete = (data: any) => {
-    setMyAddress(data.address);
-    setIsOpen((prev) => !prev);
-  };
-  const onToggleModal = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  function onChangeAddressDetail(event: ChangeEvent<HTMLInputElement>) {
-    setAddressDetail(event.target.value);
-  }
-
   return (
     <ProductWriteUI
       onChangeMyName={onChangeMyName}
@@ -183,11 +161,7 @@ export default function ProductWrite(props: IProductWriteProps) {
       isEdit={props.isEdit}
       isOpen={isOpen}
       onClickUpdate={onClickUpdate}
-      handleChange={handleChange}
-      onToggleModal={onToggleModal}
-      myAddress={myAddress}
-      handleComplete={handleComplete}
-      onChangeAddressDetail={onChangeAddressDetail}
+      setPropsAddress={setPropsAddress}
     />
   );
 }

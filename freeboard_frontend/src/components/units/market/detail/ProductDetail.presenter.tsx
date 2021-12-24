@@ -27,6 +27,7 @@ import { IQuery, IUseditem } from "../../../../commons/types/generated/types";
 import Dompurify from "dompurify";
 import KakaoMap from "../../../commons/kakaomap/map.container";
 import { IProductDetailUIProps } from "./ProductDetail.types";
+import MapLoadPage from "../../../commons/mapload/MapLoad.container";
 
 const ProductDetailUI = (props: IProductDetailUIProps) => {
   return (
@@ -62,18 +63,7 @@ const ProductDetailUI = (props: IProductDetailUIProps) => {
       </InputWrapper>
       <InputWrapper>
         <Label>거래위치</Label>
-        <div id="map" style={{ width: "500px", height: "400px" }}></div>
-
-        <div>
-          {props.data?.fetchUseditem.useditemAddress?.zipcode} <br />
-          {props.data?.fetchUseditem.useditemAddress?.address}
-          {props.data?.fetchUseditem.useditemAddress?.addressDetail}
-        </div>
-
-        {/* <KakaoMap /> */}
-        {/* 
-        {props.data?.fetchUseditem.address}
-        <div id="map" style={{ width: "500px", height: "400px" }}></div> */}
+        <MapLoadPage data={props.data} />
       </InputWrapper>
       <ImageWrapper>
         <Label>사진첨부</Label>
@@ -83,13 +73,6 @@ const ProductDetailUI = (props: IProductDetailUIProps) => {
             <Image key={el} src={`https://storage.googleapis.com/${el}`} />
           ))}
       </ImageWrapper>
-      <OptionWrapper>
-        <Label>메인설정</Label>
-        <RadioButton type="radio" id="youtube" name="radio-button" />
-        <RadioLabel htmlFor="youtube">사진1</RadioLabel>
-        <RadioButton type="radio" id="image" name="radio-button" />
-        <RadioLabel htmlFor="image">사진2</RadioLabel>
-      </OptionWrapper>
       <BottomWrapper>
         <Button onClick={props.onClickMoveBuy}>구매하기</Button>
         <Button onClick={props.onClickWishList}>찜하기</Button>

@@ -4,6 +4,7 @@ import { IQuery } from "../../../../commons/types/generated/types";
 export interface IProductWriteProps {
   isEdit?: boolean;
   data?: any;
+  setPropsAddress:any;
 }
 
 export interface IProductWriteUIProps {
@@ -13,10 +14,10 @@ export interface IProductWriteUIProps {
   // myContentsError: string;
   onChangeMyName: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeMyContents: (event: ChangeEvent<HTMLInputElement>) => void;
-  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  // onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeMyRemarks: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeMyPrice: (event: ChangeEvent<HTMLInputElement>) => void;
-
+  // setPropsAddress: any;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
   onClickAddressSearch?: () => void;
@@ -31,7 +32,9 @@ export interface IProductWriteUIProps {
   myAddress?: string;
   addressDetail?: string;
   fileUrls: string[];
-  handleChange: (value: string) => void;
-  onToggleModal: () => void;
-  handleComplete: (data: any) => void;
-}
+  setPropsAddress:string;
+  
+  // handleChange: (value: string) => void;
+  // onToggleModal: () => void;
+  // handleComplete: (data: any) => void;
+
