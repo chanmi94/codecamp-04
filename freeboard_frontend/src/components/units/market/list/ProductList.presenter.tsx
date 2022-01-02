@@ -15,6 +15,7 @@ import Searchbars01 from "../../../commons/searchbars/01/Searchbars01.container"
 import { v4 as uuidv4 } from "uuid";
 import InfiniteScroll from "react-infinite-scroller";
 import { IProductListUIProps } from "./ProductList.types";
+import Searchbars02 from "../../../../commons/searchbars/02/Searchbars02.container";
 export default function ProductListUI(props: IProductListUIProps) {
   return (
     <InfiniteScroll
@@ -23,19 +24,23 @@ export default function ProductListUI(props: IProductListUIProps) {
       hasMore={true}
       useWindow={false}
     >
+      <Searchbars02
+        refetch={props.refetch}
+        onChangeKeyword={props.onChangeKeyword}
+      />
       <ProductCreateButton onClick={props.onClickMoveToBProductNew}>
         <PencilIcon src="/images/board/list/write.png" />
         상품 등록하기
       </ProductCreateButton>
       <HeaderWrapper>
-        <SearchBox
+        {/* <SearchBox
           type="text"
           placeholder="제품을 검색해주세요"
           onChange={props.onChangeSearch}
         />
         <button onClick={props.onClickSearch} name="검색">
           검색
-        </button>
+        </button> */}
       </HeaderWrapper>
       <Wrapper>
         {props.data?.fetchUseditems.map((el, index) => (

@@ -13,8 +13,8 @@ import ProductListUI from "./ProductList.presenter";
 
 export default function ProductList() {
   const router = useRouter();
-
-  const [myKeyword, setMyKeyword] = useState("");
+  const [keyword, setKeyword] = useState("");
+  // const [myKeyword, setMyKeyword] = useState("");
   const [mySearch, setMySearch] = useState("");
   //   const { data: dataITemsCount, refetch: refetchItemsCount } = useQuery<
 
@@ -75,9 +75,8 @@ export default function ProductList() {
     setMySearch(event.target.value);
   }
 
-  function onClickSearch() {
-    refetch({ search: myKeyword });
-    setMyKeyword(mySearch);
+  function onChangeKeyword(value: string) {
+    setKeyword(value);
   }
 
   return (
@@ -87,8 +86,9 @@ export default function ProductList() {
       onClickMoveToProductDetail={onClickMoveToProductDetail}
       onLoadMore={onLoadMore}
       onClickBasket={onClickBasket}
-      onChangeSearch={onChangeSearch}
-      onClickSearch={onClickSearch}
+      keyword={keyword}
+      onChangeKeyword={onChangeKeyword}
+      refetch={refetch}
     />
   );
 }

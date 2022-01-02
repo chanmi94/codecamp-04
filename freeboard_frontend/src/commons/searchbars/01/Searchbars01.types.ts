@@ -4,7 +4,7 @@ import {
   IQuery,
   IQueryFetchBoardsArgs,
   IQueryFetchBoardsCountArgs,
-} from "../../../../commons/types/generated/types";
+} from "../../types/generated/types";
 
 export interface ISearchbars01Props {
   refetch: (

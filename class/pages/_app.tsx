@@ -18,17 +18,20 @@ import { createUploadLink } from "apollo-upload-client";
 import { initializeApp } from "firebase/app";
 import { createContext, useEffect, useState } from "react";
 import { getAccesToken } from "../src/commons/libraries/getAccessToken";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+
+import { useRouter } from "next/router";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyADsI9kUMtG6YqLhwvl6OcQlcHAwmq1Scg",
-  authDomain: "codecamp-75562.firebaseapp.com",
-  projectId: "codecamp-75562",
-  storageBucket: "codecamp-75562.appspot.com",
-  messagingSenderId: "1026243356333",
-  appId: "1:1026243356333:web:b727add9f6871b814c8824",
+  apiKey: "AIzaSyAyxVLveHqFlLxF0fSjDmsrTiuYOma1VI0",
+  authDomain: "baker-town.firebaseapp.com",
+  projectId: "baker-town",
+  storageBucket: "baker-town.appspot.com",
+  messagingSenderId: "32593744544",
+  appId: "1:32593744544:web:6d8555c1988dd947baafc5",
 };
 
 Sentry.init({
@@ -36,8 +39,26 @@ Sentry.init({
 });
 
 // Initialize Firebase
-export const firebaseApp = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+export const auth = getAuth(firebaseApp);
 
+export const provider = new GoogleAuthProvider();
+
+export const signInWithGoogle = () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const name = result.user.displayName;
+      const email = result.user.email;
+      const profilePic = result.user.photoURL;
+
+      localStorage.setItem("name", name);
+      localStorage.setItem("email", email);
+      localStorage.setItem("profilePic", profilePic);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 //apollo docs home에 가면 여러개있음..
 //react docs도 있음..
 // eslint-disable-next-line react/prop-types

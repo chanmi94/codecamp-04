@@ -3,22 +3,6 @@ import { Modal, Button } from "antd";
 import DaumPostcode from "react-daum-postcode";
 import styled from "@emotion/styled";
 
-const Wrapper = styled.div`
-  width: 100%;
-  max-width: 1200px;
-  /* height: 1847px; */
-
-  margin: 30px auto;
-`;
-const MapsInner = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  magrin: 0 -30px;
-  div {
-    padding: 0 30px;
-  }
-`;
 const Maps = styled.div`
   width: 50%;
   height: 500px;

@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent } from "react";
+import { ChangeEvent, MouseEvent,Dispatch,SetStateAction } from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IProductWriteProps {
@@ -32,7 +32,8 @@ export interface IProductWriteUIProps {
   myAddress?: string;
   addressDetail?: string;
   fileUrls: string[];
-  setPropsAddress:string;
+  // setPropsAddress:string;
+  setPropsAddress: Dispatch<SetStateAction<string>>
   
   // handleChange: (value: string) => void;
   // onToggleModal: () => void;
