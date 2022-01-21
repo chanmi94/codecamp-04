@@ -16,9 +16,19 @@ import { createUploadLink } from "apollo-upload-client";
 // import Head from "next/head";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { ChakraProvider } from "@chakra-ui/react";
 import { createContext, useEffect, useState } from "react";
 import { getAccesToken } from "../src/commons/libraries/getAccessToken";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+//찬미야 니키보드 좋다.
 
 import { useRouter } from "next/router";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -59,6 +69,36 @@ export const signInWithGoogle = () => {
       console.log(error);
     });
 };
+//firebase 회원가입
+export function signup(email: any, password: any) {
+  try {
+    return createUserWithEmailAndPassword(auth, email, password);
+  } catch {
+    alert("이미 가입된 이메일입니다!");
+  }
+}
+//firebase로그인
+export function signin(email: any, password: any) {
+  try {
+    return signInWithEmailAndPassword(auth, email, password);
+  } catch {
+    alert("이미 중복된 이메일입니다!");
+  }
+}
+//custom hook
+export function useAuth() {
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => setCurrentUser(user));
+    return unsub;
+  }, []);
+  return currentUser;
+}
+//logout
+export function logout() {
+  return signOut(auth);
+}
 //apollo docs home에 가면 여러개있음..
 //react docs도 있음..
 // eslint-disable-next-line react/prop-types

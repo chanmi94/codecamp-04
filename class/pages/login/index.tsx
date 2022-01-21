@@ -1,6 +1,12 @@
+import router, { useRouter } from "next/router";
 import { signInWithGoogle } from "../_app";
 
 function login() {
+  const router = useRouter();
+  // function signInWithGoogle() {
+  //   router.push("/30-01-login");
+  // }
+
   return (
     <>
       <button onClick={signInWithGoogle}>로그인하기</button>

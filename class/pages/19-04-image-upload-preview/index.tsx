@@ -29,7 +29,7 @@ export default function ImageUpLoadPage() {
   return (
     <>
       <div
-        style={{ width: "50px", height: "50px", background: "gray" }}
+        style={{ width: "100px", height: "100px", background: "gray" }}
         onClick={onClickMyImage}
       >
         이미지 선택

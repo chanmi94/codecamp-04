@@ -1,10 +1,10 @@
-import { ChangeEvent, MouseEvent,Dispatch,SetStateAction } from "react";
+import { ChangeEvent, MouseEvent, Dispatch, SetStateAction } from "react";
 import { IQuery } from "../../../../commons/types/generated/types";
 
 export interface IProductWriteProps {
   isEdit?: boolean;
   data?: any;
-  setPropsAddress:any;
+  setPropsAddress: any;
 }
 
 export interface IProductWriteUIProps {
@@ -33,9 +33,9 @@ export interface IProductWriteUIProps {
   addressDetail?: string;
   fileUrls: string[];
   // setPropsAddress:string;
-  setPropsAddress: Dispatch<SetStateAction<string>>
-  
+  setPropsAddress: Dispatch<SetStateAction<string>>;
+
   // handleChange: (value: string) => void;
   // onToggleModal: () => void;
   // handleComplete: (data: any) => void;
-
+}
