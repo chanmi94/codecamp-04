@@ -24,14 +24,6 @@ export default function ProductListUI(props: IProductListUIProps) {
       hasMore={true}
       useWindow={false}
     >
-      <Searchbars02
-        refetch={props.refetch}
-        onChangeKeyword={props.onChangeKeyword}
-      />
-      <ProductCreateButton onClick={props.onClickMoveToBProductNew}>
-        <PencilIcon src="/images/board/list/write.png" />
-        상품 등록하기
-      </ProductCreateButton>
       <HeaderWrapper>
         {/* <SearchBox
           type="text"
@@ -43,6 +35,14 @@ export default function ProductListUI(props: IProductListUIProps) {
         </button> */}
       </HeaderWrapper>
       <Wrapper>
+        <Searchbars02
+          refetch={props.refetch}
+          onChangeKeyword={props.onChangeKeyword}
+        />
+        <ProductCreateButton onClick={props.onClickMoveToBProductNew}>
+          <PencilIcon src="/images/board/list/write.png" />
+          상품 등록하기
+        </ProductCreateButton>
         {props.data?.fetchUseditems.map((el, index) => (
           <Card key={el._id}>
             {/* <div>{index + 1}</div> */}
