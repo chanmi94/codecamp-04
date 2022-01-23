@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import MypageUI from "./Mypoint.presenter";
 import {
   CREATE_POINT_TRANSACTION_OF_LOADING,
@@ -17,6 +18,15 @@ export default function Mypoint() {
     CREATE_POINT_TRANSACTION_OF_LOADING
   );
 
+  const selectList = ["1000", "10000", "30000", "50000", "100000"];
+
+  const [selectedPoint, setSelectedPoint] = useState<string>("");
+
+  // useEffect(() => {});
+  function onClickSelectPoint(event: any) {
+    setSelectedPoint(event.target.value);
+  }
+
   const { data } = useQuery(FETCH_USER_LOGGEDIN);
 
   function onClickPayment() {
@@ -28,7 +38,7 @@ export default function Mypoint() {
         pg: "html5_inicis",
         pay_method: "card",
         name: "포인트충전",
-        amount: 100,
+        amount: selectedPoint,
         buyer_email: "cksal4897@gmail.com",
         buyer_name: "밍마켓",
         buyer_tel: "010-0000-0000",
@@ -61,5 +71,12 @@ export default function Mypoint() {
     );
   }
 
-  return <MypageUI onClickPayment={onClickPayment} data={data} />;
+  return (
+    <MypageUI
+      onClickPayment={onClickPayment}
+      selectList={selectList}
+      onClickSelectPoint={onClickSelectPoint}
+      data={data}
+    />
+  );
 }
