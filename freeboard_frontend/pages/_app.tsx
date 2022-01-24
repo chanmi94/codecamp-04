@@ -79,7 +79,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, []);
 
   const uploadLink = createUploadLink({
-    uri: "https://backend04.codebootcamp.co.kr/graphql", //1. 12/10 로그인 관련 https로 변경!
+    uri: "https://backend04.codebootcamp.co.kr/graphql08", //1. 12/10 로그인 관련 https로 변경!
     headers: {
       authorization: `Bearer ${myAccesToken}`, //로그인관련
     },

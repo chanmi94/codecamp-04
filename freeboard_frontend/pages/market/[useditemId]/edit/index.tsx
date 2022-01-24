@@ -25,5 +25,5 @@ export default function ProductEditPage() {
     variables: { useditemId: router.query.useditemId },
   });
 
-  return <ProductWrite isEdit={true} data={data} />;
+  return <ProductWrite isEdit={true} data={data} setPropsAddress={undefined} />;
 }

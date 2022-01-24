@@ -12,8 +12,9 @@ import {
   Input,
   NameWrapper,
 } from "./myprofile.styles";
+import { IMyProfileUiProps } from "./myprofile.types";
 
-export default function MyProfileUI(props) {
+export default function MyProfileUI(props: IMyProfileUiProps) {
   const { data } = useQuery(FETCH_USER_LOGGEDIN);
   return (
     <>

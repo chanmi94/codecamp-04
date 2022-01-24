@@ -1,4 +1,5 @@
 import { useMutation } from "@apollo/client";
+import { ChangeEvent } from "react";
 import { useState } from "react";
 import MyProfileUI from "./myprofile.presenter";
 import { RESORT_USER_PASSWORD, UPDATE_USER_INPUT } from "./myprofile.queries";
@@ -11,15 +12,15 @@ export default function MyProfile() {
 
   const [myCheckPassword, setMyCheckPassword] = useState("");
 
-  function onChangePassword(event) {
+  function onChangePassword(event: ChangeEvent<HTMLInputElement>) {
     setMyPassword(event.target.value);
   }
 
-  function onChangeName(event) {
+  function onChangeName(event: ChangeEvent<HTMLInputElement>) {
     setMyName(event.target.value);
   }
 
-  function onChangeCheckPassword(event) {
+  function onChangeCheckPassword(event: ChangeEvent<HTMLInputElement>) {
     setMyCheckPassword(event.target.value);
   }
 
@@ -34,7 +35,7 @@ export default function MyProfile() {
       });
       alert("비밀번호가 수정되었습니다.");
     } catch (error) {
-      console.log(error.message);
+      error instanceof Error && error.message;
     }
   }
 

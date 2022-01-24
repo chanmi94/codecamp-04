@@ -60,7 +60,7 @@ export default function BoardCommentListUIItem(
         ],
       });
     } catch (error) {
-      alert(error.message);
+      // alert(error.message);
     }
   }
 

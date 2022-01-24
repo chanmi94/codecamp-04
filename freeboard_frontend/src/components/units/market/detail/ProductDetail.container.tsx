@@ -59,7 +59,7 @@ const ProductDetail = () => {
       alert("구매완료");
       console.log(result);
     } catch (error) {
-      error instanceof Error && error.message;
+      alert("마이페이지에서 포인트를 충전해주세요");
     }
   }
 
@@ -75,7 +75,6 @@ const ProductDetail = () => {
     }
   }
 
-  // console.log(data);
   return (
     <ProductDetailUI
       data={data}

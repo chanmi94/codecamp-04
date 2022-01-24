@@ -67,7 +67,7 @@ export default function Login() {
         },
       });
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
     confirm("회원가입을 축하드립니다.");
     router.push("/login");

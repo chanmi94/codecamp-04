@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build:ssg": "next build && next export",
+    "build:ssr": "next build ",
     "start": "next start",
     "lint": "next lint"
   },
@@ -61,7 +62,7 @@
     "@types/uuid": "^8.3.3",
     "@typescript-eslint/eslint-plugin": "^5.3.1",
     "@typescript-eslint/parser": "^5.3.1",
-    "eslint": "^8.2.0",
+    "eslint": "<8.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-react": "^7.27.0",
     "prettier": "2.4.1",

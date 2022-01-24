@@ -19,6 +19,7 @@ export interface IProductListUIProps {
   ) => Promise<ApolloQueryResult<Pick<IQuery, "fetchUseditems">>>;
   keyword: string;
   count?: number;
+  onChangeKeyword: (value: string) => void;
 }
 
 export interface ITextTokenProps {
