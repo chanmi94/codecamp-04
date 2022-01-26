@@ -23,9 +23,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import { IQuery, IUseditem } from "../../../../commons/types/generated/types";
-
 import Dompurify from "dompurify";
-// import KakaoMap from "../../../commons/kakaomap/map.container";
 import { IProductDetailUIProps } from "./ProductDetail.types";
 import MapLoadPage from "../../../commons/mapload/MapLoad.container";
 
