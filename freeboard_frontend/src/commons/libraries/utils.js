@@ -1,3 +1,4 @@
+//날짜관련 commoons
 export function getDate(myDate) {
   const date = new Date(myDate);
   const year = date.getFullYear();
