@@ -11,14 +11,9 @@ const Wrapper = styled.div``;
 
 const Body = styled.div``;
 
-const BodyWrapper = styled.div`
-  /* display: flex; */
-`;
+const BodyWrapper = styled.div``;
 
-const HIDDEN_HEADERS = [
-  "/12-05-modal-address-state-prev",
-  // ...
-];
+const HIDDEN_HEADERS = ["/12-05-modal-address-state-prev"];
 
 interface ILayoutProps {
   children: ReactChild;
