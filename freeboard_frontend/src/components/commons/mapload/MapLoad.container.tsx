@@ -3,10 +3,7 @@ import { Modal, Button } from "antd";
 import DaumPostcode from "react-daum-postcode";
 import styled from "@emotion/styled";
 
-const Maps = styled.div`
-  /* width: 50%;
-  height: 500px; */
-`;
+const Maps = styled.div``;
 
 const Map = styled.div`
   width: 100%;
